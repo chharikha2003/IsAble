@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'job_portal.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "job_portal_new",
+        "NAME": "job_portal",
         "USER": "root",
         "PASSWORD": "password@123",
         "HOST": "localhost",  # Or an IP Address that your DB is hosted on
@@ -134,3 +134,11 @@ STATICFILES_DIRS=[
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Email Configuration
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER='2021.sai.chengalva@ves.ac.in'
+EMAIL_HOST_PASSWORD='ggcgmkyfvwluvyvo'
+EMAIL_USE_TLS=True
+DEFAULT_FROM_EMAIL='Job Portal<2021.sai.chengalva@ves.ac.in>'
