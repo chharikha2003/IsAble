@@ -20,7 +20,7 @@ def registerUser(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password)
-            user.role = User.CUSTOMER
+            user.role = User.CANDIDATE
             user.save()
             email_subject='Please activate your account'
             email_template='accounts/emails/account_verification_email.html'
