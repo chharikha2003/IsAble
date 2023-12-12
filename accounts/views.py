@@ -2,10 +2,36 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib import messages,auth
 from accounts.forms import UserForm
-from accounts.models import User
+from accounts.models import User, UserProfile
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
-from accounts.utils import send_verification_email
+from accounts.utils import detectUser, send_verification_email
+from employer.forms import Employerform
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth.decorators import login_required,user_passes_test
+
+
+#Restrict the customer from accessing the vendor page
+
+@login_required(login_url='login')
+def myAccount(request):
+    user=request.user
+    redirectUrl=detectUser(user)
+    return redirect(redirectUrl)
+
+
+def check_role_candidate(user):
+    if user.role==1:
+        return True
+    else:
+        raise PermissionDenied
+    
+def check_role_employer(user):
+    if user.role==2:
+        return True
+    else:
+        raise PermissionDenied
+    
 def registerUser(request):
     
     if request.method=='POST':
@@ -29,7 +55,7 @@ def registerUser(request):
             
 
 
-            return redirect('registerUser')
+            return redirect('login')
         else:
             print(form.errors)
     else:
@@ -38,6 +64,53 @@ def registerUser(request):
         'form':form
     }
     return render(request,'accounts/registerUser.html',context)
+
+
+def registerEmployer(request):
+    if request.user.is_authenticated:
+        messages.warning(request,'You are already logged in!')
+        return redirect('myAccount')
+    elif request.method=='POST':
+        #store the data and create the user
+        form=UserForm(request.POST)
+        e_form=Employerform(request.POST,request.FILES)
+        if form.is_valid() and e_form.is_valid():
+            first_name=form.cleaned_data['first_name']
+            last_name=form.cleaned_data['last_name']
+            username=form.cleaned_data['first_name']
+            email=form.cleaned_data['email']
+            password=form.cleaned_data['password']
+            user=User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
+            user.role=User.EMPLOYER
+            user.save()
+            employer=e_form.save(commit=False)
+            employer.user=user 
+            company_name=e_form.cleaned_data['company_name']
+            user_profile=UserProfile.objects.get(user=user)
+            employer.user_profile=user_profile
+            employer.save()
+
+            #Send verification email
+            mail_subject='Please activate your account'
+            email_template='accounts/emails/account_verification_email.html'
+            send_verification_email(request,user,mail_subject,email_template)
+            
+            messages.success(request, 'Your account has been registered successfully! Please wait for the approval')
+            return redirect('login')
+        else:
+
+            print('invalid form')
+            print(form.errors)
+
+    else:
+        form=UserForm()
+        e_form=Employerform()
+
+    context={
+        'form':form,
+        'e_form':e_form,
+    }
+    return render(request,'accounts/registerEmployer.html',context)
 def activate(request,uidb64,token):
     try:
         uid=urlsafe_base64_decode(uidb64).decode()
@@ -55,26 +128,39 @@ def activate(request,uidb64,token):
     
 def login(request):
     if request.user.is_authenticated:
-        messages.warning(request,"you are already logged in")
-        return redirect('login')
-    if request.method=='POST':
-        email=request.POST.get('email')
-        password=request.POST.get('password')
-        user=auth.authenticate(email=email,password=password)
-        
-        if user!=None:
-            auth.login(request,user)
-            print("login")
-            messages.success(request,'You are now loggedIn')
-            return redirect('home')
-        else:
-            print("ddd")
-            messages.error(request,'Invalid Credentials')
-            return redirect('home')
+        messages.warning(request,'You are already logged in!')
+        return redirect('myAccount')
+    elif request.method=='POST':
+        email=request.POST['email']
+        password=request.POST['password']
 
+        user=auth.authenticate(email=email,password=password)
+
+        if user is not None:
+            print("yayy")
+            auth.login(request,user)
+            messages.success(request,'You are now logged in.')
+            return redirect('myAccount')
+        else:
+            print('errorshai')
+            messages.error(request,'Invalid login credentials')
+            return redirect('login')
     return render(request,'accounts/login.html')
 
 def logout(request):
     auth.logout(request)
     messages.info(request,"You logged out")
     return redirect("login")
+
+
+
+login_required(login_url='login')
+@user_passes_test(check_role_candidate)
+def candidateDashboard(request):
+    return render(request,'accounts/candidateDashboard.html')
+
+
+@login_required(login_url='login')
+@user_passes_test(check_role_employer)
+def employerDashboard(request):  
+    return render(request,'accounts/employerDashboard.html')

@@ -1,0 +1,13 @@
+{% autoescape off %}
+
+Hi {{user.first_name}},
+
+{% if is_approved%}
+Congratulations! Your Company has been approved by our admin team. --JobPortal
+{% else %}
+We're sorry! You are not eligible for posting your jobs on pur website. For more details, please contact support@jobportal.com --JobPortal
+{%endif%}
+
+
+
+{% endautoescape %}
