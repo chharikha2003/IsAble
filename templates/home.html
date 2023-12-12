@@ -1,69 +1,7 @@
-{% comment %} <!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <title>Register User</title>
-  </head>
-  <body>
-    <div class="container"><h1>Register Here</h1></div>
-    <div class="container">
-    <form>
-        {{form}}
-            
-   
-       
-     
-    </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
-</html> {% endcomment %}
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
-    <link
-      href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <title>Frontend Bootcamp</title>
-  </head>
-  <body>
-     <!--LOAD NAVBAR HERE-->
-     {% include 'includes/navbar.html'%}
-     <!--LOAD CONTENT HERE-->
-     {% block content %}
-     <!--CONTENT GOES HERE-->
-     {%endblock%}
-     <!--LOAD FOOTER HERE-->
-     {% include 'includes/footer.html'%}
-    <!-- Navbar -->
-    
+{%extends 'base.html'%} 
+{% load static %}
+ {%block content%}
+ 
 
     <!-- Showcase -->
     <section
@@ -91,7 +29,7 @@
           </div>
           <img
             class="img-fluid w-50 d-none d-sm-block"
-            src="img/showcase.svg"
+            src={% static 'img/showcase.svg' %}
             alt=""
           />
         </div>
@@ -542,3 +480,5 @@
       </div>
     </section>
 
+
+  {% endblock %}
