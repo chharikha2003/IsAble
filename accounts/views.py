@@ -52,3 +52,29 @@ def activate(request,uidb64,token):
     else:
         messages.error(request,'Invalid link')
         return redirect('registerUser')    
+    
+def login(request):
+    if request.user.is_authenticated:
+        messages.warning(request,"you are already logged in")
+        return redirect('login')
+    if request.method=='POST':
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+        user=auth.authenticate(email=email,password=password)
+        
+        if user!=None:
+            auth.login(request,user)
+            print("login")
+            messages.success(request,'You are now loggedIn')
+            return redirect('home')
+        else:
+            print("ddd")
+            messages.error(request,'Invalid Credentials')
+            return redirect('home')
+
+    return render(request,'accounts/login.html')
+
+def logout(request):
+    auth.logout(request)
+    messages.info(request,"You logged out")
+    return redirect("login")
