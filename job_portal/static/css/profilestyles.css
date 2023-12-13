@@ -1,2 +1,28 @@
 
   
+.addnew{
+    text-decoration: none;
+    color:purple;
+    font-size:15px;
+
+}
+
+.form-container {
+    position: relative;
+    padding-bottom: 30px; /* Add padding if needed */
+}
+
+.form-container:not(:last-child) {
+    border-bottom: 1px solid #ccc; /* Border color and style */
+    margin-bottom: 10px; /* Adjust the margin to control the space between forms */
+}
+
+/* Style for the delete icon */
+.delete-icon {
+    position: absolute;
+    top: 42%;
+    right: 10px; /* Adjust the right distance for the delete icon */
+    transform: translateY(-50%);
+    color: #ff0000; /* Change the color to your desired delete icon color */
+    cursor: pointer;
+}
