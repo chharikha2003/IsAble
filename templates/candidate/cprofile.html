@@ -1,0 +1,81 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="{% static 'css/profilestyles.css' %}" rel="stylesheet">
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item border border-dark" >
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Add Skills and your certifications,courses
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="form-container">
+                <form action="{% url 'cprofile' %}" class="form-fields-set foodbakery-dev-restaurant-form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+        
+        
+                    <div class="row py-3">
+                      <div class="col-md-6">
+                        <div class="row py-2">
+                         
+                          <div class="form-group">
+                        <label for="">Add keywords that define your skills,things you are good at</label><br>
+                        {{form.skills}}
+                      </div>
+                    </div>
+                        <div class="row py-2">
+                          <div class="form-group">
+                           
+                           
+                            <label for="exampleInputEmail1">Certificate Name</label></br>
+                            {{form.certificate_name}}
+                          </div>
+                        </div>
+                        <div class="row py-2">
+        
+        
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Issued By</label></br>
+                            {{form.issued_by}}
+                          </div>
+                        </div>
+                        <div class="row py-2">
+                        <div class="col-md-4">
+                          <button type="submit" class="btn btn-primary text-center">Save</button>
+        
+        
+                        </div>
+                        </div>
+                      </div>
+                       
+                     
+                    </div>
+                </form>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+      </div>
+    
+       
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+
+    
+  </body>
+</html>
