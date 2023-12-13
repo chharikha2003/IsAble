@@ -14,21 +14,7 @@
   </head>
 
 <body>
-    <h1 class="text-center py-6">Latest Job Openings</h1>
-    <nav class="navbar navbar-light bg-light">
-        <form method="get" action="/jobs/search_by_category" class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search by category</button>
-        </form>
-      </nav>
-    
-
-      <nav class="navbar navbar-light bg-light">
-        <form method="get" action="/jobs/search_by_city" class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query1" id="query1">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search by city</button>
-        </form>
-      </nav>
+    <h1 class="text-center py-6">Jobs of the given City</h1>
     
     <div class="container">
 
@@ -38,7 +24,7 @@
   
         
     
-    {% for job in jobs %}
+    {% for job in jobs_by_city%}
         <!-- <h2><a href="{% url 'job_detail' job.id %}">{{ job.title }}</a></h2> -->
            
             
