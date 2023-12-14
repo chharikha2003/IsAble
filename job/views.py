@@ -53,6 +53,13 @@ def search_by_city(request):
     jobs_by_city=Job.objects.filter(city__icontains=query)
     return render(request,'job/search_by_city.html',{'jobs_by_city':jobs_by_city})
 
+def search_by_title(request):
+    query=request.GET['query3']
+    jobs_by_title=Job.objects.filter(title__icontains=query)
+    return render(request,'job/search_by_title.html',{'jobs_by_title':jobs_by_title})
+
+
+
    
 
 
