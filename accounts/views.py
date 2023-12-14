@@ -10,6 +10,7 @@ from employer.forms import Employerform
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required,user_passes_test
 from candidateProfile.models import *
+from employer.models import Employer
 
 
 #Restrict the customer from accessing the vendor page
@@ -179,5 +180,7 @@ def candidateDashboard(request):
 
 @login_required(login_url='login')
 @user_passes_test(check_role_employer)
-def employerDashboard(request):  
-    return render(request,'accounts/employerDashboard.html')
+def employerDashboard(request):
+    emp=Employer.objects.filter(user=request.user)
+    employer_details_data = personal_details.objects.filter(user=request.user)  
+    return render(request,'accounts/employerDashboard.html',{'employer_details_data':employer_details_data})

@@ -37,3 +37,20 @@ class Employer(models.Model):
                     mail_subject=""
                     send_notification(mail_subject,mail_template,context)
         return super(Employer,self).save(*args,**kwargs)
+    
+class Employer_Detailed(models.Model):
+    user=models.OneToOneField(User,related_name='user_emp',on_delete=models.CASCADE)
+    description = models.TextField()
+    industry = models.CharField(max_length=100)
+    founded_year = models.PositiveIntegerField()
+    address = models.CharField(max_length=255, blank=True, null=True)
+    city = models.CharField(max_length=100, blank=True, null=True)
+    state = models.CharField(max_length=100, blank=True, null=True)
+    country = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    website = models.URLField(blank=True, null=True)
+    logo = models.ImageField(upload_to='company_logos/', null=True, blank=True)
+    facebook = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)

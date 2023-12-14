@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/profilestyles.css' %}" />
+    <script src="{% static 'js/profile.js' %}" defer></script>
+    <title>Registraion Form</title>
+  </head>
+  <body> 
+    <div class="profile">
+      <form action="{% url 'companyregistration_view'%}" class="form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 class="text-center">Company Details</h1>
+        <!-- Progress bar -->
+        
+
+        <!-- Steps -->
+        <div class="form-step form-step-active">
+          <div class="input-row">
+            <!-- First column -->
+           
+
+            <!-- Second column -->
+            <div class="input-group">
+              <label for="state">Industry</label>
+              {{employer_details_form.industry}}
+            </div>
+          </div>
+
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="country">Founded Year</label>
+              {{employer_details_form.founded_year}}
+            </div>
+
+            <div class="input-group">
+              <label for="profile_photo">Address</label>
+              {{employer_details_form.address}}
+            </div>
+          </div>
+
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="phone_number">City</label>
+              {{employer_details_form.city}}
+            </div>
+
+          </div>
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="phone_number">state</label>
+              {{employer_details_form.state}}
+            </div>
+
+          </div>
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="phone_number">Country</label>
+              {{employer_details_form.country}}
+            </div>
+
+          </div>
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="phone_number">Phone number</label>
+              {{employer_details_form.phone}}
+            </div>
+
+          </div>
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="phone_number">Website</label>
+              {{employer_details_form.website}}
+            </div>
+
+          </div>
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="phone_number">logo</label>
+              {{employer_details_form.logo}}
+            </div>
+
+          </div>
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="phone_number">facebook</label>
+              {{employer_details_form.facebook}}
+            </div>
+
+          </div>
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="phone_number">twitter</label>
+              {{employer_details_form.twitter}}
+            </div>
+
+          </div>
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="phone_number">linkedin</label>
+              {{employer_details_form.linkedin}}
+            </div>
+
+          </div>
+          <div class="input-group">
+            <label for="city">Description</label>
+            {{employer_details_form.description}}
+          </div>
+
+          
+        </div>
+        
+           
+       
+        <button type="submit" class="btn btn-primary text-center">Submit</button>
+           
+          
+         
+      </form>
+    </div>
+  </body>
+</html>
