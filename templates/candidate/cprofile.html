@@ -1,169 +1,234 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="{% static 'css/profilestyles.css' %}" rel="stylesheet">
-    <title>Hello, world!</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/profilestyles.css' %}" />
+    <script src="{% static 'js/profile.js' %}" defer></script>
+    <title>Registraion Form</title>
   </head>
-  <body>
-    <div class="container">
-      <div class="accordion" id="accordionExample">
-        <div class="accordion-item border border-dark" >
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Add Skills and your certifications,courses
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <div class="form-container">
-                {% comment %} <form action="{% url 'cprofile' %}"  class="form-fields-set foodbakery-dev-restaurant-form" method="post" enctype="multipart/form-data">
-                    {% csrf_token %} {% endcomment %}
+  <body> 
+    <div class="profile">
+      <form action="{% url 'registration_view'%}" class="form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 class="text-center">Profile</h1>
+        <!-- Progress bar -->
+        <div class="progressbar">
+          <div class="progress" id="progress"></div>
 
-                    {{ skill_formset.management_form }}
-                    {% for form in skill_formset %}
-                        <form id="id_skills-{{ form.prefix }}" method="post" action="{% url 'cprofile' %}">
-                          {% csrf_token %}
-                          {{ form.as_table }}
-                        </form>
-                    {% endfor %}
+          <div
+            class="progress-step progress-step-active"
+            data-title="Personal Details"
+          ></div>
+          <div class="progress-step" data-title="Education"></div>
+          <div class="progress-step" data-title="Experience"></div>
+          <div class="progress-step" data-title="Skills"></div>
+          <div class="progress-step" data-title="Certifications"></div>
+          <div class="progress-step" data-title="Projects"></div>
+        </div>
 
-        
-                    {% comment %} <div class="row py-3">
-                      <div class="col-md-6">
-                        <div class="row py-2">
-                         
-                          <div class="form-group">
-                        <label for="">Add keywords that define your skills,things you are good at</label><br>
-                        {{form.skills}}
-                      </div>
-                    </div>
-                        <div class="row py-2">
-                          <div class="form-group">
-                           
-                           
-                            <label for="exampleInputEmail1">Certificate Name</label></br>
-                            {{form.certificate_name}}
-                          </div>
-                        </div>
-                        <div class="row py-2">
-        
-        
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Issued By</label></br>
-                            {{form.issued_by}}
-                          </div>
-                        </div>
-                        <div class="row py-2">
-                        <div class="col-md-4">
+        <!-- Steps -->
+        <div class="form-step form-step-active">
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="city">City</label>
+              {{personal_details_form.city}}
+            </div>
 
-        
-        
-                        </div>
-                        </div>
-                      </div>
-                       
-                     
-                    </div>  {% endcomment %}
-                    {% comment %} <button type="button" id="add-skill">Add New Skill</button> {% endcomment %}
-                    <a href="#" id="add-skill" class="addnew"><i class="fa fa-plus"></i>Add New Skill</a>
-      
-                    <button type="submit" class="btn btn-primary text-center">Save</button>
-
-               
-                {% comment %} </form> {% endcomment %}
-              </div>
-        
+            <!-- Second column -->
+            <div class="input-group">
+              <label for="state">State</label>
+              {{personal_details_form.state}}
             </div>
           </div>
+
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="country">Country</label>
+              {{personal_details_form.country}}
+            </div>
+
+            <div class="input-group">
+              <label for="profile_photo">Profile Photo</label>
+              {{personal_details_form.profile_photo}}
+            </div>
+          </div>
+
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="phone_number">Phone number</label>
+              {{personal_details_form.phone_number}}
+            </div>
+
+          </div>
+
+          <div class="">
+            <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+          </div>
         </div>
-      </div>
-    
-       
+        <div class="form-step">
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="highest_qualification">Highest qualification</label>
+              {{education_form.highest_qualification}}
+            </div>
+
+            <!-- Second column -->
+            <div class="input-group">
+              <label for="specialization">Specialization</label>
+              {{education_form.specialization}}
+            </div>
+          </div>
+
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="institute">Institute</label>
+              {{education_form.institute}}
+            </div>
+
+            <div class="input-group">
+              <label for="start_year">Start year</label>
+              {{education_form.start_year}}
+            </div>
+          </div>
+
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="end_year">End year</label>
+              {{education_form.end_year}}
+            </div>
+          </div>
+
+          <div class="btns-group">
+            <a href="#" class="btn btn-prev">Previous</a>
+            <a href="#" class="btn btn-next">Next</a>
+          </div>
+        </div>
+        <div class="form-step">
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="Designation">Designation</label>
+              {{experience_form.Designation}}
+            </div>
+
+            <!-- Second column -->
+            <div class="input-group">
+              <label for="Organisation">Organisation</label>
+              {{experience_form.Organisation}}
+            </div>
+          </div>
+
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="status">Status</label>
+              {{experience_form.status}}
+            </div>
+
+            <!-- Second column -->
+            <div class="input-group">
+              <label for="descofjob">Job Description</label>
+              {{experience_form.descofjob}}
+            </div>
+          </div>
+
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="worked_from">Worked from</label>
+              {{experience_form.worked_from}}
+            </div>
+
+            <!-- Second column -->
+            <div class="input-group">
+              <label for="worked_till">Worked till</label>
+              {{experience_form.worked_till}}
+            </div>
+          </div>
+
+          <div class="btns-group">
+            <a href="#" class="btn btn-prev">Previous</a>
+            <a href="#" class="btn btn-next">Next</a>
+          </div>
+        </div>
+
+        <div class="form-step">
+          <div class="input-group">
+            <label for="skill">Skill</label>
+            {{skills_form.skill}}
+          </div>
+
+          <div class="btns-group">
+            <a href="#" class="btn btn-prev">Previous</a>
+            <a href="#" class="btn btn-next">Next</a>
+          </div>
+        </div>
+
+        <div class="form-step">
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="certificate">certificate</label>
+              {{certifications_form.certificate}}
+            </div>
+
+            <!-- Second column -->
+            <div class="input-group">
+              <label for="issued_by">issued_by</label>
+              {{certifications_form.issued_by}}
+            </div>
+          </div>
+
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="date_issued">date_issued</label>
+              {{certifications_form.date_issued}}
+            </div>
+          </div>
+          <div class="btns-group">
+            <a href="#" class="btn btn-prev">Previous</a>
+            <a href="#" class="btn btn-next">Next</a>
+          </div>
+        </div>
+
+        <div class="form-step">
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="title">title</label>
+              {{projects_form.title}}
+            </div>
+
+            <!-- Second column -->
+            <div class="input-group">
+              <label for="link">link</label>
+              {{projects_form.link}}
+            </div>
+          </div>
+
+          <div class="input-row">
+            <!-- First column -->
+            <div class="input-group">
+              <label for="desc">desc</label>
+              {{projects_form.desc}}
+            </div>
+          </div>
+          <div class="btns-group">
+            <a href="#" class="btn btn-prev">Previous</a>
+            <input type="submit" value="Submit" class="btn" />
+          </div>
+        </div>
+      </form>
     </div>
-    <script>
-      {% comment %} document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('add-skill').addEventListener('click', function () {
-            var formset = document.getElementById('id_skills-TOTAL_FORMS');
-            if (formset) {
-                var newForm = formset.value++;
-                var formHtml = document.getElementById('id_skills-skills-0');
-                if (formHtml instanceof Element) {
-                    formHtml.insertAdjacentHTML('beforebegin', formHtml.outerHTML.replace(/-\d+-/g, '-' + newForm + '-'));
-                } else {
-                    console.error('Element with ID "id_skills-0" not found or not valid.');
-                }
-            } else {
-                console.error('Element with ID "id_skills-TOTAL_FORMS" not found.');
-            }
-        });
-    }); {% endcomment %}
-    document.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('add-skill').addEventListener('click', function () {
-          var formset = document.getElementById('id_skills-TOTAL_FORMS');
-          if (formset) {
-              var newFormIndex = formset.value++;
-              var formHtml = document.getElementById('id_skills-skills-0');
-              if (formHtml instanceof Element) {
-                  var clonedForm = formHtml.cloneNode(true);
-  
-                  // Update IDs of the cloned form and its descendants
-                  clonedForm.id = 'id_skills-' + newFormIndex;
-  
-                  // Clear values of the cloned form (optional)
-                  clonedForm.querySelectorAll('input, textarea, select').forEach(function (input) {
-                      input.value = '';
-                  });
-
-                var containerDiv = document.createElement('div');
-                containerDiv.classList.add('form-container');
-
-                // Append the cloned form to the container div
-                containerDiv.appendChild(clonedForm);
-
-                var deleteIcon = document.createElement('a');
-                deleteIcon.href = '#';
-                deleteIcon.classList.add('delete-icon'); // Add a class for styling
-                deleteIcon.innerHTML = '<i class="fas fa-trash-alt"></i>'; // Dustbin icon
-                deleteIcon.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    clonedForm.remove();
-                    hrElement.remove(); 
-                    containerDiv.remove(); // Remove the container div when the form is removed
-                });
-
-                // Append the delete icon to the container div
-                containerDiv.appendChild(deleteIcon);
-                formHtml.insertAdjacentElement('afterend', containerDiv);
-                  // Insert the cloned form before the original form
-                formHtml.insertAdjacentElement('afterend', clonedForm);
-
-                  var hrElement = document.createElement('hr');
-                  formHtml.insertAdjacentElement('afterend', hrElement);
-              } else {
-                  console.error('Element with ID "id_skills-0" not found or not valid.');
-              }
-          } else {
-              console.error('Element with ID "id_skills-TOTAL_FORMS" not found.');
-          }
-      });
-  });
-  
-    
-    
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
-
-    
   </body>
 </html>

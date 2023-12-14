@@ -8,8 +8,8 @@ from django.forms import formset_factory
 
 from accounts.models import User
 import candidate
-from candidate.forms import CandidateForm, ExperienceForm
-from candidate.models import Candidate, Experience
+from candidate.forms import CandidateForm
+from candidate.models import Candidate
 def check_role_candidate(user):
     if user.role==1:
         return True
@@ -72,28 +72,28 @@ def cprofile(request):
 
 
 
-login_required(login_url='login')
-@user_passes_test(check_role_candidate)
+# login_required(login_url='login')
+# @user_passes_test(check_role_candidate)
 
-def cexpprofile(request):
+# def cexpprofile(request):
     
-    if request.method=='POST':
-        expform=ExperienceForm(request.POST)
+#     if request.method=='POST':
+#         expform=ExperienceForm(request.POST)
         
-        if expform.is_valid():
-            expform_save =expform.save(commit=False)
-            expform_save.user=request.user
+#         if expform.is_valid():
+#             expform_save =expform.save(commit=False)
+#             expform_save.user=request.user
             
-            expform.save()
-            return redirect('cprofile')
-        else:
-            print(expform.errors)
-    else:
-        expform=ExperienceForm()
-    context={
-        'expform':expform
-    }
-    return render(request,'candidate/cprofile.html',context)
+#             expform.save()
+#             return redirect('cprofile')
+#         else:
+#             print(expform.errors)
+#     else:
+#         expform=ExperienceForm()
+#     context={
+#         'expform':expform
+#     }
+#     return render(request,'candidate/cprofile.html',context)
 
 
 

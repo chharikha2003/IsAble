@@ -27,6 +27,8 @@ urlpatterns = [
     path("",include("accounts.urls")),
     path('jobs/', include('job.urls')),
     path('candidate/', include('candidate.urls')),
+    path('candidateprofile/', include('candidateProfile.urls')),
+
     
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -9,6 +9,7 @@ from accounts.utils import detectUser, send_verification_email
 from employer.forms import Employerform
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required,user_passes_test
+from candidateProfile.models import *
 
 
 #Restrict the customer from accessing the vendor page
@@ -157,8 +158,24 @@ def logout(request):
 login_required(login_url='login')
 @user_passes_test(check_role_candidate)
 def candidateDashboard(request):
-    return render(request,'accounts/candidateDashboard.html')
+    personal_details_data = personal_details.objects.filter(user=request.user)
+    Education_data = Education.objects.filter(user=request.user)
+    Experience_data = Experience.objects.filter(user=request.user)
+    Skills_data = Skills.objects.filter(user=request.user)
+    Certifications_data = Certifications.objects.filter(user=request.user)
+    Projects_data = Projects.objects.filter(user=request.user)
 
+    context={
+        'personal_details_data' : personal_details_data,
+        'Education_data' : Education_data,
+        'Experience_data' : Experience_data,
+        'Skills_data' : Skills_data,
+        'Certifications_data' : Certifications_data,
+        'Projects_data' : Projects_data
+        
+    }
+
+    return render(request,'accounts/candidateDashboard.html',context)
 
 @login_required(login_url='login')
 @user_passes_test(check_role_employer)
