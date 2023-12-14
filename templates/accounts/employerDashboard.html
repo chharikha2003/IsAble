@@ -120,32 +120,43 @@
                                         <a href="javascript:void(0);" class="dropdown-item">Block</a>
                                     </div>
                                 </div>
-                                {% for personal_details_user in employer_details_data %}
-
+                                
                                     <div class="d-flex align-items-start">
-                                        <img src="{{personal_details_user.profile_photo.url}}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
+                                        {% for emp_detail in employer_details_data %}
+                                            <img src="{{emp_detail.logo}}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
+                                        {% endfor %}
                                         <div class="w-100 ms-3">
-                                            <h4 class="my-0">{{personal_details_user.user.first_name}}</h4>
-                                            <p class="text-muted">@webdesigner</p>
-                                            
+                                            {% for emp_detail in emp %}
+                                                <h4 class="my-0">{{emp_detail.company_name}}</h4>  
+                                                <p class="text-muted">@webdesigner</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 
             
                                     <div class="mt-3">
-                                        <h4 class="font-13 text-uppercase">About Me :</h4>
-                                        <p class="text-muted font-13 mb-3">
-                                            Hi I'm Shamal Dhekale ,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
-                                        </p>
-                                        <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ms-2">{{personal_details_user.user.first_name}} {{personal_details_user.user.last_name}} </span></p>
+                                        {% for emp_detail in employer_details_data %}
+                                            <h4 class="font-13 text-uppercase">Description:</h4>
+                                            <p class="text-muted font-13 mb-3">
+                                                {{emp_detail.description}}
+                                            </p>
+                                        
+                                            <p class="text-muted mb-2 font-13"><strong> Industry :</strong> <span class="ms-2">{{emp_detail.industry}} </span></p>
+                                        
+                                            <p class="text-muted mb-2 font-13"><strong>Year Founded: </strong><span class="ms-2">{{emp_detail.founded_year}}</span></p>
+                                        
+                                            <p class="text-muted mb-2 font-13"><strong>Address :</strong> <span class="ms-2">{{emp_detail.address}} </span></p>
+                                        
+                                            <p class="text-muted mb-1 font-13"><strong>Email: </strong> <span class="ms-2">{{emp_detail.email}} </span></p>
+
+                                            <p class="text-muted mb-1 font-13"><strong>Phone: </strong> <span class="ms-2">{{emp_detail.phone}} </span></p>
+                                            
+                                            <p class="text-muted mb-1 font-13"><strong>Website: </strong> <span class="ms-2">{{emp_detail.website}} </span></p>
+
+                                        {% endfor %}
                                     
-                                        <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ms-2">{{personal_details_user.phone_number}}</span></p>
-                                    
-                                        <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ms-2">{{personal_details_user.user.email}} </span></p>
-                                    
-                                        <p class="text-muted mb-1 font-13"><strong>Location :</strong> <span class="ms-2">{{personal_details_user.city}} {{personal_details_user.state}} {{personal_details_user.country}}</span></p>
                                     </div>      
-                                {% endfor %}                              
+                                                             
             
                                 <ul class="social-list list-inline mt-3 mb-0">
                                     <li class="list-inline-item">
@@ -167,153 +178,8 @@
                         
             
                         
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title mb-3">Projects</h4>
-                                    
-                                <div class="inbox-widget" data-simplebar="init" style="max-height: 100px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto;"><div class="simplebar-content" style="padding: 0px;">
-                                    {% for project_detail in Projects_data %}
-                                        <p class="text-muted mb-2 font-17"><strong> Title :</strong> <span class="ms-2">{{project_detail.title}}</span></p>
-                                        <p class="text-muted mb-2 font-17"><strong> Link:</strong> <span class="ms-2"><a href="{{project_detail.link}}">{{project_detail.link}}</a></span></p>
-                                        <p class="text-muted mb-2 font-17"><strong> Description :</strong> <span class="ms-2">{{project_detail.desc}}</span></p>
-                                        
-
-                                    {% endfor %}
-                                    
-                                    
-                                    
-                                    
-                                </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 532px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 230px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div> <!-- end inbox-widget -->
-                            </div>
-                        </div> <!-- end card-->
-            
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title mb-3">Certifications</h4>
-                                    
-                                <div class="inbox-widget" data-simplebar="init" style="max-height: 100px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto;"><div class="simplebar-content" style="padding: 0px;">
-                                    {% for certifications_detail in Certifications_data %}
-                                        <p class="text-muted mb-2 font-17"><strong> certificate :</strong> <span class="ms-2">{{certifications_detail.certificate}}</span></p>
-                                        <p class="text-muted mb-2 font-17"><strong> Issued by:</strong> <span class="ms-2">{{certifications_detail.issued_by}}</span></p>
-                                        <p class="text-muted mb-2 font-17"><strong> Date Issued :</strong> <span class="ms-2">{{certifications_detail.date_issued}}</span></p>
-                                        
-
-                                    {% endfor %}
-                                    
-                                    
-                                    
-                                    
-                                </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 532px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 230px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div> <!-- end inbox-widget -->
-                            </div>
-                        </div> <!-- end card-->
                         
-                    </div> <!-- end col-->
-            
-                    <div class="col-xl-7">
-                        <div class="card">
-                            <div class="card-body">
-                                <!-- comment box -->
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <div class="row">
-                                            <div class="col-4 border-end border-light">
-                                                <h5 class="text-muted mt-1 mb-2 fw-normal">Applied</h5>
-                                                <h2 class="mb-0 fw-bold">5</h2>
-                                            </div>
-                                                <div class="col-4 border-end border-light">
-                                                    <h5 class="text-muted mt-1 mb-2 fw-normal">Reviewed</h5>
-                                                    <h2 class="mb-0 fw-bold">3</h2>
-                                            </div>
-                                            <div class="col-4">
-                                                <h5 class="text-muted mt-1 mb-2 fw-normal">Contacted</h5>
-                                                <h2 class="mb-0 fw-bold">2</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- end comment box -->
-            
-                                <!-- Story Box-->
-                                
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="header-title mb-3">Education</h4>
-                                                
-                                            <div class="inbox-widget" data-simplebar="init" style="max-height: 150px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto;"><div class="simplebar-content" style="padding: 0px;">
-                                                {% for edu_detail in Education_data %}
-                                                    <p class="text-muted mb-2 font-17"><strong> Highest qualification :</strong> <span class="ms-2">{{edu_detail.highest_qualification}}</span></p>
-                                                    <p class="text-muted mb-2 font-17"><strong> Specialization :</strong> <span class="ms-2">{{edu_detail.specialization}}</span></p>
-                                                    <p class="text-muted mb-2 font-17"><strong> Institute :</strong> <span class="ms-2">{{edu_detail.institute}}</span></p>
-                                                    <p class="text-muted mb-2 font-17"><strong> Start year :</strong> <span class="ms-2">{{edu_detail.start_year}}</span></p>
-                                                    <p class="text-muted mb-2 font-17"><strong> End year :</strong> <span class="ms-2">{{edu_detail.end_year}}</span></p>
-
-
-                                                {% endfor %}
-                                                
-                                                
-                                                
-                                                
-                                            </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 532px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 230px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div> <!-- end inbox-widget -->
-                                        </div>
-                                    </div> <!-- end card-->
-            
-            
-                                   
-                                
-            
-                                <!-- Story Box-->
-                                
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="header-title mb-3">Experience</h4>
-                                                
-                                            <div class="inbox-widget" data-simplebar="init" style="max-height: 150px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto;"><div class="simplebar-content" style="padding: 0px;">
-                                                {% for exp_detail in Experience_data %}
-                                                    <p class="text-muted mb-2 font-17"><strong> Designation :</strong> <span class="ms-2">{{exp_detail.Designation}}</span></p>
-                                                    <p class="text-muted mb-2 font-17"><strong> Organisation :</strong> <span class="ms-2">{{exp_detail.Organisation}}</span></p>
-                                                    <p class="text-muted mb-2 font-17"><strong> Job Description :</strong> <span class="ms-2">{{exp_detail.descofjob}}</span></p>
-                                                    <p class="text-muted mb-2 font-17"><strong> Worked from: </strong> <span class="ms-2">{{exp_detail.worked_from}}</span></p>
-                                                    <p class="text-muted mb-2 font-17"><strong> Worked Till :</strong> <span class="ms-2">{{exp_detail.worked_till}}</span></p>
-                                                    <p class="text-muted mb-2 font-17"><strong> {% if exp_detail.status == 'yes' %} I am currently working in the same organization{% endif %} </strong> 
-
-                                                {% endfor %}
-                                                
-                                                
-                                                
-                                                
-                                            </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 532px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 230px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div> <!-- end inbox-widget -->
-                                        </div>
-                                   
-            
-            
-                                   
-                                </div>
-            
-                                <!-- Story Box-->
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title mb-3">Skills</h4>
-                                            
-                                        <div class="inbox-widget" data-simplebar="init" style="max-height: 70px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto;"><div class="simplebar-content" style="padding: 0px;">
-                                            {% for skills_detail in Skills_data %}
-                                                <p class="text-muted mb-2 font-17"><strong> My strong skills are :</strong> <span class="ms-2">{{skills_detail.skill}}</span></p>
-                                                
-                                                
-        
-                                            {% endfor %}
-                                            
-                                            
-                                            
-                                            
-                                        </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 532px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 230px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div> <!-- end inbox-widget -->
-                                    </div>
-                                </div> <!-- end card-->
-                                </div>
-            
                                
-                            </div>
-                        </div> <!-- end card-->
             
                     </div> <!-- end col -->
                 </div>

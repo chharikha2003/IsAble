@@ -10,7 +10,7 @@ from employer.forms import Employerform
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required,user_passes_test
 from candidateProfile.models import *
-from employer.models import Employer
+from employer.models import Employer, Employer_Detailed
 
 
 #Restrict the customer from accessing the vendor page
@@ -142,7 +142,7 @@ def login(request):
             print("yayy")
             auth.login(request,user)
             messages.success(request,'You are now logged in.')
-            return redirect('registration_view')
+            return redirect('myAccount')
         else:
             print('errorshai')
             messages.error(request,'Invalid login credentials')
@@ -182,5 +182,11 @@ def candidateDashboard(request):
 @user_passes_test(check_role_employer)
 def employerDashboard(request):
     emp=Employer.objects.filter(user=request.user)
-    employer_details_data = personal_details.objects.filter(user=request.user)  
-    return render(request,'accounts/employerDashboard.html',{'employer_details_data':employer_details_data})
+    employer_details_data = Employer_Detailed.objects.filter(user=request.user)  
+    context={
+        'employer_details_data':employer_details_data,
+        'emp':emp 
+        
+    }
+
+    return render(request,'accounts/employerDashboard.html',context)
