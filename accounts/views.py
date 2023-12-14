@@ -142,7 +142,7 @@ def login(request):
             print("yayy")
             auth.login(request,user)
             messages.success(request,'You are now logged in.')
-            return redirect('myAccount')
+            return redirect('registration_view')
         else:
             print('errorshai')
             messages.error(request,'Invalid login credentials')
