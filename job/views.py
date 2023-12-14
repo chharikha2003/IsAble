@@ -59,8 +59,17 @@ def search_by_title(request):
     return render(request,'job/search_by_title.html',{'jobs_by_title':jobs_by_title})
 
 
-
+def get_internships(request):
+    job = Job.objects.filter(category="Internship")
+    return render(request, 'job/job_internship.html', {'job': job})
+   
+def get_remote(request):
+    job = Job.objects.filter(category="Remote")
+    return render(request, 'job/job_remote.html', {'job': job})
    
 
 
-
+def get_fulltime(request):
+    job = Job.objects.filter(category="Full Time")
+    return render(request, 'job/job_fulltime.html', {'job': job})
+   

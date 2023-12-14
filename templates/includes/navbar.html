@@ -26,10 +26,19 @@
             <a href="#questions" class="nav-link">Contact Us</a>
           </li>
           <li class="nav-item">
-            <a href="#instructors" class="nav-link"><button type="button" class="btn btn-warning">Find Job</button></a>
+            {% if user.is_authenticated %}
+            <a href="{% url "job_list" %}" class="nav-link"><button type="button" class="btn btn-warning">Find Job</button></a>
+            {% else %}
+            <a href="{% url "login" %}" class="nav-link"><button type="button" class="btn btn-warning">Find Job</button></a>
+            {% endif %}
+            
           </li>
           <li class="nav-item">
-            <a href="#instructors" class="nav-link"><button type="button" class="btn btn-warning">Post a Job</button></a>
+            {% if user.is_authenticated %}
+            <a href="{% url "post_job" %}" class="nav-link"><button type="button" class="btn btn-warning">Post Job</button></a>
+            {% else %}
+            <a href="{% url "login" %}" class="nav-link"><button type="button" class="btn btn-warning">Post Job</button></a>
+            {% endif %}
           </li>
           
         </ul>
