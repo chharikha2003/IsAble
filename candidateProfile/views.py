@@ -1,45 +1,35 @@
-from django.shortcuts import redirect, render
-from .models import personal_details
+from django.forms import formset_factory
+from django.shortcuts import get_object_or_404, redirect, render
+from .models import *
 from .forms import *
 # Create your views here.
-def personal_details_ins(request):
-    if request.method=='POST':
-        personal_details_form=PersonalDetailsForm(request.POST)
-        
-        if personal_details_form.is_valid():
-            personal_details_form_save =personal_details_form.save(commit=False)
-            personal_details_form_save.user=request.user
-            personal_details_form.save()
-            return redirect('personal_details_form')
-        else:
-            print(personal_details_form.errors)
-    else:
-        personal_details_form=PersonalDetailsForm()
-    context={
-
-        'personal_details_form':personal_details_form
-    }
-    return render(request,'candidate/cprofile.html',context)
 
 
 def registration_view(request):
+    personal_details_inst=get_object_or_404(personal_details,user=request.user)
+    education_inst=get_object_or_404(Education,user=request.user)
+    experience_inst=get_object_or_404(Experience,user=request.user)
+    skills_inst=get_object_or_404(Skills,user=request.user)
+    certifications_inst=get_object_or_404(Certifications,user=request.user)
+    projects_inst=get_object_or_404(Projects,user=request.user)
+    EducationFormSet=formset_factory(EducationForm, extra=1)
 
     if request.method == 'POST':
-        personal_details_form = PersonalDetailsForm(request.POST,request.FILES)
-        education_form = EducationForm(request.POST)
-        experience_form = ExperienceForm(request.POST)
-        skills_form=SkillsForm(request.POST)
-        certifications_form=CertificationsForm(request.POST)
-        projects_form=ProjectsForm(request.POST)
+        personal_details_form = PersonalDetailsForm(request.POST,request.FILES,instance=personal_details_inst)
+        education_formset = EducationFormSet(request.POST,prefix='edu',instance=education_inst)
+        experience_form = ExperienceForm(request.POST,instance=experience_inst)
+        skills_form=SkillsForm(request.POST,instance=skills_inst)
+        certifications_form=CertificationsForm(request.POST,instance=certifications_inst)
+        projects_form=ProjectsForm(request.POST,instance=projects_inst)
 
-        if personal_details_form.is_valid() and education_form.is_valid() and experience_form.is_valid() and skills_form.is_valid() and certifications_form.is_valid() and projects_form.is_valid() :
+        if personal_details_form.is_valid() and education_formset.is_valid() and experience_form.is_valid() and skills_form.is_valid() and certifications_form.is_valid() and projects_form.is_valid() :
             # Save each form individually to the respective models
             print('valid')
-            personal_details = personal_details_form.save(commit=False)
-            personal_details.user = request.user
-            personal_details.save()
+            personal_detail = personal_details_form.save(commit=False)
+            personal_detail.user = request.user
+            personal_detail.save()
 
-            education = education_form.save(commit=False)
+            education = education_formset.save(commit=False)
             education.user = request.user
             education.save()
 
@@ -65,7 +55,7 @@ def registration_view(request):
         else:
             print('error')
             print(personal_details_form.errors)
-            print(education_form.errors)
+            print(education_formset.errors)
             print(experience_form.errors)
             print(skills_form.errors)
             print(certifications_form.errors)
@@ -73,21 +63,23 @@ def registration_view(request):
 
     else:
         
-        personal_details_form = PersonalDetailsForm()
-        education_form = EducationForm()
-        experience_form = ExperienceForm()
-        skills_form=SkillsForm()
-        certifications_form=CertificationsForm()
-        projects_form=ProjectsForm()
+        personal_details_form = PersonalDetailsForm(instance=personal_details_inst)
+        education_formset = EducationFormSet(prefix='edu',instance=education_inst)
+        experience_form = ExperienceForm(instance=experience_inst)
+        skills_form=SkillsForm(instance=skills_inst)
+        certifications_form=CertificationsForm(instance=certifications_inst)
+        projects_form=ProjectsForm(instance=projects_inst)
 
         
 
     return render(request, 'candidate/cprofile.html', {
         'personal_details_form': personal_details_form,
-        'education_form': education_form,
+        'education_formset': education_formset,
         'experience_form': experience_form,
         'skills_form': skills_form,
         'certifications_form': certifications_form,
         'projects_form': projects_form
         
     })
+
+

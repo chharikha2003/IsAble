@@ -1,4 +1,4 @@
-{% load static %}
+{%extends 'base.html'%} {% load static %} {%block content%} {% comment %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,226 +9,237 @@
     <script src="{% static 'js/profile.js' %}" defer></script>
     <title>Registraion Form</title>
   </head>
-  <body> 
-    <div class="profile">
-      <form action="{% url 'registration_view'%}" class="form" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h1 class="text-center">Profile</h1>
-        <!-- Progress bar -->
-        <div class="progressbar">
-          <div class="progress" id="progress"></div>
+  <body>
+    {% endcomment %}
+    <div class="main-section">
+      <div class="profile">
+        <form
+          action="{% url 'registration_view'%}"
+          class="form"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <h1 class="text-center">Profile</h1>
+          <!-- Progress bar -->
+          <div class="progressbar">
+            <div class="progress" id="progress"></div>
 
-          <div
-            class="progress-step progress-step-active"
-            data-title="Personal Details"
-          ></div>
-          <div class="progress-step" data-title="Education"></div>
-          <div class="progress-step" data-title="Experience"></div>
-          <div class="progress-step" data-title="Skills"></div>
-          <div class="progress-step" data-title="Certifications"></div>
-          <div class="progress-step" data-title="Projects"></div>
-        </div>
+            <div
+              class="progress-step progress-step-active"
+              data-title="Personal Details"
+            ></div>
+            <div class="progress-step" data-title="Education"></div>
+            <div class="progress-step" data-title="Experience"></div>
+            <div class="progress-step" data-title="Skills"></div>
+            <div class="progress-step" data-title="Certifications"></div>
+            <div class="progress-step" data-title="Projects"></div>
+          </div>
 
-        <!-- Steps -->
-        <div class="form-step form-step-active">
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="city">City</label>
-              {{personal_details_form.city}}
+          <!-- Steps -->
+          <div class="form-step form-step-active">
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="city">City</label>
+                {{personal_details_form.city}}
+              </div>
+
+              <!-- Second column -->
+              <div class="input-group">
+                <label for="state">State</label>
+                {{personal_details_form.state}}
+              </div>
             </div>
 
-            <!-- Second column -->
-            <div class="input-group">
-              <label for="state">State</label>
-              {{personal_details_form.state}}
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="country">Country</label>
+                {{personal_details_form.country}}
+              </div>
+
+              <div class="input-group">
+                <label for="profile_photo">Profile Photo</label>
+                {{personal_details_form.profile_photo}}
+              </div>
+            </div>
+
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="phone_number">Phone number</label>
+                {{personal_details_form.phone_number}}
+              </div>
+            </div>
+
+            <div class="">
+              <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+            </div>
+          </div>
+          <div class="form-step">
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="highest_qualification">Highest qualification</label>
+                {{education_form.highest_qualification}}
+              </div>
+
+              <!-- Second column -->
+              <div class="input-group">
+                <label for="specialization">Specialization</label>
+                {{education_form.specialization}}
+              </div>
+            </div>
+
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="institute">Institute</label>
+                {{education_form.institute}}
+              </div>
+
+              <div class="input-group">
+                <label for="start_year">Start year</label>
+                {{education_form.start_year}}
+              </div>
+            </div>
+
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="end_year">End year</label>
+                {{education_form.end_year}}
+              </div>
+            </div>
+
+            <div class="btns-group">
+              <a href="#" class="btn btn-prev">Previous</a>
+              <a href="#" class="btn btn-next">Next</a>
+            </div>
+          </div>
+          <div class="form-step">
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="Designation">Designation</label>
+                {{experience_form.Designation}}
+              </div>
+
+              <!-- Second column -->
+              <div class="input-group">
+                <label for="Organisation">Organisation</label>
+                {{experience_form.Organisation}}
+              </div>
+            </div>
+
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="status">Status</label>
+                {{experience_form.status}}
+              </div>
+
+              <!-- Second column -->
+              <div class="input-group">
+                <label for="descofjob">Job Description</label>
+                {{experience_form.descofjob}}
+              </div>
+            </div>
+
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="worked_from">Worked from</label>
+                {{experience_form.worked_from}}
+              </div>
+
+              <!-- Second column -->
+              <div class="input-group">
+                <label for="worked_till">Worked till</label>
+                {{experience_form.worked_till}}
+              </div>
+            </div>
+
+            <div class="btns-group">
+              <a href="#" class="btn btn-prev">Previous</a>
+              <a href="#" class="btn btn-next">Next</a>
             </div>
           </div>
 
-          <div class="input-row">
-            <!-- First column -->
+          <div class="form-step">
+            <div class="input-row">
             <div class="input-group">
-              <label for="country">Country</label>
-              {{personal_details_form.country}}
-            </div>
-
-            <div class="input-group">
-              <label for="profile_photo">Profile Photo</label>
-              {{personal_details_form.profile_photo}}
+              <label for="skill">Skill</label>
+              {{skills_form.skill}}
             </div>
           </div>
 
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="phone_number">Phone number</label>
-              {{personal_details_form.phone_number}}
-            </div>
-
-          </div>
-
-          <div class="">
-            <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
-          </div>
-        </div>
-        <div class="form-step">
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="highest_qualification">Highest qualification</label>
-              {{education_form.highest_qualification}}
-            </div>
-
-            <!-- Second column -->
-            <div class="input-group">
-              <label for="specialization">Specialization</label>
-              {{education_form.specialization}}
+            <div class="btns-group">
+              <a href="#" class="btn btn-prev">Previous</a>
+              <a href="#" class="btn btn-next">Next</a>
             </div>
           </div>
 
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="institute">Institute</label>
-              {{education_form.institute}}
+          <div class="form-step">
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="certificate">certificate</label>
+                {{certifications_form.certificate}}
+              </div>
+
+              <!-- Second column -->
+              <div class="input-group">
+                <label for="issued_by">issued_by</label>
+                {{certifications_form.issued_by}}
+              </div>
             </div>
 
-            <div class="input-group">
-              <label for="start_year">Start year</label>
-              {{education_form.start_year}}
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="date_issued">date_issued</label>
+                {{certifications_form.date_issued}}
+              </div>
             </div>
-          </div>
-
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="end_year">End year</label>
-              {{education_form.end_year}}
-            </div>
-          </div>
-
-          <div class="btns-group">
-            <a href="#" class="btn btn-prev">Previous</a>
-            <a href="#" class="btn btn-next">Next</a>
-          </div>
-        </div>
-        <div class="form-step">
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="Designation">Designation</label>
-              {{experience_form.Designation}}
-            </div>
-
-            <!-- Second column -->
-            <div class="input-group">
-              <label for="Organisation">Organisation</label>
-              {{experience_form.Organisation}}
+            <div class="btns-group">
+              <a href="#" class="btn btn-prev">Previous</a>
+              <a href="#" class="btn btn-next">Next</a>
             </div>
           </div>
 
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="status">Status</label>
-              {{experience_form.status}}
+          <div class="form-step">
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="title">title</label>
+                {{projects_form.title}}
+              </div>
+
+              <!-- Second column -->
+              <div class="input-group">
+                <label for="link">link</label>
+                {{projects_form.link}}
+              </div>
             </div>
 
-            <!-- Second column -->
-            <div class="input-group">
-              <label for="descofjob">Job Description</label>
-              {{experience_form.descofjob}}
+            <div class="input-row">
+              <!-- First column -->
+              <div class="input-group">
+                <label for="desc">desc</label>
+                {{projects_form.desc}}
+              </div>
+            </div>
+            <div class="btns-group">
+              <a href="#" class="btn btn-prev">Previous</a>
+              <input type="submit" value="Submit" class="btn" />
             </div>
           </div>
-
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="worked_from">Worked from</label>
-              {{experience_form.worked_from}}
-            </div>
-
-            <!-- Second column -->
-            <div class="input-group">
-              <label for="worked_till">Worked till</label>
-              {{experience_form.worked_till}}
-            </div>
-          </div>
-
-          <div class="btns-group">
-            <a href="#" class="btn btn-prev">Previous</a>
-            <a href="#" class="btn btn-next">Next</a>
-          </div>
-        </div>
-
-        <div class="form-step">
-          <div class="input-group">
-            <label for="skill">Skill</label>
-            {{skills_form.skill}}
-          </div>
-
-          <div class="btns-group">
-            <a href="#" class="btn btn-prev">Previous</a>
-            <a href="#" class="btn btn-next">Next</a>
-          </div>
-        </div>
-
-        <div class="form-step">
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="certificate">certificate</label>
-              {{certifications_form.certificate}}
-            </div>
-
-            <!-- Second column -->
-            <div class="input-group">
-              <label for="issued_by">issued_by</label>
-              {{certifications_form.issued_by}}
-            </div>
-          </div>
-
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="date_issued">date_issued</label>
-              {{certifications_form.date_issued}}
-            </div>
-          </div>
-          <div class="btns-group">
-            <a href="#" class="btn btn-prev">Previous</a>
-            <a href="#" class="btn btn-next">Next</a>
-          </div>
-        </div>
-
-        <div class="form-step">
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="title">title</label>
-              {{projects_form.title}}
-            </div>
-
-            <!-- Second column -->
-            <div class="input-group">
-              <label for="link">link</label>
-              {{projects_form.link}}
-            </div>
-          </div>
-
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="desc">desc</label>
-              {{projects_form.desc}}
-            </div>
-          </div>
-          <div class="btns-group">
-            <a href="#" class="btn btn-prev">Previous</a>
-            <input type="submit" value="Submit" class="btn" />
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
+    {% comment %}
   </body>
 </html>
+{% endcomment %} {% endblock %}
