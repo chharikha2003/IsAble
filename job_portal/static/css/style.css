@@ -129,3 +129,17 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
   padding: 0.85rem 1.5rem;
   border-color: rgba(24, 28, 33, 0.03) !important;
 }
+.form-box {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}

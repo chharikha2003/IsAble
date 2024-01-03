@@ -6,6 +6,7 @@ from accounts.models import User
 class personal_details(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     profile_photo=models.ImageField(upload_to='candidate/profilephoto',default='default.jpg')
+    bio=models.CharField(max_length=200,blank=True)
     phone_number=models.CharField(max_length=12,blank=True)
     city=models.CharField(max_length=20)
     state=models.CharField(max_length=20)

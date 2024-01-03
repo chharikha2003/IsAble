@@ -367,55 +367,64 @@
                 </form>
               </div>
               <div class="tab-pane fade" id="account-change-password">
-                <form
-                  action="{% url 'education_details_ins'%}"
-                  class="form"
-                  method="post"
-                  enctype="multipart/form-data"
-                >
+                <form method="post" action="{% url 'education_details_ins' %}">
                   {% csrf_token %}
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label"
-                            >Highest Qualification</label
-                          >
-                          {{ education_form.highest_qualification }}
+                  <table style="width: 100%;">
+                  {{ education_details_formset.management_form }}
+                  
+                  <!-- Display existing forms -->
+                  {% for form in education_details_formset.forms %}
+                      {% comment %} {{ form.as_p }} {% endcomment %}
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Highest Qualification</label>
+                              {{ form.highest_qualification }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Specialization</label>
+                              {{form.specialization}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label"
+                                >Institute</label
+                              >
+                              {{form.institute }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Start Year</label>
+                              {{form.start_year }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">End Year</label>
+                              {{form.end_year }}
+                            </div>
+                          </div>
+                          
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Specialization</label>
-                          {{ education_form.specialization }}
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Institute</label>
-                          {{ education_form.institute }}
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Start year</label>
-                          {{ education_form.start_year }}
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">End year</label>
-                          {{ education_form.end_year }}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <input type="submit" value="submit" />
-                </form>
+                  {% endfor %}
+                  </table>
+              
+                  <!-- Submit button -->
+                  <button type="submit">Save</button>
+              </form>
+              <!-- Add More button -->
+              <button type="button" id="add-education-form">Add More</button>
+                
               </div>
               <div class="tab-pane fade" id="account-info">
                 <form
@@ -564,9 +573,6 @@
                   </div>
                   <input type="submit" value="submit" />
                 </form>
-               
-                  
-                
               </div>
             </div>
           </div>
@@ -578,6 +584,92 @@
         <button type="button" class="btn btn-default">Cancel</button>
       </div>
     </div>
+    
+    <script>
+      function removeForm(button,formsetPrefix) {
+        var formBox = button.parentNode;
+        var hrTag = formBox.previousElementSibling;  // Get the preceding <hr> tag
+    
+        formBox.parentNode.removeChild(formBox);  // Remove the parent element (form box)
+    
+        if (hrTag && hrTag.tagName === 'HR') {
+            hrTag.parentNode.removeChild(hrTag);  // Remove the associated <hr> tag
+        }
+
+    
+        // Update the remaining form counts
+        var formCountInput = document.getElementById('id_' + formsetPrefix + '-TOTAL_FORMS');
+        var formCount = parseInt(formCountInput.value);
+        formCount -= 1;
+        formCountInput.value = formCount; 
+    }
+
+    function addNewForm(formsetPrefix) {
+      var formCountInput = document.getElementById('id_' + formsetPrefix + '-TOTAL_FORMS');
+      var formCount = parseInt(formCountInput.value);
+  
+      // Get the template and replace "__prefix__" with the current form count
+      var template = document.querySelector('#empty-form').innerHTML.replace(/__prefix__/g, formCount);
+      template = '<hr id="hr-' + formCount + '">' + template;    
+      // Append the new form to the container (adjust the container selector based on your HTML structure)
+      document.querySelector('table').insertAdjacentHTML('beforeend', template);
+  
+      // Increment the form count and update the TOTAL_FORMS field
+      formCount += 1;
+      formCountInput.value = formCount;
+  }
+ 
+  document.getElementById('add-education-form').addEventListener('click', function () {
+    addNewForm('education');
+  });
+  </script>
+  <script type="empty/form-template" id="empty-form">
+    
+      <div class="card-body">
+        <span class="close-button" onclick="removeForm(this,'education')" style="position: absolute;
+        right: 0;
+        cursor: pointer;"><i class="fa fa-times"></i></span>
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label class="form-label">Highest Qualification</label>
+                      {{ education_details_formset.empty_form.highest_qualification }}
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label class="form-label">Specialization</label>
+                      {{ education_details_formset.empty_form.specialization }}
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Institute</label>
+                    {{ education_details_formset.empty_form.institute }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Start year</label>
+                    {{ education_details_formset.empty_form.start_year }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">End year</label>
+                  {{ education_details_formset.empty_form.end_year }}
+              </div>
+          </div>
+          
+      </div>
+          <!-- Add other fields in a similar way -->
+      </div>
+  
+  </script>
     <script
       data-cfasync="false"
       src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
@@ -588,7 +680,8 @@
     {% comment %}
   </body>
 </html>
-{% endcomment %} {% endblock %} {% block extrastyles %}
+{% endcomment %} {% endblock %} 
+{% block extrastyles %}
 <!-- Include only the desired styles for this specific page -->
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 

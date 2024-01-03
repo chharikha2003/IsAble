@@ -6,12 +6,97 @@ class PersonalDetailsForm(forms.ModelForm):
     profile_photo=forms.FileField(widget=forms.FileInput(attrs={'class':'btn btn-info'}),validators=[allow_only_images_validator])
     class Meta:
         model = personal_details
-        fields = ['phone_number','city','state','country','profile_photo']
+        fields = ['phone_number','city','state','country','profile_photo','bio']
 
+        widgets = {
+            "phone_number": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Phone number",
+                }
+            ),
+            "city": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "City",
+                }
+            ),
+            "state": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "State",
+                }
+            ),
+            "country": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Country",
+                }
+            ),
+
+            "bio": forms.TextInput(
+               
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Bio",
+                }
+            ),
+
+        }
+
+# EducationFormSet = modelformset_factory(
+#     Education, fields=('highest_qualification','specialization','institute','start_year','end_year'), extra=1
+# )
 class EducationForm(forms.ModelForm):
     class Meta:
         model = Education
         fields = ['highest_qualification','specialization','institute','start_year','end_year']
+
+        widgets = {
+            "highest_qualification": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Highest qualification",
+                }
+            ),
+            "specialization": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Specialization",
+                }
+            ),
+            "institute": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Institute",
+                }
+            ),
+            "start_year": forms.DateInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Start Year",
+                }
+            ),
+
+            "end_year": forms.DateInput(
+               
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "End Year",
+                }
+            ),
+
+        }
 
 class ExperienceForm(forms.ModelForm):
      class Meta:
@@ -80,15 +165,81 @@ class SkillsForm(forms.ModelForm):
         model = Skills
         fields = ['skill']
 
+        widgets = {
+            "skill": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Skills",
+                }
+            ),
+        
+        }
+
+
 class CertificationsForm(forms.ModelForm):
     class Meta:
         model = Certifications
         fields = ['certificate','issued_by','date_issued']
 
+        widgets = {
+            "certificate": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Certificate",
+                }
+            ),
+            "issued_by": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Issued by",
+                }
+            ),
+            "date_issued": forms.DateInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Date issued",
+                }
+            ),
+      
+        }
+
+
 class ProjectsForm(forms.ModelForm):
     class Meta:
         model = Projects
         fields = ['title','link','desc']
+
+        widgets = {
+            "title": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Title",
+                }
+            ),
+            "link": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Link",
+                }
+            ),
+            "desc": forms.DateInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Description",
+                }
+            ),
+           
+        }
+
+
+        
 
 
         

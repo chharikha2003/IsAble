@@ -39,34 +39,54 @@ def personal_details_ins(request):
     return render(request, "candidate/cprofile.html", data)
 
 
+# def education_details_ins(request):
+#     EducationFormSet=formset_factory(EducationForm,extra=1)
+#     if request.method=='POST':
+#         education_details_formset = EducationFormSet(request.POST,prefix='education')
+#         if education_details_formset.is_valid():
+#             for education_details_form in education_details_formset:
+#                 print("Valid")
+#                 education_details_form_save = education_details_form.save(commit=False)
+#                 education_details_form_save.created_by = request.user
+#                 education_details_form_save.updated_by = request.user
+#                 education_details_form_save.user = request.user
+#                 education_details_form_save.save()
+#             print("saveddd")
+#             return redirect("main_registration")
+#     else:
+#         education_details_formset=EducationFormSet(prefix='education')
+        
+
+#     data = {
+#         "education_details_formset": education_details_formset,
+        
+#     }
+#     return render(request, "candidate/cprofile.html", data)
+
 def education_details_ins(request):
-    if request.method=='POST':
-        education_details_form = EducationForm(request.POST)
-        if education_details_form.is_valid():
-            print("Valid")
-            education_details_form_save = education_details_form.save(commit=False)
-            education_details_form_save.created_by = request.user
-            education_details_form_save.updated_by = request.user
-            education_details_form_save.user = request.user
-            education_details_form_save.save()
-            print("saveddd")
+    EducationFormSet = formset_factory(EducationForm, extra=1, can_delete=True)
+
+    if request.method == 'POST':
+        education_details_formset = EducationFormSet(request.POST, prefix='education')
+        if education_details_formset.is_valid():
+            for form in education_details_formset:
+                if form.cleaned_data.get('DELETE'):
+                    # If form marked for deletion, skip saving
+                    continue
+                education_details_form_save = form.save(commit=False)
+                education_details_form_save.created_by = request.user
+                education_details_form_save.updated_by = request.user
+                education_details_form_save.user = request.user
+                education_details_form_save.save()
+            messages.success(request, 'Education details saved successfully.')
             return redirect("main_registration")
         else:
-            print("errors", education_details_form.errors)
-            for error_messages in education_details_form.errors.values():
-                for error_message in error_messages:
-                    messages.error(request, error_message)
-            return redirect("main_registration")
-    education_details_form = EducationForm()
-    
-    education_detail_table_data = Education.objects.filter(  
-        Q(created_by=1) | Q(created_by=request.user))
-
-    print(education_detail_table_data)
+            messages.error(request, 'Education formset is invalid. Please correct the errors.')
+    else:
+        education_details_formset = EducationFormSet(prefix='education')
 
     data = {
-        "education_details_form": education_details_form,
-        "education_detail_table_data": education_detail_table_data,
+        "education_details_formset": education_details_formset,
     }
     return render(request, "candidate/cprofile.html", data)
 
@@ -199,15 +219,17 @@ def projects_details_ins(request):
 
 def main_registration_view(request):
     personal_details_form = PersonalDetailsForm()
-    education_form = EducationForm()
+    # education_form = EducationForm()
     experience_form = ExperienceForm()
+    EducationFormSet=formset_factory(EducationForm,extra=1)
+    education_details_formset = EducationFormSet(prefix='education')
     projects_form = ProjectsForm()
     skills_form = SkillsForm()
     certifications_form = CertificationsForm()
 
     return render(request, 'candidate/cprofile.html', {
         'personal_details_form': personal_details_form,
-        'education_form': education_form,
+        'education_details_formset': education_details_formset,
         'experience_form': experience_form,
         'projects_form': projects_form,
         'skills_form':skills_form,
