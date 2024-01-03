@@ -27,15 +27,16 @@
           </li>
           <li class="nav-item">
             {% if user.is_authenticated %}
-            <a href="{% url "job_list" %}" class="nav-link"><button type="button" class="btn btn-warning">Find Job</button></a>
+              <a href="{% url "myAccount" %}" class="nav-link"><button type="button" class="btn btn-warning">My account</button></a>
+        
             {% else %}
-            <a href="{% url "login" %}" class="nav-link"><button type="button" class="btn btn-warning">Find Job</button></a>
+              <a href="{% url "job_list" %}" class="nav-link"><button type="button" class="btn btn-warning">Find Job</button></a>
             {% endif %}
             
           </li>
           <li class="nav-item">
             {% if user.is_authenticated %}
-            <a href="{% url "post_job" %}" class="nav-link"><button type="button" class="btn btn-warning">Post Job</button></a>
+            <a href="{% url "logout" %}" class="nav-link"><button type="button" class="btn btn-warning">Logout</button></a>
             {% else %}
             <a href="{% url "login" %}" class="nav-link"><button type="button" class="btn btn-warning">Post Job</button></a>
             {% endif %}

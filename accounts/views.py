@@ -190,3 +190,6 @@ def employerDashboard(request):
     }
 
     return render(request,'accounts/employerDashboard.html',context)
+
+def account_inactive(request):
+    return render(request,'accounts/account_inactive.html')

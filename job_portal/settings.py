@@ -37,12 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'accounts',
     'job',
     'employer',
-    'candidate',
-    'candidateProfile'
+    'candidateProfile',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
 ]
+
+SITE_ID=1
+SOCIALACCOUNT_LOGIN_ON_GET=True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
+
 ]
 
 ROOT_URLCONF = 'job_portal.urls'
@@ -91,6 +101,27 @@ DATABASES = {
 }
 
 AUTH_USER_MODEL="accounts.User"
+
+AUTHENTICATION_BACKENDS = [
+    # ...
+    # # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE':[
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS':{
+            'access_type':'online',
+        }
+    }
+}
 
 
 # Password validation
@@ -150,3 +181,22 @@ EMAIL_HOST_USER='2021.sai.chengalva@ves.ac.in'
 EMAIL_HOST_PASSWORD='ggcgmkyfvwluvyvo'
 EMAIL_USE_TLS=True
 DEFAULT_FROM_EMAIL='Job Portal<2021.sai.chengalva@ves.ac.in>'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # !!!! very important for django-allauth specifically
+
+
+LOGIN_REDIRECT_URL='myAccount'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'gen:email_success'  # a page to identify that email is confirmed when not logged in
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'gen:email_success'  # same but logged in
+
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7  # a personal preference. 3 by default
+ACCOUNT_EMAIL_REQUIRED = True  # no questions here
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # as the email will be used for login
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = True  # False by default
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True  # True by default
+# ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login'
+ACCOUNT_USERNAME_BLACKLIST = ['yomama',]
+ACCOUNT_USERNAME_MIN_LENGTH = 4  # a personal preference
+ACCOUNT_SESSION_REMEMBER = True  # None by default (to ask 'Remember me?'). I want the user to be always logged in

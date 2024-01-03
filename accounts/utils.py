@@ -8,7 +8,7 @@ from django.conf import settings
 
 def detectUser(user):
     if user.role==1:
-        redirectUrl='registration_view'
+        redirectUrl='main_registration'
         return redirectUrl
     elif user.role==2:
         redirectUrl='companyregistration_view'

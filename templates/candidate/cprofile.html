@@ -10,7 +10,7 @@
     <title>Registraion Form</title>
   </head>
   <body>
-    {% endcomment %}
+    {% endcomment %} {% comment %}
     <div class="main-section">
       <div class="profile">
         <form
@@ -169,11 +169,11 @@
 
           <div class="form-step">
             <div class="input-row">
-            <div class="input-group">
-              <label for="skill">Skill</label>
-              {{skills_form.skill}}
+              <div class="input-group">
+                <label for="skill">Skill</label>
+                {{skills_form.skill}}
+              </div>
             </div>
-          </div>
 
             <div class="btns-group">
               <a href="#" class="btn btn-prev">Previous</a>
@@ -242,4 +242,354 @@
     {% comment %}
   </body>
 </html>
-{% endcomment %} {% endblock %}
+{% endcomment %}
+<!--Website: wwww.codingdung.com-->
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodingDung | Profile Template</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    {% endcomment %}
+    <div class="container light-style flex-grow-1 container-p-y">
+      <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+      <div class="card overflow-hidden">
+        <div class="row no-gutters row-bordered row-border-light">
+          <div class="col-md-3 pt-0">
+            <div class="list-group list-group-flush account-settings-links">
+              <a
+                class="list-group-item list-group-item-action active"
+                data-toggle="list"
+                href="#account-personal-details"
+                >Profile</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                data-toggle="list"
+                href="#account-change-password"
+                >Education</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                data-toggle="list"
+                href="#account-info"
+                >Experience</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                data-toggle="list"
+                href="#account-social-links"
+                >Skills</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                data-toggle="list"
+                href="#account-connections"
+                >Certificates</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                data-toggle="list"
+                href="#account-notifications"
+                >Projects</a
+              >
+            </div>
+          </div>
+
+          <div class="col-md-9">
+            <div class="tab-content">
+              <div
+                class="tab-pane fade active show"
+                id="account-personal-details"
+              >
+                <form
+                  action="{% url 'personal_details_ins'%}"
+                  class="form"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  {% csrf_token %}
+                  <div class="card-body media align-items-center">
+                    <div class="media-body ml-7">
+                      <label class="btn btn-outline-primary">
+                        Upload Profile photo
+                        {{personal_details_form.profile_photo}}
+                      </label>
+                      &nbsp;
+                      <button type="button" class="btn btn-default md-btn-flat">
+                        Reset
+                      </button>
+                      <div class="text-light small mt-1">
+                        Allowed JPG, GIF or PNG. Max size of 800K
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="border-light m-0" />
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Phone number</label>
+                          {{personal_details_form.phone_number}}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">City</label>
+                          {{personal_details_form.city}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">State</label>
+                          {{personal_details_form.state}}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Country</label>
+                          {{personal_details_form.country}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="submit" value="submit" />
+                </form>
+              </div>
+              <div class="tab-pane fade" id="account-change-password">
+                <form
+                  action="{% url 'education_details_ins'%}"
+                  class="form"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  {% csrf_token %}
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label"
+                            >Highest Qualification</label
+                          >
+                          {{ education_form.highest_qualification }}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Specialization</label>
+                          {{ education_form.specialization }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Institute</label>
+                          {{ education_form.institute }}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Start year</label>
+                          {{ education_form.start_year }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">End year</label>
+                          {{ education_form.end_year }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="submit" value="submit" />
+                </form>
+              </div>
+              <div class="tab-pane fade" id="account-info">
+                <form
+                  action="{% url 'experience_details_ins'%}"
+                  class="form"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  {% csrf_token %}
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Designation</label>
+                          {{ experience_form.Designation }}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Organisation</label>
+                          {{experience_form.Organisation}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label"
+                            >Are you still working in the company?</label
+                          >
+                          {{experience_form.status }}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Job Description</label>
+                          {{experience_form.descofjob }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Worked from</label>
+                          {{experience_form.worked_from }}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Worked till</label>
+                          {{experience_form.worked_till }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="submit" value="submit" />
+                </form>
+              </div>
+              <div class="tab-pane fade" id="account-social-links">
+                <form
+                  action="{% url 'skills_details_ins'%}"
+                  class="form"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  {% csrf_token %}
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Skills</label>
+                          {{ skills_form.skill }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="submit" value="submit" />
+                </form>
+              </div>
+              <div class="tab-pane fade" id="account-connections">
+                <form
+                  action="{% url 'certifications_details_ins'%}"
+                  class="form"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  {% csrf_token %}
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Certificate</label>
+                          {{ certifications_form.certificate }}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Issued by</label>
+                          {{certifications_form.issued_by}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Date Issued</label>
+                          {{certifications_form.date_issued }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="submit" value="submit" />
+                </form>
+              </div>
+              <div class="tab-pane fade" id="account-notifications">
+                <form
+                  action="{% url 'projects_details_ins'%}"
+                  class="form"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  {% csrf_token %}
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Title</label>
+                          {{ projects_form.title }}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Description</label>
+                          {{projects_form.desc}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Link</label>
+                          {{projects_form.link }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="submit" value="submit" />
+                </form>
+               
+                  
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-right mt-3">
+        <button type="button" class="btn btn-primary">Save changes</button
+        >&nbsp;
+        <button type="button" class="btn btn-default">Cancel</button>
+      </div>
+    </div>
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript"></script>
+    {% comment %}
+  </body>
+</html>
+{% endcomment %} {% endblock %} {% block extrastyles %}
+<!-- Include only the desired styles for this specific page -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Account Activation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-WsQK1A9e6sWxW+NO7AW5Qns8PSR/nhfZPflhN1e0oG1DZhJ2ht6pP6clW5d5fX7WNIrp9e2/Wop6XHGzuNGJsA==" crossorigin="anonymous" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .activation-box {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #333;
+        }
+        
+        p {
+            color: #555;
+        }
+        
+        .steps-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 2px;
+            width:120px;
+        }
+        .inbox-img {
+            width: 120px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 5px;
+        }
+        .email-img{
+            width: 70px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 5px;
+        }
+        .link-img{
+            width: 70px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 5px;
+        }
+        
+        .arrow {
+            width: 120px;
+            height: 2px;
+            background-color: #333;
+            margin: 0 1px;
+        }
+        
+        ol {
+            text-align: left;
+            margin-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="activation-box">
+            <h1>Thanks for signing up!</h1>
+            <p>We have sent an activation email to your registered email address. </p>
+            <div class="steps-container">
+                <div class="step">
+                    <img src="{% static 'img/inbox.jpg' %}" alt="Check Inbox" class="inbox-img">
+                    <p>Check your email inbox.</p>
+                </div>
+                <div class="arrow"></div>
+                <div class="step">
+                    <img src="{% static 'img/email.png' %}" alt="Open Email" class="email-img">
+                    <p>Open the activation email.</p>
+                </div>
+                <div class="arrow"></div>
+                <div class="step">
+                    <img src="{% static 'img/link.png' %}" alt="Click Link" class="link-img" >
+                    <p>Click on the activation link in the email.</p>
+                </div>
+            </div>
+            <button onclick="goToGmail()">Go to Gmail</button>
+        </div>
+    </div>
+
+    <script>
+        function goToGmail() {
+            window.location.href = "https://mail.google.com/";
+        }
+    </script>
+</body>
+</html>
