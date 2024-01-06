@@ -138,6 +138,12 @@ document.addEventListener('DOMContentLoaded', function () {
   showLinks('roles');
 });
 
+
 </script>
+{% block extrastyles %}
+<!-- Include only the desired styles for this specific page -->
+<link rel="stylesheet" href="{% static 'css/jobstyle.css' %}" />
+
+{% endblock %}
 </body>
 </html>

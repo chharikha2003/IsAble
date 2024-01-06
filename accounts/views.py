@@ -1,3 +1,4 @@
+from django.forms import formset_factory
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib import messages,auth
@@ -6,6 +7,7 @@ from accounts.models import User, UserProfile
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
 from accounts.utils import detectUser, send_verification_email
+from candidateProfile.forms import EducationForm
 from employer.forms import Employerform
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required,user_passes_test
@@ -163,15 +165,18 @@ def candidateDashboard(request):
     Education_data = Education.objects.filter(user=request.user)
     Experience_data = Experience.objects.filter(user=request.user)
     Skills_data = Skills.objects.filter(user=request.user)
-    Certifications_data = Certifications.objects.filter(user=request.user)
+    keyAchievements_data = keyAchievements.objects.filter(user=request.user)
+    languages_data=Languages.objects.filter(user=request.user)
     Projects_data = Projects.objects.filter(user=request.user)
+    print(len(Education_data))
 
     context={
         'personal_details_data' : personal_details_data,
         'Education_data' : Education_data,
         'Experience_data' : Experience_data,
         'Skills_data' : Skills_data,
-        'Certifications_data' : Certifications_data,
+        'keyAchievements_data' : keyAchievements_data,
+        'languages_data' : languages_data,
         'Projects_data' : Projects_data
         
     }

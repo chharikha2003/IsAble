@@ -1,0 +1,577 @@
+{%extends 'base.html'%} {% load static %} {%block content%} 
+
+    <div class="container light-style flex-grow-1 container-p-y">
+      {% comment %} <h4 class="font-weight-bold py-3 mb-4">Account settings</h4> {% endcomment %}
+
+      <div class="card overflow-hidden">
+        <div class="row no-gutters row-bordered row-border-light">
+          {% include 'includes/p_sidebar.html' %}
+
+          <div class="col-md-9">
+            <div class="tab-content">
+              <div
+                class="tab-pane fade active show"
+                id="account-personal-details"
+              >
+                <form
+                  action="{% url 'personal_details_ins'%}"
+                  class="form"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  {% csrf_token %}
+                  <div class="card-body media align-items-center">
+                    <div class="media-body ml-7">
+                      <label class="btn btn-outline-primary">
+                        Upload Profile photo
+                        {{personal_details_form.profile_photo}}
+                      </label>
+                      &nbsp;
+                      <button type="button" class="btn btn-default md-btn-flat">
+                        Reset
+                      </button>
+                      <div class="text-light small mt-1">
+                        Allowed JPG, GIF or PNG. Max size of 800K
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="border-light m-0" />
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Phone number</label>
+                          {{personal_details_form.phone_number}}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">City</label>
+                          {{personal_details_form.city}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">State</label>
+                          {{personal_details_form.state}}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Country</label>
+                          {{personal_details_form.country}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+              </div>
+              <div class="tab-pane fade" id="account-change-password">
+                <form method="post" action="{% url 'education_details_ins' %}">
+                  {% csrf_token %}
+                  <table style="width: 100%;" id='table-education'>
+                  {{ education_details_formset.management_form }}
+                  
+                  <!-- Display existing forms -->
+                  {% for form in education_details_formset.forms %}
+                      {% comment %} {{ form.as_p }} {% endcomment %}
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Highest Qualification</label>
+                              {{ form.highest_qualification }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Specialization</label>
+                              {{form.specialization}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label"
+                                >Institute</label
+                              >
+                              {{form.institute }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Start Year</label>
+                              {{form.start_year }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">End Year</label>
+                              {{form.end_year }}
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                  {% endfor %}
+                  </table>
+              
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary">Save</button>
+
+                  <button type="button" id="add-education-form" class="btn btn-default"><i class="fa fa-plus"></i>Add More</button>
+
+              </form>
+              <!-- Add More button -->
+                
+              </div>
+              <div class="tab-pane fade" id="account-info">
+                <form method="post" action="{% url 'experience_details_ins' %}">
+                  {% csrf_token %}
+                  <table style="width: 100%;" id='table-experience' >
+                  {{ experience_details_formset.management_form }}
+                  
+                  <!-- Display existing forms -->
+                  {% for form in experience_details_formset.forms %}
+                      {% comment %} {{ form.as_p }} {% endcomment %}
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Designation</label>
+                              {{ form.Designation }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Organisation</label>
+                              {{form.Organisation}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label"
+                                >Are you working in this Organisation?</label
+                              >
+                              {{form.status }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Job Description</label>
+                              {{form.descofjob }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Worked from</label>
+                              {{form.worked_from }}
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Worked till</label>
+                              {{form.worked_till }}
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                  {% endfor %}
+                  </table>
+              
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="button" id="add-experience-form" class="btn btn-default"><i class="fa fa-plus"></i>Add More</button>
+
+              </form>
+                
+                
+              </div>
+              <div class="tab-pane fade" id="account-social-links">
+                <form
+                  action="{% url 'skills_details_ins'%}"
+                  class="form"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  {% csrf_token %}
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Skills</label>
+                          {{ skills_form.skill }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+              </div>
+              <div class="tab-pane fade" id="account-connections">
+                <form method="post" action="{% url 'certifications_details_ins' %}">
+                  {% csrf_token %}
+                  <table style="width: 100%;" id='table-certifications' >
+                  {{ certifications_details_formset.management_form }}
+                  
+                  <!-- Display existing forms -->
+                  {% for form in certifications_details_formset.forms %}
+                      {% comment %} {{ form.as_p }} {% endcomment %}
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Certificate</label>
+                              {{ form.certificate }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Issued by</label>
+                              {{form.issued_by}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label"
+                                >Date Issued</label
+                              >
+                              {{form.date_issued }}
+                            </div>
+                          </div>
+                          
+                        </div>
+                        
+                      </div>
+                  {% endfor %}
+                  </table>
+              
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="button" id="add-certifications-form" class="btn btn-default"><i class="fa fa-plus"></i>Add More</button>
+
+              </form>
+                
+              </div>
+              <div class="tab-pane fade" id="account-notifications">
+                <form method="post" action="{% url 'projects_details_ins' %}">
+                  {% csrf_token %}
+                  <table style="width: 100%;" id='table-projects' >
+                  {{ projects_details_formset.management_form }}
+                  
+                  <!-- Display existing forms -->
+                  {% for form in projects_details_formset.forms %}
+                      {% comment %} {{ form.as_p }} {% endcomment %}
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Title</label>
+                              {{ form.title }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Description</label>
+                              {{form.desc}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label"
+                                >Link</label
+                              >
+                              {{form.link }}
+                            </div>
+                          </div>
+                          
+                        </div>
+                        
+                      </div>
+                  {% endfor %}
+                  </table>
+              
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="button" id="add-projects-form" class="btn btn-default"><i class="fa fa-plus"></i>Add More</button>
+
+              </form>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% comment %} <div class="text-right mt-3">
+        <button type="button" class="btn btn-primary">Save changes</button
+        >&nbsp;
+        <button type="button" class="btn btn-default">Cancel</button>
+      </div> {% endcomment %}
+    </div>
+    
+    <script>
+      function removeForm(button,formsetPrefix) {
+        var formBox = button.parentNode;
+        var hrTag = formBox.previousElementSibling;  // Get the preceding <hr> tag
+    
+        formBox.parentNode.removeChild(formBox);  // Remove the parent element (form box)
+    
+        if (hrTag && hrTag.tagName === 'HR') {
+            hrTag.parentNode.removeChild(hrTag);  // Remove the associated <hr> tag
+        }
+
+    
+        // Update the remaining form counts
+        var formCountInput = document.getElementById('id_' + formsetPrefix + '-TOTAL_FORMS');
+        var formCount = parseInt(formCountInput.value);
+        formCount -= 1;
+        formCountInput.value = formCount; 
+    }
+
+    function addNewForm(formsetPrefix) {
+      var formCountInput = document.getElementById('id_' + formsetPrefix + '-TOTAL_FORMS');
+      var formCount = parseInt(formCountInput.value);
+      var scriptSelector = `#empty-${formsetPrefix}-form`;
+      var templateScript = document.querySelector(scriptSelector);
+
+      if (!templateScript) {
+          console.error(`Template script not found for form type: ${formsetPrefix}`);
+          return '';
+      }
+      // Get the template and replace "__prefix__" with the current form count
+      var template = templateScript.innerHTML.replace(/__prefix__/g, formCount);
+      template = '<hr id="hr-' + formCount + '">' + template;    
+      // Append the new form to the container (adjust the container selector based on your HTML structure)
+      document.getElementById('table-'+formsetPrefix).insertAdjacentHTML('beforeend', template);
+  
+      // Increment the form count and update the TOTAL_FORMS field
+      formCount += 1;
+      formCountInput.value = formCount;
+  }
+ 
+  document.getElementById('add-education-form').addEventListener('click', function () {
+    addNewForm('education');
+  });
+  document.getElementById('add-experience-form').addEventListener('click', function () {
+    addNewForm('experience');
+  });
+  document.getElementById('add-projects-form').addEventListener('click', function () {
+    addNewForm('projects');
+  });
+  document.getElementById('add-certifications-form').addEventListener('click', function () {
+    addNewForm('certifications');
+  });
+  </script>
+  
+  <script type="empty/form-template" id="empty-education-form">
+    
+    <div class="card-body">
+      <span class="close-button" onclick="removeForm(this,'education')" style="position: absolute;
+      right: 0;
+      cursor: pointer;"><i class="fa fa-times"></i></span>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Highest Qualification</label>
+                    {{ education_details_formset.empty_form.highest_qualification }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Specialization</label>
+                    {{ education_details_formset.empty_form.specialization }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Institute</label>
+                  {{ education_details_formset.empty_form.institute }}
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Start year</label>
+                  {{ education_details_formset.empty_form.start_year }}
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label">End year</label>
+                {{ education_details_formset.empty_form.end_year }}
+            </div>
+        </div>
+        
+    </div>
+
+</script>
+
+
+<script type="empty/form-template" id="empty-experience-form">
+    
+  <div class="card-body">
+    <span class="close-button" onclick="removeForm(this,'experience')" style="position: absolute;
+    right: 0;
+    cursor: pointer;"><i class="fa fa-times"></i></span>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Designation</label>
+                  {{ experience_details_formset.empty_form.Designation }}
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Organisation</label>
+                  {{ experience_details_formset.empty_form.Organisation }}
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label">Status</label>
+                {{ experience_details_formset.empty_form.status }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label">Description of job</label>
+                {{ experience_details_formset.empty_form.descofjob }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+              <label class="form-label">Worked from</label>
+              {{ experience_details_formset.empty_form.worked_from }}
+          </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label class="form-label">Worked till</label>
+            {{ experience_details_formset.empty_form.worked_till }}
+        </div>
+    </div>
+      
+  </div>
+
+</script>
+
+<script type="empty/form-template" id="empty-certifications-form">
+    
+  <div class="card-body">
+    <span class="close-button" onclick="removeForm(this,'certifications')" style="position: absolute;
+    right: 0;
+    cursor: pointer;"><i class="fa fa-times"></i></span>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Certificate</label>
+                  {{ certifications_details_formset.empty_form.certificate }}
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Issued by</label>
+                  {{ certifications_details_formset.empty_form.issued_by }}
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label">Date Issued</label>
+                {{ certifications_details_formset.empty_form.date_issued }}
+            </div>
+        </div>
+        
+      </div>
+  </div>
+  
+</script>
+
+<script type="empty/form-template" id="empty-projects-form">
+    
+  <div class="card-body">
+    <span class="close-button" onclick="removeForm(this,'projects')" style="position: absolute;
+    right: 0;
+    cursor: pointer;"><i class="fa fa-times"></i></span>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Title</label>
+                  {{ projects_details_formset.empty_form.title }}
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Description</label>
+                  {{ projects_details_formset.empty_form.desc }}
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label">Link</label>
+                {{ projects_details_formset.empty_form.link }}
+            </div>
+        </div>
+        
+      </div>
+  </div>
+  
+</script>
+{% if next_section_id %}
+<script>
+  // Scroll to the next section after a delay (adjust as needed)
+  setTimeout(function() {
+    var nextSection = document.getElementById('{{ next_section_id }}');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 500);
+</script>
+{% endif %}
+
+
+
+
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript"></script>
+    {% comment %}
+  </body>
+</html>
+{% endcomment %} {% endblock %} 
+{% block extrastyles %}
+<!-- Include only the desired styles for this specific page -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+{% endblock %}

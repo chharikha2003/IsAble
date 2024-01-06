@@ -37,9 +37,7 @@ class PersonalDetailsForm(forms.ModelForm):
                     "placeholder": "Country",
                 }
             ),
-
-            "bio": forms.TextInput(
-               
+            "bio": forms.TextInput(  
                 attrs={
                     "class": "form-control",
                     "style": "width: 100%; margin-bottom: 20px;",
@@ -49,13 +47,11 @@ class PersonalDetailsForm(forms.ModelForm):
 
         }
 
-# EducationFormSet = modelformset_factory(
-#     Education, fields=('highest_qualification','specialization','institute','start_year','end_year'), extra=1
-# )
+
 class EducationForm(forms.ModelForm):
     class Meta:
         model = Education
-        fields = ['highest_qualification','specialization','institute','start_year','end_year']
+        fields = ['highest_qualification','specialization','institute','institute_city', 'institute_state', 'institute_country','result','start_year','end_year','result']
 
         widgets = {
             "highest_qualification": forms.TextInput(
@@ -77,6 +73,34 @@ class EducationForm(forms.ModelForm):
                     "class": "form-control",
                     "style": "width: 100%; margin-bottom: 20px;",
                     "placeholder": "Institute",
+                }
+            ),
+            "institute_city": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Institute City",
+                }
+            ),
+             "institute_state": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Institute State",
+                }
+            ),
+             "institute_country": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Institute Country ",
+                }
+            ),
+             "result": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "CGPA / Marks ",
                 }
             ),
             "start_year": forms.DateInput(
@@ -177,34 +201,19 @@ class SkillsForm(forms.ModelForm):
         }
 
 
-class CertificationsForm(forms.ModelForm):
+class keyAchievementsForm(forms.ModelForm):
     class Meta:
-        model = Certifications
-        fields = ['certificate','issued_by','date_issued']
+        model = keyAchievements
+        fields = ['achievement']
 
         widgets = {
-            "certificate": forms.TextInput(
+            "achievement": forms.TextInput(
                 attrs={
                     "class": "form-control",
                     "style": "width: 100%; margin-bottom: 20px;",
-                    "placeholder": "Certificate",
+                    "placeholder": "Key Achievements",
                 }
             ),
-            "issued_by": forms.TextInput(
-                attrs={
-                    "class": "form-control",
-                    "style": "width: 100%; margin-bottom: 20px;",
-                    "placeholder": "Issued by",
-                }
-            ),
-            "date_issued": forms.DateInput(
-                attrs={
-                    "class": "form-control",
-                    "style": "width: 100%; margin-bottom: 20px;",
-                    "placeholder": "Date issued",
-                }
-            ),
-      
         }
 
 
@@ -239,9 +248,39 @@ class ProjectsForm(forms.ModelForm):
         }
 
 
-        
+class LanguagesForm(forms.ModelForm):
+    class Meta:
+        model = Languages
+        fields = ['language','proficiency_level']
 
+        status_choices = (
+            ("Elementary Proficiency",'Elementary Proficiency'),
+            ("Limited Working Proficiency",'Limited Working Proficiency'),
+            ("Professional Working Proficiency",'Professional Working Proficiency'), 
+            ("Full Professional Proficiency",'Full Professional Proficiency'), 
+            ("Native / Bilingual Proficiency",'Native / Bilingual Proficiency'), 
+           
+        )
 
+        widgets = {
+            "language": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Title",
+                }
+            ),
+            "proficiency_level": forms.Select(
+                choices=status_choices,
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Proficiency level",
+                }
+            ),
+            
+           
+        }
         
 
         

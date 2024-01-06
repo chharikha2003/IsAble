@@ -1,0 +1,144 @@
+{%extends 'base.html'%} {% load static %} {%block content%} 
+
+    <div class="container light-style flex-grow-1 container-p-y">
+      <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+      <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+
+      <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+
+      <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+
+
+      <div class="card overflow-hidden">
+        <div class="row no-gutters row-bordered row-border-light">
+          {% include 'includes/p_sidebar.html' %}
+
+          <div class="col-md-9">
+            <div class="tab-content">
+               
+              
+                <form method="post" action="{% url 'keyAchievements_details_ins' %}">
+                    {% csrf_token %}
+                    <table style="width: 100%;" id='table-keyAchievements' >
+                    {{ keyAchievements_details_formset.management_form }}
+                    
+                    <!-- Display existing forms -->
+                    {% for form in keyAchievements_details_formset.forms %}
+                        {% comment %} {{ form.as_p }} {% endcomment %}
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-label">Achievement</label>
+                                {{ form.achievement }}
+                              </div>
+                            </div>
+                            
+                          </div>
+                          
+                          
+                        </div>
+                    {% endfor %}
+                    </table>
+                
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" id="add-keyAchievements-form" class="btn btn-default"><i class="fa fa-plus"></i>Add More</button>
+  
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% comment %} <div class="text-right mt-3">
+        <button type="button" class="btn btn-primary">Save changes</button
+        >&nbsp;
+        <button type="button" class="btn btn-default">Cancel</button>
+      </div> {% endcomment %}
+    </div>
+    
+    <script>
+      function removeForm(button,formsetPrefix) {
+        var formBox = button.parentNode;
+        var hrTag = formBox.previousElementSibling;  // Get the preceding <hr> tag
+    
+        formBox.parentNode.removeChild(formBox);  // Remove the parent element (form box)
+    
+        if (hrTag && hrTag.tagName === 'HR') {
+            hrTag.parentNode.removeChild(hrTag);  // Remove the associated <hr> tag
+        }
+
+    
+        // Update the remaining form counts
+        var formCountInput = document.getElementById('id_' + formsetPrefix + '-TOTAL_FORMS');
+        var formCount = parseInt(formCountInput.value);
+        formCount -= 1;
+        formCountInput.value = formCount; 
+    }
+
+    function addNewForm(formsetPrefix) {
+      var formCountInput = document.getElementById('id_' + formsetPrefix + '-TOTAL_FORMS');
+      var formCount = parseInt(formCountInput.value);
+      var scriptSelector = `#empty-${formsetPrefix}-form`;
+      var templateScript = document.querySelector(scriptSelector);
+
+      if (!templateScript) {
+          console.error(`Template script not found for form type: ${formsetPrefix}`);
+          return '';
+      }
+      // Get the template and replace "__prefix__" with the current form count
+      var template = templateScript.innerHTML.replace(/__prefix__/g, formCount);
+      template = '<hr id="hr-' + formCount + '">' + template;    
+      // Append the new form to the container (adjust the container selector based on your HTML structure)
+      document.getElementById('table-'+formsetPrefix).insertAdjacentHTML('beforeend', template);
+  
+      // Increment the form count and update the TOTAL_FORMS field
+      formCount += 1;
+      formCountInput.value = formCount;
+  }
+ 
+  
+  document.getElementById('add-keyAchievements-form').addEventListener('click', function () {
+    addNewForm('keyAchievements');
+  });
+  </script>
+  
+
+
+
+
+<script type="empty/form-template" id="empty-keyAchievements-form">
+    
+  <div class="card-body">
+    <span class="close-button" onclick="removeForm(this,'keyAchievements')" style="position: absolute;
+    right: 0;
+    cursor: pointer;"><i class="fa fa-times"></i></span>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Achievement</label>
+                  {{ keyAchievements_details_formset.empty_form.achievement }}
+              </div>
+          </div>
+          
+      </div>
+      
+  </div>
+  
+</script>
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript"></script>
+    {% comment %}
+  </body>
+</html>
+{% endcomment %} {% endblock %} 
+{% block extrastyles %}
+<!-- Include only the desired styles for this specific page -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+{% endblock %}

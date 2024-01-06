@@ -46,3 +46,9 @@
       </div>
     </div>
   </nav>
+
+  {% block extrastyles %}
+<!-- Include only the desired styles for this specific page -->
+<link rel="stylesheet" href="{% static 'css/jobstyle.css' %}" />
+
+{% endblock %}

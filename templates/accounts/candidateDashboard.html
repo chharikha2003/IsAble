@@ -30,24 +30,13 @@
 		<!-- MAIN -->
 		<main>
 			<div class="container">
-                <a href="{% url "registration_view" %}" class="nav-link"><button type="button" class="btn btn-warning">Edit Profile</button></a>
+                {% comment %} <a href="{% url "main_registration" %}" class="nav-link"><button type="button" class="btn btn-warning">Edit Profile</button></a> {% endcomment %}
                 <div class="row">
                     <div class="col-xl-5">
+                        <a href="{% url 'download_pdf' %}">Download your resume</a>
                         <div class="card">
                             <div class="card-body">
-                                <div class="dropdown float-end">
-                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Delete</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Block</a>
-                                    </div>
-                                </div>
+                                
                                 {% for personal_details_user in personal_details_data %}
 
                                     <div class="d-flex align-items-start">
@@ -115,26 +104,7 @@
                             </div>
                         </div> <!-- end card-->
             
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title mb-3">Certifications</h4>
-                                    
-                                <div class="inbox-widget" data-simplebar="init" style="max-height: 100px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto;"><div class="simplebar-content" style="padding: 0px;">
-                                    {% for certifications_detail in Certifications_data %}
-                                        <p class="text-muted mb-2 font-17"><strong> certificate :</strong> <span class="ms-2">{{certifications_detail.certificate}}</span></p>
-                                        <p class="text-muted mb-2 font-17"><strong> Issued by:</strong> <span class="ms-2">{{certifications_detail.issued_by}}</span></p>
-                                        <p class="text-muted mb-2 font-17"><strong> Date Issued :</strong> <span class="ms-2">{{certifications_detail.date_issued}}</span></p>
-                                        
-
-                                    {% endfor %}
-                                    
-                                    
-                                    
-                                    
-                                </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 532px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 230px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div> <!-- end inbox-widget -->
-                            </div>
-                        </div> <!-- end card-->
-                        
+                       
                     </div> <!-- end col-->
             
                     <div class="col-xl-7">
@@ -167,8 +137,9 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="header-title mb-3">Education</h4>
-                                                
-                                            <div class="inbox-widget" data-simplebar="init" style="max-height: 150px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto;"><div class="simplebar-content" style="padding: 0px;">
+                                            
+                                            
+                                            <div class="inbox-widget" data-simplebar="init" style="max-height: 500px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto;"><div class="simplebar-content" style="padding: 0px;">
                                                 {% for edu_detail in Education_data %}
                                                     <p class="text-muted mb-2 font-17"><strong> Highest qualification :</strong> <span class="ms-2">{{edu_detail.highest_qualification}}</span></p>
                                                     <p class="text-muted mb-2 font-17"><strong> Specialization :</strong> <span class="ms-2">{{edu_detail.specialization}}</span></p>
@@ -177,7 +148,8 @@
                                                     <p class="text-muted mb-2 font-17"><strong> End year :</strong> <span class="ms-2">{{edu_detail.end_year}}</span></p>
 
 
-                                                {% endfor %}
+                                                {% endfor %} 
+                                                
                                                 
                                                 
                                                 
@@ -196,7 +168,7 @@
                                         <div class="card-body">
                                             <h4 class="header-title mb-3">Experience</h4>
                                                 
-                                            <div class="inbox-widget" data-simplebar="init" style="max-height: 150px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto;"><div class="simplebar-content" style="padding: 0px;">
+                                            <div class="inbox-widget" data-simplebar="init" style="max-height: 500px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto;"><div class="simplebar-content" style="padding: 0px;">
                                                 {% for exp_detail in Experience_data %}
                                                     <p class="text-muted mb-2 font-17"><strong> Designation :</strong> <span class="ms-2">{{exp_detail.Designation}}</span></p>
                                                     <p class="text-muted mb-2 font-17"><strong> Organisation :</strong> <span class="ms-2">{{exp_detail.Organisation}}</span></p>
@@ -256,4 +228,9 @@
 
 	<script src="{% static 'js/dashboard.js' %}"></script>
 </body>
+{% block extrastyles %}
+<!-- Include only the desired styles for this specific page -->
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+
+{% endblock %}
 </html>

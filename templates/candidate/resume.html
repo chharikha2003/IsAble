@@ -1,0 +1,507 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+      *, *:after, *:before {
+        box-sizing: inherit;
+      }
+      .container {
+        display: flex;
+        max-width: 100%;
+        background-color: #eaeaea;
+        justify-content: space-between;
+        margin: 0 auto;
+        box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+      }
+       .profile {
+        flex-basis: 35%;
+        background-color: #39383a;
+        color: #ababab;
+      }
+      .profile-photo {
+        height: 230px;
+      }
+      
+      .profile-info {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 50px;
+        padding-bottom: 70px;
+      }
+      .profile-text {
+        font-size: 13px;
+        line-height: 24.19px;
+        margin-bottom: 50px;
+      } 
+      .heading {
+        margin: 0;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      .heading-light {
+        color: #ffffff;
+        border-bottom: 2px #5a5a5a dashed;
+      }
+      .contacts {
+        margin-bottom: 70px;
+      }
+      .contacts-title {
+        color: #fff;
+        margin-bottom: 13px;
+        font-size: 16px;
+        font-weight: 400;
+      }
+      .contacts-text {
+        color: #ababab;
+        text-decoration: none;
+        padding-left: 27px;
+        line-height: 20.97px;
+      }
+      .contacts-item {
+        padding-top: 24px;
+        padding-bottom: 24px;
+        border-bottom: 2px #5a5a5a dashed;
+      }
+      address {
+        font-style: normal;
+      }
+      .fas {
+        margin-right: 7px;
+      }
+      
+      .lines {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .line {
+        display: block;
+        width: 90px;
+        height: 2px;
+        background-color: #5c5c5c;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .line:nth-child(2) {
+        width: 100px;
+        margin-left: 20px;
+      }
+      .resume {
+        padding: 2px 2px;
+        background-color: #fff;
+      }
+      .resume-wrap {
+        padding: 20px 20px;
+        max-width:100%;
+        border: 1px solid rgba(168, 168, 168, 0.44);
+        min-height: 100%;
+      }
+      
+      .about {
+        border-bottom: 1px solid #e0e0e0;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .name {
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 10.75px;
+        margin-bottom: 10px;
+      }
+      .position {
+        display: inline-block;
+        font-size: 9px;
+        text-transform: uppercase;
+        color: #808080;
+        margin-bottom: 30px;
+      }
+      .about-address {
+        font-size: 13px;
+        margin-bottom: 15px;
+        font-family: Roboto;
+      }
+      .about-contacts {
+        font-size: 12px;
+      }
+      .about-contacts__link {
+        text-decoration: none;
+        color: #413f3f;
+      }
+      .heading_dark {
+        font-size: 16px;
+        font-weight: 400;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 10px;
+      }
+      .list {
+        list-style: none;
+        padding-left: 0;
+      }
+      .list-item {
+        position: relative;
+        padding-left: 40px;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        border-bottom: 2px dashed #ececec;
+      }
+      .list-item-lang {
+        list-style:none;
+        position: relative;
+        padding-left: 40px;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        border-bottom: 2px dashed #ececec;
+      }
+      .list-item:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 3px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background-color: #000;
+      }
+      .list-item__title {
+        font-size: 15px;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }.list-item__date {
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+      .list-item__text {
+        font-size: 13px;
+        /* color: #777; */
+      }
+      .list-item_non-border {
+        border: none;
+      }
+      .heading_skills {
+        margin-bottom: 48px;
+      }
+      .skills-list {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      .skills-list__item {
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-size: 11px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .level {
+        width: 70%;
+        height: 8px;
+        border: 1px solid #39383a;
+        position: relative;
+      }
+      .level:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background-color: #898989;
+      }
+      .level-80:before {
+        width: 80%;
+      }
+      .level-90:before {
+        width: 90%;
+      }
+      .level-50:before {
+        width: 50%;
+      }
+      .about-me {
+        display: flex;
+        flex-direction: column;
+        margin-top:20px;
+      }
+    
+      .about-me-container {
+        display: flex;
+        align-items: flex-start; /* Align items to the start (left) of the container */
+      }
+    
+      .bio-container {
+        padding: 10px;
+        flex: 1; /* Allow the bio container to grow and take available space */
+      }
+    
+      .profile-photo-container {
+        margin-left: 20px; /* Add space between bio and profile photo */
+        text-align: center;
+      }
+      .list-lang {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap:wrap;
+        max-width:100%;
+    }
+      
+    
+      .profile-img{
+        height: 160px;
+        width:130px;
+        margin:10px;
+        border:1px solid;
+      }
+      
+      @media (max-width: 1024px) {
+        .container {
+          width: 100%;
+        }
+      }
+      
+      @media (max-width: 992px) {
+        .container {
+          flex-direction: column;
+          width: 100%;
+        }
+        .profile-photo {
+          width: 200px;
+          height: 200px;
+          border: 3px solid #fff;
+          margin: auto;
+          margin-top: 40px;
+        }
+        
+        .profile-photo {
+          position: relative;
+          z-index: 0;
+        }
+        .lines {
+          display: none;
+        }
+      }
+      @media (max-width: 768px) {
+        .container {
+          width: 100%;
+        }
+        .resume {
+          padding: 1px;
+        }
+        .resume-wrap {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .list-item__title {
+          font-size: 14px;
+        }
+        .list-item__date {
+          font-size: 12px;
+        }
+        .list-item__text {
+          font-size: 12px;
+          line-height: 1.4;
+        }
+        .about-contacts__link {
+          display: block;
+          font-size: 13px;
+        }
+      }
+      @media (max-width: 567px) {
+        .logo-img {
+          width: 70px;
+          height: 70px;
+        }
+        .logo-lines {
+          margin-left: 8px;
+          margin-right: 8px;
+        }
+      }
+      @media (max-width: 480px) {
+        .logo {
+          display: none;
+        }
+        .container {
+          min-width: 320px;
+        }
+        .name {
+          letter-spacing: normal;
+        }
+        .level {
+          width: 50%;
+        }
+        
+      }
+    </style>
+    
+    {% comment %} <link href="{%static 'css/jobstyle.css'%}" rel="stylesheet" /> 
+    <link rel="stylesheet" href="{% static 'css/profilestyles.css' %}" />
+    <script src="{% static 'js/profile.js' %}" defer></script> {% endcomment %} 
+
+    <title>JustHired</title>
+  </head>
+  <body>
+<div class="container">
+    
+    <div class="resume">
+      <div class="resume-wrap">
+       
+        <div class="about">
+            {% for personal_details_user in personal_details_data %}
+
+          <h1 class="name">{{personal_details_user.user.first_name}} {{personal_details_user.user.last_name}}</h1>
+          {% comment %} <span class="position">Web Developer / Designer</span> {% endcomment %}
+          <address class="about-address">{{personal_details_user.city}}, {{personal_details_user.state}}, {{personal_details_user.country}}</address>
+          <div class="about-contacts">  
+            <a class="about-contacts__link" href="#">
+              <b>t</b>: {{personal_details_user.phone_number}}</a> |
+            <a class="about-contacts__link" href="#">
+              <b>e</b>: {{personal_details_user.user.email}} </a> |
+            <a class="about-contacts__link" href="#">
+              <b>w</b>: www.robertsmith.com</a>
+          </div>
+          {% endfor %}
+        </div>
+        
+        <div class="about-me">
+          <h2 class="heading heading_dark">
+            About me
+          </h2>
+          <div class="about-me-container">
+            
+            {% for personal_details_user in personal_details_data %}
+            
+              <div class="bio-container">
+                <ul class="list">
+                <li class="list-item">
+                <p class="list-item__text">{{ personal_details_user.bio }}</p>
+              </li>
+              <ul>
+              </div>
+            
+              <div class="profile-photo-container">
+                <img src="{{ profile_photo_url }}" class="profile-img" alt="profile-image">
+              </div>
+            {% endfor %}
+
+            
+            
+          </div>
+        </div>
+        <div class="experience">
+          <h2 class="heading heading_dark">
+            Experience
+          </h2>
+          <ul class="list">
+            {% for exp_detail in Experience_data %}
+            <li class="list-item">
+              <h4 class="list-item__title">{{exp_detail.Organisation}}</h4> 
+              <span class="list-item__date">{{exp_detail.worked_from}} to {{exp_detail.worked_till}}</span>
+              <p class="list-item__text">Position- {{exp_detail.Designation}}</p>
+              <p class="list-item__text">{{exp_detail.descofjob}}</p>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="education">
+          <h2 class="heading heading_dark">
+            Education
+          </h2>
+          <ul class="list">
+            {% for edu_detail in Education_data %} 
+               <li class="list-item">          
+                <h4 class="list-item__title">{{edu_detail.institute}} - {{edu_detail.institute_city}}, {{edu_detail.institute_state}} </h4>
+                
+                <span class="list-item__date">{{edu_detail.highest_qualification}} - {{edu_detail.specialization}}</span>, 
+                <span class="list-item__date">{{edu_detail.result}} </span>
+                <p class="list-item__text">{{edu_detail.start_year}} to {{edu_detail.end_year}}</p>
+
+
+              
+            </li>
+            {% endfor %} 
+          </ul>
+        </div>
+        <div class="projects">
+            <h2 class="heading heading_dark">
+              Projects
+            </h2>
+            <ul class="list">
+                {% for project_detail in Projects_data %}
+                    <li class="list-item">
+                               
+                        <h4 class="list-item__title">{{project_detail.title}}</h4>
+                        <span class="list-item__text"><a href="{{ project_detail.link }}" target="_blank">Visit Project</a>
+                        </span>
+                        <p class="list-item__text">{{project_detail.desc}}</p>
+                  
+                    </li>
+            {% endfor %}   
+            </ul>
+        </div>
+        <div class="key-achievements">
+          <h2 class="heading heading_dark">
+            Key Achievements
+          </h2>
+          <ul class="list">
+              {% for keyAchievements_detail in keyAchievements_data %}
+                  <li class="list-item">
+                      <p class="list-item__text">{{keyAchievements_detail.achievement}}</p>
+                  </li>
+          {% endfor %}   
+          </ul>
+        </div>
+        <div class="languages">
+          <h2 class="heading heading_dark">
+            Languages
+          </h2>
+          <ul class="list-lang">
+              {% for languages_detail in languages_data %}
+                  <li class="list-item-lang">
+                    <h4 class="list-item__title">{{languages_detail.language}}</h4>
+                    <p class="list-item__text">{{languages_detail.proficiency_level}}</p>
+                  </li>
+          {% endfor %}   
+          </ul>
+        </div>
+        <div class="languages">
+          <h2 class="heading heading_dark">
+            Skills
+          </h2>
+          <ul class="list-lang">
+              {% for languages_detail in languages_data %}
+                  <li class="list-item-lang">
+                    <h4 class="list-item__title">{{languages_detail.language}}</h4>
+                    <p class="list-item__text">{{languages_detail.proficiency_level}}</p>
+                  </li>
+          {% endfor %}   
+          </ul>
+        </div>
+
+        
+
+      </div>
+    </div>
+
+  </div>

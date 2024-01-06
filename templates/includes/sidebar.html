@@ -53,3 +53,8 @@
     </ul>
 </section>
 <!-- SIDEBAR -->
+{% block extrastyles %}
+<!-- Include only the desired styles for this specific page -->
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+
+{% endblock %}

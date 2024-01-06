@@ -1,0 +1,42 @@
+<div class="col-md-3 pt-0">
+    <div class="list-group list-group-flush account-settings-links">
+      <a
+        class="list-group-item list-group-item-action {% if 'personal-details-ins' in request.path %}active{% endif %}"
+        href="{% url 'personal_details_ins' %}"
+        >Profile</a
+      >
+      <a
+        class="list-group-item list-group-item-action {% if 'education-details-ins' in request.path %}active{% endif %}"
+        href="{% url 'education_details_ins' %}"
+        >Education</a
+      >
+      <a
+        class="list-group-item list-group-item-action {% if 'experience-details-ins' in request.path %}active{% endif %}"
+       
+        href="{% url 'experience_details_ins' %}"
+        >Experience</a
+      >
+      <a
+        class="list-group-item list-group-item-action {% if 'skills-details-ins' in request.path %}active{% endif %}"
+        href="{% url 'skills_details_ins' %}"
+        >Skills</a
+      >
+      
+      <a
+        class="list-group-item list-group-item-action {% if 'projects-details-ins' in request.path %}active{% endif %}"
+        href="{% url 'projects_details_ins' %}"
+        >Projects</a
+      >
+      <a
+        class="list-group-item list-group-item-action {% if 'keyAchievements-details-ins' in request.path %}active{% endif %}"  
+        href="{% url 'keyAchievements_details_ins' %}"
+        >Key Achievements</a
+      >
+      <a
+        class="list-group-item list-group-item-action {% if 'languages-details-ins' in request.path %}active{% endif %}"  
+        href="{% url 'languages_details_ins' %}"
+        >Languages</a
+      >
+      {% comment %} <a href="{% url 'projects_details_ins' %}">Projects</a> {% endcomment %}
+    </div>
+  </div>

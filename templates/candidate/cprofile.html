@@ -1,308 +1,11 @@
-{%extends 'base.html'%} {% load static %} {%block content%} {% comment %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/profilestyles.css' %}" />
-    <script src="{% static 'js/profile.js' %}" defer></script>
-    <title>Registraion Form</title>
-  </head>
-  <body>
-    {% endcomment %} {% comment %}
-    <div class="main-section">
-      <div class="profile">
-        <form
-          action="{% url 'registration_view'%}"
-          class="form"
-          method="post"
-          enctype="multipart/form-data"
-        >
-          {% csrf_token %}
-          <h1 class="text-center">Profile</h1>
-          <!-- Progress bar -->
-          <div class="progressbar">
-            <div class="progress" id="progress"></div>
+{%extends 'base.html'%} {% load static %} {%block content%} 
 
-            <div
-              class="progress-step progress-step-active"
-              data-title="Personal Details"
-            ></div>
-            <div class="progress-step" data-title="Education"></div>
-            <div class="progress-step" data-title="Experience"></div>
-            <div class="progress-step" data-title="Skills"></div>
-            <div class="progress-step" data-title="Certifications"></div>
-            <div class="progress-step" data-title="Projects"></div>
-          </div>
-
-          <!-- Steps -->
-          <div class="form-step form-step-active">
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="city">City</label>
-                {{personal_details_form.city}}
-              </div>
-
-              <!-- Second column -->
-              <div class="input-group">
-                <label for="state">State</label>
-                {{personal_details_form.state}}
-              </div>
-            </div>
-
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="country">Country</label>
-                {{personal_details_form.country}}
-              </div>
-
-              <div class="input-group">
-                <label for="profile_photo">Profile Photo</label>
-                {{personal_details_form.profile_photo}}
-              </div>
-            </div>
-
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="phone_number">Phone number</label>
-                {{personal_details_form.phone_number}}
-              </div>
-            </div>
-
-            <div class="">
-              <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
-            </div>
-          </div>
-          <div class="form-step">
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="highest_qualification">Highest qualification</label>
-                {{education_form.highest_qualification}}
-              </div>
-
-              <!-- Second column -->
-              <div class="input-group">
-                <label for="specialization">Specialization</label>
-                {{education_form.specialization}}
-              </div>
-            </div>
-
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="institute">Institute</label>
-                {{education_form.institute}}
-              </div>
-
-              <div class="input-group">
-                <label for="start_year">Start year</label>
-                {{education_form.start_year}}
-              </div>
-            </div>
-
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="end_year">End year</label>
-                {{education_form.end_year}}
-              </div>
-            </div>
-
-            <div class="btns-group">
-              <a href="#" class="btn btn-prev">Previous</a>
-              <a href="#" class="btn btn-next">Next</a>
-            </div>
-          </div>
-          <div class="form-step">
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="Designation">Designation</label>
-                {{experience_form.Designation}}
-              </div>
-
-              <!-- Second column -->
-              <div class="input-group">
-                <label for="Organisation">Organisation</label>
-                {{experience_form.Organisation}}
-              </div>
-            </div>
-
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="status">Status</label>
-                {{experience_form.status}}
-              </div>
-
-              <!-- Second column -->
-              <div class="input-group">
-                <label for="descofjob">Job Description</label>
-                {{experience_form.descofjob}}
-              </div>
-            </div>
-
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="worked_from">Worked from</label>
-                {{experience_form.worked_from}}
-              </div>
-
-              <!-- Second column -->
-              <div class="input-group">
-                <label for="worked_till">Worked till</label>
-                {{experience_form.worked_till}}
-              </div>
-            </div>
-
-            <div class="btns-group">
-              <a href="#" class="btn btn-prev">Previous</a>
-              <a href="#" class="btn btn-next">Next</a>
-            </div>
-          </div>
-
-          <div class="form-step">
-            <div class="input-row">
-              <div class="input-group">
-                <label for="skill">Skill</label>
-                {{skills_form.skill}}
-              </div>
-            </div>
-
-            <div class="btns-group">
-              <a href="#" class="btn btn-prev">Previous</a>
-              <a href="#" class="btn btn-next">Next</a>
-            </div>
-          </div>
-
-          <div class="form-step">
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="certificate">certificate</label>
-                {{certifications_form.certificate}}
-              </div>
-
-              <!-- Second column -->
-              <div class="input-group">
-                <label for="issued_by">issued_by</label>
-                {{certifications_form.issued_by}}
-              </div>
-            </div>
-
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="date_issued">date_issued</label>
-                {{certifications_form.date_issued}}
-              </div>
-            </div>
-            <div class="btns-group">
-              <a href="#" class="btn btn-prev">Previous</a>
-              <a href="#" class="btn btn-next">Next</a>
-            </div>
-          </div>
-
-          <div class="form-step">
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="title">title</label>
-                {{projects_form.title}}
-              </div>
-
-              <!-- Second column -->
-              <div class="input-group">
-                <label for="link">link</label>
-                {{projects_form.link}}
-              </div>
-            </div>
-
-            <div class="input-row">
-              <!-- First column -->
-              <div class="input-group">
-                <label for="desc">desc</label>
-                {{projects_form.desc}}
-              </div>
-            </div>
-            <div class="btns-group">
-              <a href="#" class="btn btn-prev">Previous</a>
-              <input type="submit" value="Submit" class="btn" />
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    {% comment %}
-  </body>
-</html>
-{% endcomment %}
-<!--Website: wwww.codingdung.com-->
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CodingDung | Profile Template</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-  </head>
-
-  <body>
-    {% endcomment %}
     <div class="container light-style flex-grow-1 container-p-y">
-      <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+      {% comment %} <h4 class="font-weight-bold py-3 mb-4">Account settings</h4> {% endcomment %}
+
       <div class="card overflow-hidden">
         <div class="row no-gutters row-bordered row-border-light">
-          <div class="col-md-3 pt-0">
-            <div class="list-group list-group-flush account-settings-links">
-              <a
-                class="list-group-item list-group-item-action active"
-                data-toggle="list"
-                href="#account-personal-details"
-                >Profile</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                data-toggle="list"
-                href="#account-change-password"
-                >Education</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                data-toggle="list"
-                href="#account-info"
-                >Experience</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                data-toggle="list"
-                href="#account-social-links"
-                >Skills</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                data-toggle="list"
-                href="#account-connections"
-                >Certificates</a
-              >
-              <a
-                class="list-group-item list-group-item-action"
-                data-toggle="list"
-                href="#account-notifications"
-                >Projects</a
-              >
-            </div>
-          </div>
+          {% include 'includes/p_sidebar.html' %}
 
           <div class="col-md-9">
             <div class="tab-content">
@@ -363,13 +66,14 @@
                       </div>
                     </div>
                   </div>
-                  <input type="submit" value="submit" />
+
+                  <button type="submit" class="btn btn-primary">Save</button>
                 </form>
               </div>
               <div class="tab-pane fade" id="account-change-password">
                 <form method="post" action="{% url 'education_details_ins' %}">
                   {% csrf_token %}
-                  <table style="width: 100%;">
+                  <table style="width: 100%;" id='table-education'>
                   {{ education_details_formset.management_form }}
                   
                   <!-- Display existing forms -->
@@ -420,68 +124,81 @@
                   </table>
               
                   <!-- Submit button -->
-                  <button type="submit">Save</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+
+                  <button type="button" id="add-education-form" class="btn btn-default"><i class="fa fa-plus"></i>Add More</button>
+
               </form>
               <!-- Add More button -->
-              <button type="button" id="add-education-form">Add More</button>
                 
               </div>
               <div class="tab-pane fade" id="account-info">
-                <form
-                  action="{% url 'experience_details_ins'%}"
-                  class="form"
-                  method="post"
-                  enctype="multipart/form-data"
-                >
+                <form method="post" action="{% url 'experience_details_ins' %}">
                   {% csrf_token %}
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Designation</label>
-                          {{ experience_form.Designation }}
+                  <table style="width: 100%;" id='table-experience' >
+                  {{ experience_details_formset.management_form }}
+                  
+                  <!-- Display existing forms -->
+                  {% for form in experience_details_formset.forms %}
+                      {% comment %} {{ form.as_p }} {% endcomment %}
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Designation</label>
+                              {{ form.Designation }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Organisation</label>
+                              {{form.Organisation}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label"
+                                >Are you working in this Organisation?</label
+                              >
+                              {{form.status }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Job Description</label>
+                              {{form.descofjob }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Worked from</label>
+                              {{form.worked_from }}
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Worked till</label>
+                              {{form.worked_till }}
+                            </div>
+                          </div>
+                          
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Organisation</label>
-                          {{experience_form.Organisation}}
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label"
-                            >Are you still working in the company?</label
-                          >
-                          {{experience_form.status }}
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Job Description</label>
-                          {{experience_form.descofjob }}
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Worked from</label>
-                          {{experience_form.worked_from }}
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Worked till</label>
-                          {{experience_form.worked_till }}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <input type="submit" value="submit" />
-                </form>
+                  {% endfor %}
+                  </table>
+              
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="button" id="add-experience-form" class="btn btn-default"><i class="fa fa-plus"></i>Add More</button>
+
+              </form>
+                
+                
               </div>
               <div class="tab-pane fade" id="account-social-links">
                 <form
@@ -501,88 +218,112 @@
                       </div>
                     </div>
                   </div>
-                  <input type="submit" value="submit" />
+                  <button type="submit" class="btn btn-primary">Save</button>
                 </form>
               </div>
               <div class="tab-pane fade" id="account-connections">
-                <form
-                  action="{% url 'certifications_details_ins'%}"
-                  class="form"
-                  method="post"
-                  enctype="multipart/form-data"
-                >
+                <form method="post" action="{% url 'certifications_details_ins' %}">
                   {% csrf_token %}
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Certificate</label>
-                          {{ certifications_form.certificate }}
+                  <table style="width: 100%;" id='table-certifications' >
+                  {{ certifications_details_formset.management_form }}
+                  
+                  <!-- Display existing forms -->
+                  {% for form in certifications_details_formset.forms %}
+                      {% comment %} {{ form.as_p }} {% endcomment %}
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Certificate</label>
+                              {{ form.certificate }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Issued by</label>
+                              {{form.issued_by}}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Issued by</label>
-                          {{certifications_form.issued_by}}
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label"
+                                >Date Issued</label
+                              >
+                              {{form.date_issued }}
+                            </div>
+                          </div>
+                          
                         </div>
+                        
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Date Issued</label>
-                          {{certifications_form.date_issued }}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <input type="submit" value="submit" />
-                </form>
+                  {% endfor %}
+                  </table>
+              
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="button" id="add-certifications-form" class="btn btn-default"><i class="fa fa-plus"></i>Add More</button>
+
+              </form>
+                
               </div>
               <div class="tab-pane fade" id="account-notifications">
-                <form
-                  action="{% url 'projects_details_ins'%}"
-                  class="form"
-                  method="post"
-                  enctype="multipart/form-data"
-                >
+                <form method="post" action="{% url 'projects_details_ins' %}">
                   {% csrf_token %}
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Title</label>
-                          {{ projects_form.title }}
+                  <table style="width: 100%;" id='table-projects' >
+                  {{ projects_details_formset.management_form }}
+                  
+                  <!-- Display existing forms -->
+                  {% for form in projects_details_formset.forms %}
+                      {% comment %} {{ form.as_p }} {% endcomment %}
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Title</label>
+                              {{ form.title }}
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label">Description</label>
+                              {{form.desc}}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Description</label>
-                          {{projects_form.desc}}
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-label"
+                                >Link</label
+                              >
+                              {{form.link }}
+                            </div>
+                          </div>
+                          
                         </div>
+                        
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-label">Link</label>
-                          {{projects_form.link }}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <input type="submit" value="submit" />
-                </form>
+                  {% endfor %}
+                  </table>
+              
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="button" id="add-projects-form" class="btn btn-default"><i class="fa fa-plus"></i>Add More</button>
+
+              </form>
+                
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="text-right mt-3">
+      {% comment %} <div class="text-right mt-3">
         <button type="button" class="btn btn-primary">Save changes</button
         >&nbsp;
         <button type="button" class="btn btn-default">Cancel</button>
-      </div>
+      </div> {% endcomment %}
     </div>
     
     <script>
@@ -607,12 +348,18 @@
     function addNewForm(formsetPrefix) {
       var formCountInput = document.getElementById('id_' + formsetPrefix + '-TOTAL_FORMS');
       var formCount = parseInt(formCountInput.value);
-  
+      var scriptSelector = `#empty-${formsetPrefix}-form`;
+      var templateScript = document.querySelector(scriptSelector);
+
+      if (!templateScript) {
+          console.error(`Template script not found for form type: ${formsetPrefix}`);
+          return '';
+      }
       // Get the template and replace "__prefix__" with the current form count
-      var template = document.querySelector('#empty-form').innerHTML.replace(/__prefix__/g, formCount);
+      var template = templateScript.innerHTML.replace(/__prefix__/g, formCount);
       template = '<hr id="hr-' + formCount + '">' + template;    
       // Append the new form to the container (adjust the container selector based on your HTML structure)
-      document.querySelector('table').insertAdjacentHTML('beforeend', template);
+      document.getElementById('table-'+formsetPrefix).insertAdjacentHTML('beforeend', template);
   
       // Increment the form count and update the TOTAL_FORMS field
       formCount += 1;
@@ -622,54 +369,182 @@
   document.getElementById('add-education-form').addEventListener('click', function () {
     addNewForm('education');
   });
+  document.getElementById('add-experience-form').addEventListener('click', function () {
+    addNewForm('experience');
+  });
+  document.getElementById('add-projects-form').addEventListener('click', function () {
+    addNewForm('projects');
+  });
+  document.getElementById('add-certifications-form').addEventListener('click', function () {
+    addNewForm('certifications');
+  });
   </script>
-  <script type="empty/form-template" id="empty-form">
+  
+  <script type="empty/form-template" id="empty-education-form">
     
-      <div class="card-body">
-        <span class="close-button" onclick="removeForm(this,'education')" style="position: absolute;
-        right: 0;
-        cursor: pointer;"><i class="fa fa-times"></i></span>
-          <div class="row">
-              <div class="col-md-6">
-                  <div class="form-group">
-                      <label class="form-label">Highest Qualification</label>
-                      {{ education_details_formset.empty_form.highest_qualification }}
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="form-group">
-                      <label class="form-label">Specialization</label>
-                      {{ education_details_formset.empty_form.specialization }}
-                  </div>
-              </div>
-          </div>
-          <div class="row">
+    <div class="card-body">
+      <span class="close-button" onclick="removeForm(this,'education')" style="position: absolute;
+      right: 0;
+      cursor: pointer;"><i class="fa fa-times"></i></span>
+        <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="form-label">Institute</label>
-                    {{ education_details_formset.empty_form.institute }}
+                    <label class="form-label">Highest Qualification</label>
+                    {{ education_details_formset.empty_form.highest_qualification }}
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="form-label">Start year</label>
-                    {{ education_details_formset.empty_form.start_year }}
+                    <label class="form-label">Specialization</label>
+                    {{ education_details_formset.empty_form.specialization }}
                 </div>
             </div>
         </div>
         <div class="row">
           <div class="col-md-6">
               <div class="form-group">
-                  <label class="form-label">End year</label>
-                  {{ education_details_formset.empty_form.end_year }}
+                  <label class="form-label">Institute</label>
+                  {{ education_details_formset.empty_form.institute }}
               </div>
           </div>
-          
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Start year</label>
+                  {{ education_details_formset.empty_form.start_year }}
+              </div>
+          </div>
       </div>
-          <!-- Add other fields in a similar way -->
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label">End year</label>
+                {{ education_details_formset.empty_form.end_year }}
+            </div>
+        </div>
+        
+    </div>
+
+</script>
+
+
+<script type="empty/form-template" id="empty-experience-form">
+    
+  <div class="card-body">
+    <span class="close-button" onclick="removeForm(this,'experience')" style="position: absolute;
+    right: 0;
+    cursor: pointer;"><i class="fa fa-times"></i></span>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Designation</label>
+                  {{ experience_details_formset.empty_form.Designation }}
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Organisation</label>
+                  {{ experience_details_formset.empty_form.Organisation }}
+              </div>
+          </div>
       </div>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label">Status</label>
+                {{ experience_details_formset.empty_form.status }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label">Description of job</label>
+                {{ experience_details_formset.empty_form.descofjob }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+              <label class="form-label">Worked from</label>
+              {{ experience_details_formset.empty_form.worked_from }}
+          </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label class="form-label">Worked till</label>
+            {{ experience_details_formset.empty_form.worked_till }}
+        </div>
+    </div>
+      
+  </div>
+
+</script>
+
+<script type="empty/form-template" id="empty-certifications-form">
+    
+  <div class="card-body">
+    <span class="close-button" onclick="removeForm(this,'certifications')" style="position: absolute;
+    right: 0;
+    cursor: pointer;"><i class="fa fa-times"></i></span>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Certificate</label>
+                  {{ certifications_details_formset.empty_form.certificate }}
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Issued by</label>
+                  {{ certifications_details_formset.empty_form.issued_by }}
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label">Date Issued</label>
+                {{ certifications_details_formset.empty_form.date_issued }}
+            </div>
+        </div>
+        
+      </div>
+  </div>
   
-  </script>
+</script>
+
+<script type="empty/form-template" id="empty-projects-form">
+    
+  <div class="card-body">
+    <span class="close-button" onclick="removeForm(this,'projects')" style="position: absolute;
+    right: 0;
+    cursor: pointer;"><i class="fa fa-times"></i></span>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Title</label>
+                  {{ projects_details_formset.empty_form.title }}
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-label">Description</label>
+                  {{ projects_details_formset.empty_form.desc }}
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label">Link</label>
+                {{ projects_details_formset.empty_form.link }}
+            </div>
+        </div>
+        
+      </div>
+  </div>
+  
+</script>
+
     <script
       data-cfasync="false"
       src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
@@ -677,10 +552,8 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript"></script>
-    {% comment %}
-  </body>
-</html>
-{% endcomment %} {% endblock %} 
+    
+{% endblock %} 
 {% block extrastyles %}
 <!-- Include only the desired styles for this specific page -->
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
