@@ -1,5 +1,5 @@
-/* .form-container {
-    min-height: 100vh;
+.form-container {
+    min-height: 200px;
     display: flex;
     align-items: center;
   }
@@ -7,7 +7,7 @@
   form {
     width: 50%;
     margin: 0 auto;
-  } */
+  }
 
   .card-registration .select-input.form-control[readonly]:not([disabled]) {
     font-size: 1rem;

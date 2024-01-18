@@ -3,14 +3,54 @@ from accounts.utils import send_notification
 from datetime import time,date,datetime
 from accounts.models import User, UserProfile
 
+
 # Create your models here.
 class Employer(models.Model):
+
+    INDUSTRY_CHOICE=(
+        ('Agriculture','Agriculture'),
+        ('Automotive','Automotive'),
+        ('Banking and Finance','Banking and Finance'),
+        ('Biotechnology','Biotechnology'),
+        ('Construction','Construction'),
+        ('Education','Education'),
+        ('Energy','Energy'),
+        ('Entertainment','Entertainment'),
+        ('Healthcare','Healthcare'),
+        ('Hospitality','Hospitality'),
+        ('Information Technology (IT)','Information Technology (IT)'),
+        ('Manufacturing','Manufacturing'),
+        ('Marketing and Advertising','Marketing and Advertising'),
+        ('Media','Media'),
+        ('Non-Profit','Non-Profit'),
+        ('Retail','Retail'),
+        ('Telecommunications','Telecommunications'),
+        ('Transportation','Transportation'),
+        ('Travel and Tourism','Travel and Tourism')
+    )
+
+    SECTOR_CHOICE=(
+        ('Private','Private'),
+        ('Public','Public')
+    )
     user=models.OneToOneField(User,related_name='user',on_delete=models.CASCADE)
     user_profile=models.OneToOneField(UserProfile,related_name='userprofile',on_delete=models.CASCADE)
     company_name=models.CharField(max_length=50)
-    # vendor_slug=models.SlugField(max_length=100,unique=True)
     company_license=models.ImageField(upload_to='company/license')
+    company_logo=models.ImageField(upload_to='company/logo')
+    company_desc=models.CharField(max_length=500)
+    company_address=models.CharField(max_length=100)
+    company_phone=models.IntegerField()
+    company_email=models.EmailField(max_length=50,unique=True)
+    company_website=models.URLField()
+    twitter = models.URLField()
+    linkedin = models.URLField()
+    accessibility_features=models.CharField(max_length=500,default='')
+    support_services=models.CharField(max_length=500)
+    inclusive_hiring_practices=models.CharField(max_length=500)
     is_approved=models.BooleanField(default=False)
+    sector=models.CharField(max_length=50,choices=SECTOR_CHOICE)
+    industry_type=models.CharField(max_length=50,choices=INDUSTRY_CHOICE)
     created_at=models.DateTimeField(auto_now_add=True)
     modified_at=models.DateTimeField(auto_now=True)
 

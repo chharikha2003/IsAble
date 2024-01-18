@@ -78,6 +78,14 @@ def registerEmployer(request):
         #store the data and create the user
         form=UserForm(request.POST)
         e_form=Employerform(request.POST,request.FILES)
+        if form.is_valid():
+            print("form is valid")
+        else: 
+            print("form is not valid")
+        if e_form.is_valid():
+            print("e_form is valid")
+        else: 
+            print("e_form is not valid")
         if form.is_valid() and e_form.is_valid():
             first_name=form.cleaned_data['first_name']
             last_name=form.cleaned_data['last_name']
@@ -87,9 +95,10 @@ def registerEmployer(request):
             user=User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
             user.role=User.EMPLOYER
             user.save()
+            # company_name=e_form.cleaned_data['company_name']
             employer=e_form.save(commit=False)
             employer.user=user 
-            company_name=e_form.cleaned_data['company_name']
+            employer.company_email=email
             user_profile=UserProfile.objects.get(user=user)
             employer.user_profile=user_profile
             employer.save()
@@ -102,9 +111,8 @@ def registerEmployer(request):
             messages.success(request, 'Your account has been registered successfully! Please wait for the approval')
             return redirect('login')
         else:
-
-            print('invalid form')
             print(form.errors)
+            print('invalid form')
 
     else:
         form=UserForm()

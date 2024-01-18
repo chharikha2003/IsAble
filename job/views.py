@@ -2,12 +2,12 @@
 # Create your views here.
 # jobs/views.py
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from employer.models import Employer
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required,user_passes_test
 from .models import Job
-from .forms import JobForm
+from .forms import JobFilterForm, JobForm
 def check_role_candidate(user):
     if user.role==1:
         return True
@@ -72,4 +72,19 @@ def get_remote(request):
 def get_fulltime(request):
     job = Job.objects.filter(category="Full Time")
     return render(request, 'job/job_fulltime.html', {'job': job})
+
+
+def job_filter(request):
+    if request.method == 'POST' and request.is_ajax():
+        form = JobFilterForm(request.POST)
+        if form.is_valid():
+            job_type = form.cleaned_data['job_type']
+            sector = form.cleaned_data['sector']
+
+            employers = Employer.objects.filter(sector=sector) if job_type == 'private' else Employer.objects.filter(sector='Public')
+
+            data = [{'id': employer.id, 'name': employer.company_name} for employer in employers]
+            return JsonResponse(data, safe=False)
+
+    return render(request, 'job/job_filter.html', {'form': JobFilterForm()})
    

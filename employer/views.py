@@ -1,12 +1,12 @@
 from django.shortcuts import render,redirect
 
-from employer.forms import EmployerDetailsForm
+from employer.forms import Employerform
 
 # Create your views here.
 def companyregistration_view(request):
     print("func called")
     if request.method == 'POST':
-        employer_details_form =EmployerDetailsForm(request.POST,request.FILES)
+        employer_details_form =Employerform(request.POST,request.FILES)
         
         print("yess")
         if employer_details_form.is_valid():
@@ -28,9 +28,9 @@ def companyregistration_view(request):
 
     else:
         
-        employer_details_form = EmployerDetailsForm()
+        employer_form = Employerform()
        
 
         
 
-    return render(request, 'employer/compprofile.html', {'employer_details_form':employer_details_form})
+    return render(request, 'employer/compprofile.html', {'employer_form':employer_form})

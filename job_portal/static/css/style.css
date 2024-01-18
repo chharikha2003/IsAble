@@ -3,6 +3,10 @@
   margin-top: 20px;
 } */
 
+.custom-container {
+  margin-top: 70px;
+  padding:70px;
+}
 .ui-w-40 {
   width: 20px;
   height: 20px;
