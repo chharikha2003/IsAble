@@ -24,10 +24,16 @@
     <link href="{%static 'css/jobstyle.css'%}" rel="stylesheet" /> 
     <link rel="stylesheet" href="{% static 'css/profilestyles.css' %}" />
     <script src="{% static 'js/profile.js' %}" defer></script> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'css/jobstyle.css' %}" /> {% endcomment %}
+<!-- Include only the desired styles for this specific page -->
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
 
+   
     <title>JustHired</title>
   </head>
   <body>
+   
+    
      <!--LOAD NAVBAR HERE-->
      {% include 'includes/navbar.html'%}
      <!--LOAD CONTENT HERE-->
@@ -37,5 +43,7 @@
      <!--LOAD FOOTER HERE-->
      {% include 'includes/footer.html'%}
      
+     <script src="{% static 'js/colorTheme.js' %}"></script> 
+ 
 </body>
 </html>

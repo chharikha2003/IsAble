@@ -7,10 +7,10 @@
 *::after {
   box-sizing: border-box;
 }
-body{
+body {
   padding-top: 40px;
 }
-.main-section{
+.main-section {
   margin: 70px; /* Adjust the value as needed */
 }
 .profile {

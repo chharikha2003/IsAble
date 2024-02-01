@@ -8,6 +8,7 @@ from accounts.models import User, UserProfile
 class Employer(models.Model):
 
     INDUSTRY_CHOICE=(
+        ('All','All'),
         ('Agriculture','Agriculture'),
         ('Automotive','Automotive'),
         ('Banking and Finance','Banking and Finance'),
@@ -30,6 +31,7 @@ class Employer(models.Model):
     )
 
     SECTOR_CHOICE=(
+        ('All','All'),
         ('Private','Private'),
         ('Public','Public')
     )

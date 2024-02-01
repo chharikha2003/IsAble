@@ -1,0 +1,73 @@
+/* Add your existing styles for the navbar here */
+
+.navbar-options {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.options-container {
+  display: flex;
+  justify-content: flex-end; /* Align items to the right side */
+  margin-left: 10px;
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+.font-options button {
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 15px; /* Adjust the font size as needed */
+  width: 25px;
+  height: 25px;
+}
+
+#increase-font::before {
+  content: '+';
+}
+
+#decrease-font::before {
+  content: '-';
+}
+
+.theme-options a {
+  padding: 5px;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.theme-options {
+  display: flex;
+  align-items: baseline; /* Align items at the baseline */
+}
+
+.theme-options span {
+  margin-right: 5px;
+}
+
+.theme-options a {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  border: 1px solid white;
+}
+
+.blue-theme {
+  background-color: blue;
+}
+.red-theme {
+  background-color: red;
+}
+.green-theme {
+  background-color: green;
+}
+.yellow-theme {
+    background-color:yellow;
+}
+.pink-theme {
+  background-color: rgb(228, 26, 120);
+}

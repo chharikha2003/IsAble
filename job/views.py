@@ -74,17 +74,44 @@ def get_fulltime(request):
     return render(request, 'job/job_fulltime.html', {'job': job})
 
 
-def job_filter(request):
-    if request.method == 'POST' and request.is_ajax():
+# jobs/views.py
+from django.shortcuts import render
+from .models import Job
+from .forms import JobFilterForm
+
+def job_list(request):
+    if request.method == 'POST':
         form = JobFilterForm(request.POST)
         if form.is_valid():
-            job_type = form.cleaned_data['job_type']
-            sector = form.cleaned_data['sector']
+            job_type = form.cleaned_data.get('job_type')
+            sector = form.cleaned_data.get('sector')
+            city = form.cleaned_data.get('city')
+            disability_type = form.cleaned_data.get('disability_type')
 
-            employers = Employer.objects.filter(sector=sector) if job_type == 'private' else Employer.objects.filter(sector='Public')
+            # Apply filters based on form input
+            jobs = Job.objects.all()
 
-            data = [{'id': employer.id, 'name': employer.company_name} for employer in employers]
-            return JsonResponse(data, safe=False)
+            if job_type != 'All':
+                jobs = jobs.filter(company__sector=job_type)
+                print(jobs)
+            if sector != 'All':
+                jobs = jobs.filter(company__industry_type=sector)
+                print(jobs)
 
-    return render(request, 'job/job_filter.html', {'form': JobFilterForm()})
-   
+            if city != 'All':
+                jobs = jobs.filter(city=city)
+                print(jobs)
+            if disability_type != 'All':
+                jobs = jobs.filter(disability_type=disability_type)
+                print(jobs)
+
+            # Order by date_posted
+            jobs = jobs.order_by('-date_posted')
+    else:
+        # If no form submission, set default values for the dropdowns to 'All'
+        form = JobFilterForm(initial={'job_type': 'All', 'sector': 'All', 'city': 'All', 'disability_type': 'All'})
+        
+        # Display all jobs ordered by date_posted
+        jobs = Job.objects.all().order_by('-date_posted')
+
+    return render(request, 'job/job_list.html', {'form': form, 'jobs': jobs})

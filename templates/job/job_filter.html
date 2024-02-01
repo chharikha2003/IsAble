@@ -1,62 +1,24 @@
-<!-- jobs/templates/jobs/job_filter.html -->
+<!-- jobs/templates/job_list.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Filter</title>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job List</title>
 </head>
 <body>
+    <h1>Job List</h1>
+    
+    <form method="post" action="{% url 'job_list' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Filter Jobs</button>
+    </form>
 
-  <h1>Job Filter</h1>
-
-  <form id="filterForm" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Filter</button>
-  </form>
-
-  <script>
-    $(document).ready(function() {
-      $('#id_job_type').change(function() {
-        updateEmployerDropdown();
-      });
-
-      function updateEmployerDropdown() {
-        var jobType = $('#id_job_type').val();
-        var sector = $('#id_sector').val();
-
-        $.ajax({
-          url: '{% url "job_filter" %}',
-          type: 'POST',
-          data: {
-            'job_type': jobType,
-            'sector': sector,
-            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
-          },
-          dataType: 'json',
-          success: function(data) {
-            var employerDropdown = $('#id_employer');
-            employerDropdown.empty();
-
-            $.each(data, function(index, item) {
-              employerDropdown.append($('<option>', {
-                value: item.id,
-                text: item.name
-              }));
-            });
-          },
-          error: function(error) {
-            console.log('Error:', error);
-          }
-        });
-      }
-
-      // Initial call to update employer dropdown
-      updateEmployerDropdown();
-    });
-  </script>
-
+    <ul>
+        {% for job in jobs %}
+            <li>{{ job.title }} - {{ job.location }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

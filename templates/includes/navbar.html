@@ -1,18 +1,29 @@
 {%load static%}
 
+<nav class="navbar navbar-expand-lg py-1 mb-10" style="background-color: rgb(55, 8, 109);">
+  <div class="navbar-options">
+    <div class="options-container">
+      <div class="font-options">
+        
+        <button id="increase-font" onclick="changeFontSize('increase')"></button>
+        <span>A</span>
+        <button id="decrease-font" onclick="changeFontSize('decrease')"></button>
+      </div>
+      <div class="theme-options">
+        <span>Select Theme: </span>
+        <a href="#" onclick="changeTheme('blue-theme')" class="blue-theme"></a>
+        <a href="#" onclick="changeTheme('red-theme')" class="red-theme"></a>
+        <a href="#" onclick="changeTheme('green-theme')" class="green-theme"></a>
+        <a href="#" onclick="changeTheme('yellow-theme')" class="yellow-theme"></a>
+        <a href="#" onclick="changeTheme('pink-theme')" class="pink-theme"></a>
+      </div>
+    </div>
+  </div>
+</nav>
 
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 fixed-top">
+<nav class="navbar navbar-expand-lg py-2 mb-10" style="background-color: white;box-shadow:0 5px 15px rgba(0,0,0,0.09);">
     <div class="container">
       <a href="#" class="navbar-brand">JustHired</a>
-
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navmenu"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
       <div class="collapse navbar-collapse" id="navmenu">
         <ul class="navbar-nav ms-auto">
@@ -41,14 +52,30 @@
             <a href="{% url "login" %}" class="nav-link"><button type="button" class="btn btn-warning">Post Job</button></a>
             {% endif %}
           </li>
-          
+          {% comment %} <li>
+            <div id="font-controls" style="color: white;">
+                <button onclick="changeFontSize('increase')">Increase Font</button>
+                <button onclick="changeFontSize('decrease')">Decrease Font</button>
+            </div>
+        </li>
+        <li>
+            <div id="theme-controls" style="color: white;">
+                <label for="theme">Select Color Scheme:</label>
+                <select id="theme" onchange="changeTheme()">
+                    <option value="default">Default</option>
+                    <option value="grayscale">Grayscale</option>
+                </select>
+            </div>
+        </li> {% endcomment %}
         </ul>
       </div>
     </div>
   </nav>
 
+ 
   {% block extrastyles %}
 <!-- Include only the desired styles for this specific page -->
-<link rel="stylesheet" href="{% static 'css/jobstyle.css' %}" />
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
 
+<script src="{% static 'js/colorTheme.js' %}"></script> 
 {% endblock %}
