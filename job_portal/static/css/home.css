@@ -1,5 +1,6 @@
 .custom-section {
   background-color: rgba(218, 212, 212, 0.863);
+  height: 200px;
 }
 .button-like-div {
   display: inline-block;
@@ -15,4 +16,31 @@
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   margin: 8px;
+}
+.search-bar {
+  margin-right: 10px;
+}
+
+.search-btn {
+  height: 38px;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px; 
+}
+
+.filter-box {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+}
+.filter-links {
+  margin-bottom: 5px;
+}
+.filtered-links {
+  margin-top: 5px;
 }
