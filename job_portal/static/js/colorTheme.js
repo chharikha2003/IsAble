@@ -35,3 +35,18 @@ function getFontColor(theme) {
 function changeTheme(theme) {
   applyTheme(theme);
 }
+
+function changeFontSize(action){
+    
+    var bodyElement = document.body;
+    var currentFontSize = window.getComputedStyle(bodyElement, null).getPropertyValue('font-size');
+    var fontSizeNumeric = parseFloat(currentFontSize);
+
+    if (action === 'increase') {
+        fontSizeNumeric += 2; // Increase font size by 2 pixels (you can adjust this value)
+    } else if (action === 'decrease') {
+        fontSizeNumeric -= 2; // Decrease font size by 2 pixels (you can adjust this value)
+    }
+
+    bodyElement.style.fontSize = fontSizeNumeric + 'px';
+}
