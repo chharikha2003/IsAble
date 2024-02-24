@@ -1,92 +1,9 @@
-{% load static %}
+{%extends 'base.html'%} {% load static %} {% block content %}
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
-    
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-     <style>
-        body.grayscale {
-            background-color: black !important; /* Medium gray */
-            color: #e217af !important; 
-        }
-        
-        body.pink{
-            background-color:black;
-            color:#e217af;
-        }
-        
-        body.grayscale header,
-        body.grayscale footer {
-            background-color: #555 !important; /* Dark gray */
-            color: #fff !important; /* White */
-        }
-    </style>
-    <!-- Template Stylesheet -->
-    {% comment %} <link href="{% static 'css/joblist.css' %}" rel="stylesheet"> {% endcomment %}
-    
-   
-    <title>Post Job</title>
-  </head>
-
-<body>  
-    
-   {% include 'includes/navbar.html' %}
-    {% comment %} <h1 class="text-center py-6">Your dream job awaits - start now</h1>
-    <div class="row">
-      
-        <nav class="navbar navbar-light bg-light">
-          <form method="get" action="/jobs/search_by_category" class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search By Category" aria-label="Search" name="query" id="query">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search by category</button>
-          </form>
-          <form method="get" action="/jobs/search_by_city" class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search By City" aria-label="Search" name="query1" id="query1">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search by city</button>
-          </form>
-          <form method="get" action="/jobs/search_by_title" class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search by Title" aria-label="Search" name="query3" id="query3">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search by title</button>
-          </form>
-        </nav>
-      
-     
-        <nav class="navbar navbar-light bg-light">
-          
-        </nav>
-  
-     
-      <nav class="navbar navbar-light bg-light">
-        
-      </nav>
-     
-    </div>
-         {% endcomment %}
-     
     
 
 
-    <div class="container-fluid" >
+    <div class="container-fluid mt-4">
         <div class="row">
             <!-- Filter Form on the Left Side -->
             <div class="col-md-4" >
@@ -103,33 +20,33 @@
             <!-- Job Listings on the Right Side -->
             <div class="col-md-8">
                 <div class="container">
-                    <h1 class="text-center py-6">Latest Job Openings</h1>
+                    <h3 class="text-center py-6">Latest Job Openings</h3>
     
                     <!-- Job Listings Go Here -->
                     <div class="tab-content">
-                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                        <div id="tab-1" class="tab-pane fade show p-0 active ">
                             {% for job in jobs %}
-                            <div class="job-item p-4 mb-4">
+                            <div class="job-item p-4 mb-4 border-bottom border-2">
                                 <div class="row g-4">
                                     <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-1.jpg" alt="" style="width: 80px; height: 80px;">
+                                        <img class="flex-shrink-0 img-fluid border rounded" src="{{ job.company.company_logo.url }}" alt="" style="width: 80px; height: 80px;">
                                         <div class="text-start ps-4">
                                             <h5 class="mb-3">{{ job.title }}</h5>
                                             
-                                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ job.city }}, INDIA</span>
-                                            <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>{{ job.category }}</span>
-                                            <span class="text-truncate me-3">Experience: {{ job.experience }}</span>
-                                            <span class="text-truncate me-0">Salary: Rs. {{ job.salary }}</span>
-                                            <span class="text-truncate me-0">Posted By:  {{ job.company }}</span>
-                                            <span class="text-truncate me-0">Posted On:  {{ job.date_posted }}</span>
+                                            <span class="text-truncate me-3"><i class="fa fa-map-marker" aria-hidden="true"></i>{{ job.city }}, INDIA</span>
+                                            <span class="text-truncate me-3"><i class="fa fa-clock-o" aria-hidden="true"></i>{{ job.category }}</span>
+                                            <p><span class="text-truncate me-3">Experience: {{ job.experience }}</span>
+                                            <span class="text-truncate me-0">Salary: Rs. {{ job.salary }}</span></p>
+                                            <p class="text-truncate me-0">Posted By:  {{ job.company }} </p>
+                                            <p class="text-truncate me-0">Posted On:  {{ job.date_posted }}</p>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                         <div class="d-flex mb-3">
-                                            <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
-                                            <a class="btn btn-primary" href="">Apply Now</a>
+                                            <a class="btn btn-primary" href="{% url 'job_detail' job_id=job.id %}">Apply Now</a>
                                         </div>
-                                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line: 01 Jan, 2045</small>
+                                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Last Date: {{job.application_lastdate}}</small>
                                     </div>
                                 </div>
                                 
@@ -140,7 +57,6 @@
                         <!-- Add more tabs or sections as needed -->
                     </div>
     
-                    <a class="btn btn-primary py-3 px-5" href="#">Browse More Jobs</a>
                 </div>
             </div>
         </div>
@@ -155,8 +71,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}
 
 
 

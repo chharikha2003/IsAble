@@ -1,0 +1,28 @@
+
+#head{
+    display:flex;
+    flex-direction:column;
+    padding:2px 150px;
+    height: 285px;
+  }
+  
+  #head::before{
+  content: "";
+  background-color:blanchedalmond;
+  position: absolute;
+  height: 350px;
+  top:0px;
+  left:0px;
+  width:100%;
+  z-index: -1;
+  opacity:0.8;
+  
+  }
+  #head .head1{
+    padding:80px;
+  }
+  #head h2{
+  color:#fff; 
+  text-align:center;
+  font-family: 'Playfair Display', serif;
+  }

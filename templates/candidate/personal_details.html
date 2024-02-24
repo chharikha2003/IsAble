@@ -1,7 +1,7 @@
 {%extends 'base.html'%} {% load static %} {%block content%} 
 
-    <div class="container light-style flex-grow-1" style="margin-top:70px; padding:10px;">
-      <h4 class="font-weight-bold py-3 mb-4">Your Profile</h4>
+    <div class="container light-style flex-grow-1" style="margin-top:10px; padding:10px;">
+      <h4 class="font-weight-bold py-3 mb-2">Your Profile</h4>
       
 
 
@@ -74,9 +74,54 @@
                           {{personal_details_form.bio}}
                         </div>
                       </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Gender</label>
+                          {{personal_details_form.gender}}
+                        </div>
+                      </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Date of Birth</label>
+                          {{personal_details_form.dob}}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Aadhar Card Number</label>
+                          {{personal_details_form.aadhar_number}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Select Disability Type</label>
+                          {{personal_details_form.disability_type}}
+                        </div>
+                      </div>
+                    
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Upload Disability Certificate</label>
+                          {{personal_details_form.disability_certificate}}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Upload Aadhar Card Photo</label>
+                          {{personal_details_form.aadhar_card}}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
                   </div>
-
+                  
                   <button type="submit" class="btn btn-primary">Save</button>
                 </form>
              

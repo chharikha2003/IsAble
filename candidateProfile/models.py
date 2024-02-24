@@ -4,13 +4,34 @@ from accounts.models import User
 
 # Create your models here.
 class personal_details(models.Model):
+
+    GENDER = (
+    ('Male', 'Male'),
+    ('Female', 'Female'),
+    ('Other', 'Other'), 
+    )
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     profile_photo=models.ImageField(upload_to='candidate/profilephoto',default='default.jpg')
     bio=models.CharField(max_length=500,blank=True)
-    phone_number=models.CharField(max_length=12,blank=True)
+    gender=models.CharField(max_length=50,choices=GENDER,blank=True,null=True)
+    dob=models.DateField(blank=True,null=True)
+    phone_number=models.CharField(max_length=12)
     city=models.CharField(max_length=20)
     state=models.CharField(max_length=20)
     country=models.CharField(max_length=20)
+    disability_certificate=models.ImageField(upload_to='candidate/disabilityCertificate',default='default.jpg')
+    aadhar_number=models.IntegerField()
+    aadhar_card=models.ImageField(upload_to='candidate/aadharCard',default='default.jpg')
+    disability_type = models.CharField(max_length=100, choices=[
+        ('Blindness', 'Blindness'),
+        ('Cerebral Palsy', 'Cerebral Palsy'),
+        ('Hearing impairment','Hearing impairment'),
+        ('Locomotor disability','Locomotor disability'),
+        ('Mental illness','Mental illness'),
+        ('Haemophilia','Haemophilia'),
+        ('Other Disabilities','Other Disabilities')
+    ], blank=True, null=True)
+
 
 
 class Education(models.Model):
@@ -55,7 +76,7 @@ class Projects(models.Model):
     desc=models.CharField(max_length=500)
 
 class Languages(models.Model):
-    ROLE_CHOICE = (
+    PROFICIENCY_LEVEL = (
     ('Elementary Proficiency', 'Elementary Proficiency'),
     ('Limited Working Proficiency', 'Limited Working Proficiency'),
     ('Professional Working Proficiency', 'Professional Working Proficiency'), 
@@ -64,5 +85,5 @@ class Languages(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     language=models.CharField(max_length=100)
-    proficiency_level=models.CharField(max_length=50,choices=ROLE_CHOICE,blank=True,null=True)
+    proficiency_level=models.CharField(max_length=50,choices=PROFICIENCY_LEVEL,blank=True,null=True)
 

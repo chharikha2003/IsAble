@@ -17,7 +17,7 @@
         
         <form action="{% url 'registerEmployer' %}" class="form-fields-set foodbakery-dev-restaurant-form" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <h1 class="text-center py-6">Register Here as Employer</h1>
+            <h3 class="text-center py-6">Register Here as Employer</h3>
             <div class="row py-3">
               <div class="col-md-6">
                 <div class="form-group">
@@ -68,13 +68,7 @@
                   {{e_form.sector}}
                 </div>
 
-               
                 
-                
-                
-              
-    
-                  
               </div>
               <div class="col-md-6">
                 
@@ -139,39 +133,10 @@
                   
               </div>
             </div>
-            
-              
-
-            
+          
             <button type="submit" class="btn btn-primary text-center">Submit</button>
-            <li>
-              <ul class="errorlist">
-                  {% for field in form %}
-                      {% if field.errors %}
-                          {% for error in field.errors %}
-                              <li style="color:red;">{{ error }}</li>
-                          {% endfor %}
-                      {% endif %}
-                  {% endfor %}
-                  <li style="color:red;">{{ form.non_field_errors }}</li>
-              </ul>
-              <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <div class="field-holder">
-                          <div class="payment-holder">
-                              <input type="submit" value="Register" id="btn-next-restaurant-information" class="bgcolor">
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      {% include 'includes/alerts.html' %}
-                  </div>
-              </div>
-              
-          </li>
-      </ul>
+            
+      
             
           </form>
     
@@ -179,6 +144,7 @@
        
      
     </div>
+    
     
 
     <!-- Optional JavaScript -->

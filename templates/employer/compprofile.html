@@ -1,135 +1,83 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/profilestyles.css' %}" />
-    <script src="{% static 'js/profile.js' %}" defer></script>
-    <title>Registraion Form</title>
-  </head>
-  <body> 
-    <div class="profile">
-      <form action="{% url 'companyregistration_view'%}" class="form" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h1 class="text-center">Company Details</h1>
-        <!-- Progress bar -->
+{%extends 'base.html'%} {% load static %} {% block content%}
+
+<section class="company-profile">
+  <div class="sidebar">
+    {% for company_detail in company_details %}
+
+    <h2>{{company_detail.company_name}}</h2>
+    {% endfor %}
+    <ul>
+      <li><a href="{% url 'companyprofile_view' %}">Profile</a></li>
+      <li><a href="{% url 'post_job' %}">Post a Job</a></li>
+      <li><a href="#">Manage Jobs</a></li>
+      <li><a href="#">Messages</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+  </div>
+  {% for company_detail in company_details %}
+    <div class="company-details">
+      
+      <div class="company-info">
+        <div class="company-header">
+          <div class="company-logo">
+              <img src="{{ company_detail.company_logo.url }}" alt="Company Logo" style="width: 100px; height: 100px;">
+          </div>
+          <div class="company-name">{{ company_detail.company_name }}</div>
+      </div>
+        <p>
+          <strong>About us: </strong> {{company_detail.company_desc}}
+        </p>
+        <p><strong>Location:</strong>{{company_detail.company_address}}</p>
+        <p><strong>Contact us At: </strong><a href="#" class="fa fa-twitter"></a> <!-- fa-lg class makes the icon larger -->
+          <a href="#" class="fa fa-linkedin"></a>
+          <a href="#" class="fa fa-envelope"></a></p>
         
-
-        <!-- Steps -->
-        <div class="form-step form-step-active">
-          <div class="input-row">
-            <!-- First column -->
-           
-
-            <!-- Second column -->
-            <div class="input-group">
-              <label for="state">Industry</label>
-              {{employer_details_form.industry}}
-            </div>
+      </div>
+      
+      
+      <div class="job-listings">
+        <h3>Find Comfort at Our Place!</h3>
+        
+      </div>
+      <div class="container">
+    <div class="row">
+      <!-- First Card -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Accessibility Features</h5>
+            <p class="card-text">{{company_detail.accessibility_features}}</p>
           </div>
-
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="country">Founded Year</label>
-              {{employer_details_form.founded_year}}
-            </div>
-
-            <div class="input-group">
-              <label for="profile_photo">Address</label>
-              {{employer_details_form.address}}
-            </div>
-          </div>
-
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="phone_number">City</label>
-              {{employer_details_form.city}}
-            </div>
-
-          </div>
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="phone_number">state</label>
-              {{employer_details_form.state}}
-            </div>
-
-          </div>
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="phone_number">Country</label>
-              {{employer_details_form.country}}
-            </div>
-
-          </div>
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="phone_number">Phone number</label>
-              {{employer_details_form.phone}}
-            </div>
-
-          </div>
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="phone_number">Website</label>
-              {{employer_details_form.website}}
-            </div>
-
-          </div>
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="phone_number">logo</label>
-              {{employer_details_form.logo}}
-            </div>
-
-          </div>
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="phone_number">facebook</label>
-              {{employer_details_form.facebook}}
-            </div>
-
-          </div>
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="phone_number">twitter</label>
-              {{employer_details_form.twitter}}
-            </div>
-
-          </div>
-          <div class="input-row">
-            <!-- First column -->
-            <div class="input-group">
-              <label for="phone_number">linkedin</label>
-              {{employer_details_form.linkedin}}
-            </div>
-
-          </div>
-          <div class="input-group">
-            <label for="city">Description</label>
-            {{employer_details_form.description}}
-          </div>
-
-          
         </div>
-        
-           
-       
-        <button type="submit" class="btn btn-primary text-center">Submit</button>
-           
-          
-         
-      </form>
+      </div>
+      
+      <!-- Second Card -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Support Services</h5>
+            <p class="card-text">{{company_detail.support_services}}</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Third Card -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Inclusive Hiring Practices</h5>
+            <p class="card-text">{{company_detail.inclusive_hiring_practices}}</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </body>
-</html>
+  </div>
+
+    <p class="mt-4"><strong>Visit us at: </strong><a href="{{company_detail.company_website}}">{{company_detail.company_website}}</a>
+
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

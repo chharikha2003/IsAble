@@ -4,10 +4,14 @@ from accounts.validators import allow_only_images_validator
 
 class PersonalDetailsForm(forms.ModelForm):
     profile_photo=forms.FileField(widget=forms.FileInput(attrs={'class':'btn btn-info'}),validators=[allow_only_images_validator])
+    disability_certificate=forms.FileField(widget=forms.FileInput(attrs={'class':'btn btn-info'}),validators=[allow_only_images_validator])
+    aadhar_card=forms.FileField(widget=forms.FileInput(attrs={'class':'btn btn-info'}),validators=[allow_only_images_validator])
+
     class Meta:
         model = personal_details
-        fields = ['phone_number','city','state','country','profile_photo','bio']
+        fields = ['phone_number','city','state','country','profile_photo','bio','disability_certificate','aadhar_number','aadhar_card','gender','disability_type','dob']
 
+        
         widgets = {
             "phone_number": forms.TextInput(
                 attrs={
@@ -42,6 +46,36 @@ class PersonalDetailsForm(forms.ModelForm):
                     "class": "form-control",
                     "style": "width: 100%; margin-bottom: 20px;",
                     "placeholder": "Bio",
+                }
+            ),
+            "gender": forms.Select(  
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Gender",
+                }
+            ),
+            "dob": forms.DateInput(  
+                # attrs={
+                #     "class": "form-control",
+                #     "style": "width: 100%; margin-bottom: 20px;",
+                #     "placeholder": "Date of Birth",
+                # }
+                attrs={'type': 'date', 'class': 'form-control'}
+                
+            ),
+            "aadhar_number": forms.TextInput(  
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Aadhar Card number",
+                }
+            ),
+            "disability_type": forms.Select(  
+                attrs={
+                    "class": "form-control",
+                    "style": "width: 100%; margin-bottom: 20px;",
+                    "placeholder": "Select Disability Type",
                 }
             ),
 

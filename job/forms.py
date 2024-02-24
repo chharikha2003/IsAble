@@ -4,7 +4,7 @@ from employer.models import Employer
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        fields = ['title','city','category','description']
+        fields = ['title','city','category','description','experience','disability_type','salary','vacancy','min_qualification','application_lastdate','application_link']
     def __init__(self, *args, **kwargs):
         super(JobForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():

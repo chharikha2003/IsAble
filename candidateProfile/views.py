@@ -33,10 +33,7 @@ def personal_details_ins(request):
             return redirect("personal_details_ins")
     personal_details_form = PersonalDetailsForm()
     
-    # personal_details_table_data = personal_details.objects.filter(  
-    #     Q(created_by=1) | Q(created_by=request.user))
-
-    # print(personal_details_table_data)
+    
 
     data = {
         "personal_details_form": personal_details_form,
@@ -45,29 +42,13 @@ def personal_details_ins(request):
     return render(request, "candidate/personal_details.html", data)
 
 
-# def education_details_ins(request):
-#     EducationFormSet=formset_factory(EducationForm,extra=1)
-#     if request.method=='POST':
-#         education_details_formset = EducationFormSet(request.POST,prefix='education')
-#         if education_details_formset.is_valid():
-#             for education_details_form in education_details_formset:
-#                 print("Valid")
-#                 education_details_form_save = education_details_form.save(commit=False)
-#                 education_details_form_save.created_by = request.user
-#                 education_details_form_save.updated_by = request.user
-#                 education_details_form_save.user = request.user
-#                 education_details_form_save.save()
-#             print("saveddd")
-#             return redirect("main_registration")
-#     else:
-#         education_details_formset=EducationFormSet(prefix='education')
-        
 
-#     data = {
-#         "education_details_formset": education_details_formset,
-        
-#     }
-#     return render(request, "candidate/cprofile.html", data)
+
+
+
+
+
+
 
 def education_details_ins(request):
     EducationFormSet = formset_factory(EducationForm, extra=1, can_delete=True)
@@ -90,12 +71,17 @@ def education_details_ins(request):
             print("error")
             messages.error(request, 'Education formset is invalid. Please correct the errors.')
     else:
+        
         education_details_formset = EducationFormSet(prefix='education')
 
     data = {
         "education_details_formset": education_details_formset,
     }
     return render(request, "candidate/education_details.html", data)
+
+
+
+
 
 
 def experience_details_ins(request):

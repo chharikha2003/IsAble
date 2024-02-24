@@ -11,7 +11,7 @@ def detectUser(user):
         redirectUrl='personal_details_ins'
         return redirectUrl
     elif user.role==2:
-        redirectUrl='companyregistration_view'
+        redirectUrl='companyprofile_view'
         return redirectUrl
     elif user.role == None and user.is_superadmin:
         redirectUrl='/admin'

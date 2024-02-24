@@ -17,20 +17,7 @@
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   margin: 8px;
 }
-.search-bar {
-  margin-right: 10px;
-}
 
-.search-btn {
-  height: 38px;
-}
-
-.search-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px; 
-}
 
 .filter-box {
   border: 1px solid #ddd;
@@ -43,4 +30,18 @@
 }
 .filtered-links {
   margin-top: 5px;
+}
+
+
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; /* Makes the div round */
+  overflow: hidden; /* Hides any content that overflows the circle */
+  margin: 10px; /* Adjust as needed for spacing between circles */
+}
+
+.circle img {
+  width: 100%; /* Makes the image fill the circle */
+  height: auto;
 }

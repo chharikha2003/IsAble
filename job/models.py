@@ -62,7 +62,7 @@ class Job(models.Model):
     vacancy=models.IntegerField(blank=True, null=True)
     min_qualification=models.CharField(max_length=50, choices=MINIMUM_QUALIFICATION_CHOICES, blank=True, null=True)
     application_lastdate=models.DateTimeField(default=timezone.now)
-
+    application_link=models.URLField(blank=True)
 
 
 
