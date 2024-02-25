@@ -5,13 +5,19 @@ Welcome to IsAble, your dedicated job portal tailored specifically for individua
 
 ## Features
 - User Authentication: Allow users to register, log in, and manage their profiles. Once the user registers he/she receives an email for activation of the account.
+  
 - Robust Candidate Profiles: Users can create and maintain comprehensive profiles, detailing their skills, educational achievements, and impactful projects.The platform prioritizes individual skill sets, educational qualifications and spotlight their noteworthy contributions in projects allowing job seekers to present a well-rounded picture of their capabilities.
+  
 - Job Posting: Enable employers to post job listings with details such as job title, description, location and requirements.
+  
 - Job Search: Provide a search functionality for job seekers to find relevant job opportunities.Job seekers can search for jobs on the basis of location, categories, and roles,diability.
+  
 - EquiChat- Personalized Career Assistance
 IsAble introduces EquiChat, a cutting-edge chatbot powered by Gemini technology. EquiChat serves as a steadfast companion, offering personalized career assistance and guidance every step of the way.
+
 - User-Friendly Resume Builder
 We understand the importance of a well-crafted resume in securing employment opportunities. IsAble offers a user-friendly resume builder that automatically generates resumes based on profile details, streamlining the application process for our users.
+
 -Accessibility at the Core
 Accessibility lies at the heart of our platform. IsAble prioritizes inclusivity by offering accessibility features such as font size adjustment and customizable color schemes, ensuring that all users can navigate the website comfortably and efficiently.
 
