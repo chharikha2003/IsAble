@@ -27,30 +27,34 @@ Accessibility lies at the heart of our platform. IsAble prioritizes inclusivity 
 - MySQL: Database management
 - Bootstrap: Frontend framework for styling
 - Gemini
-- Tenserflow
+
 
 ## Setup Instructions
 1. Clone the repository:
 
     bash
     git clone https://github.com/chharikha2003/Job_Portal.git
-2. Navigate to the project directory:
+2. Install reuirements:
+
+    pip install weasyprint
+   
+    ensure that the GTK runtime is correctly installed in the specified directory "C:\Program Files\GTK3-Runtime Win64\bin"
+4. Navigate to the project directory:
 
     bash
-    cd Job_Portal
-3. Apply database migrations:
+5. Apply database migrations:
 
     bash
     python manage.py migrate
-4. Create a superuser account:
+6. Create a superuser account:
 
     bash
     python manage.py createsuperuser
-5. Start the development server:
+7. Start the development server:
 
     bash
     python manage.py runserver
-7. Open your browser and go to [http://localhost:8000/](http://localhost:8000/) to access the application.
+8. Open your browser and go to [http://localhost:8000/](http://localhost:8000/) to access the application.
 
 ## Contribution Guidelines
 
