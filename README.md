@@ -37,6 +37,7 @@ Accessibility lies at the heart of our platform. IsAble prioritizes inclusivity 
 2. Install reuirements:
 
     pip install weasyprint
+   
     ensure that the GTK runtime is correctly installed in the specified directory "C:\Program Files\GTK3-Runtime Win64\bin"
 4. Navigate to the project directory:
 
