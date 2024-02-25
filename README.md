@@ -5,10 +5,9 @@ Welcome to IsAble, your dedicated job portal tailored specifically for individua
 
 ## Features
 - User Authentication: Allow users to register, log in, and manage their profiles. Once the user registers he/she receives an email for activation of the account.
-- Robust Candidate and  Profiles: Users can create and maintain comprehensive profiles, detailing their skills, educational achievements, and impactful projects.The platform prioritizes individual skill sets, educational qualifications and spotlight their noteworthy contributions in projects allowing job seekers to present a well-rounded picture of their capabilities.
+- Robust Candidate Profiles: Users can create and maintain comprehensive profiles, detailing their skills, educational achievements, and impactful projects.The platform prioritizes individual skill sets, educational qualifications and spotlight their noteworthy contributions in projects allowing job seekers to present a well-rounded picture of their capabilities.
 - Job Posting: Enable employers to post job listings with details such as job title, description, location and requirements.
 - Job Search: Provide a search functionality for job seekers to find relevant job opportunities.Job seekers can search for jobs on the basis of location, categories, and roles,diability.
-- Application Process: Allow job seekers to apply to job postings, and employers to manage applications.
 - EquiChat- Personalized Career Assistance
 IsAble introduces EquiChat, a cutting-edge chatbot powered by Gemini technology. EquiChat serves as a steadfast companion, offering personalized career assistance and guidance every step of the way.
 - User-Friendly Resume Builder
@@ -18,7 +17,6 @@ Accessibility lies at the heart of our platform. IsAble prioritizes inclusivity 
 
 
 ## Technology Stack
-
 - Django: Backend web framework
 - HTML, CSS, JavaScript: Frontend technologies
 - MySQL: Database management
@@ -27,45 +25,27 @@ Accessibility lies at the heart of our platform. IsAble prioritizes inclusivity 
 - Tenserflow
 
 ## Setup Instructions
-
 1. Clone the repository:
 
     bash
     git clone https://github.com/chharikha2003/Job_Portal.git
-    
-
 2. Navigate to the project directory:
 
     bash
     cd Job_Portal
-    
-
 3. Apply database migrations:
 
     bash
     python manage.py migrate
-    
-
-5. Create a superuser account:
+4. Create a superuser account:
 
     bash
     python manage.py createsuperuser
-    
-
-6. Start the development server:
+5. Start the development server:
 
     bash
     python manage.py runserver
-    
-
 7. Open your browser and go to [http://localhost:8000/](http://localhost:8000/) to access the application.
-
-## Usage
-
-1. Visit the website and register for a new account.
-2. Explore job listings, and apply to jobs of interest.
-3. Employers can log in, post new job opportunities, and manage applications.
-4. Use the admin panel [http://localhost:8000/admin/](http://localhost:8000/admin/) for more advanced management.
 
 ## Contribution Guidelines
 
