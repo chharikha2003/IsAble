@@ -34,19 +34,22 @@ Accessibility lies at the heart of our platform. IsAble prioritizes inclusivity 
 
     bash
     git clone https://github.com/chharikha2003/Job_Portal.git
-2. Navigate to the project directory:
+3. Install reuirements:
+
+    pip install weasyprint
+    ensure that the GTK runtime is correctly installed in the specified directory "C:\Program Files\GTK3-Runtime Win64\bin"
+3. Navigate to the project directory:
 
     bash
-    cd Job_Portal
-3. Apply database migrations:
+4. Apply database migrations:
 
     bash
     python manage.py migrate
-4. Create a superuser account:
+5. Create a superuser account:
 
     bash
     python manage.py createsuperuser
-5. Start the development server:
+6. Start the development server:
 
     bash
     python manage.py runserver
