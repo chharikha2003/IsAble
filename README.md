@@ -34,8 +34,8 @@ Accessibility lies at the heart of our platform. IsAble prioritizes inclusivity 
 
     bash
     git clone https://github.com/chharikha2003/Job_Portal.git
-3. Install reuirements:
-
+2. Install reuirements:
+    
     pip install weasyprint
     ensure that the GTK runtime is correctly installed in the specified directory "C:\Program Files\GTK3-Runtime Win64\bin"
 3. Navigate to the project directory:
