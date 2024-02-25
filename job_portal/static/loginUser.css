@@ -1,5 +1,4 @@
 body {
-    background: url('/static/img/job_bg.jpg')50% 0 no-repeat fixed ;
     background-size: cover;
     background-position:50% 50%;
     font-family: Montserrat;
@@ -17,10 +16,10 @@ body {
     padding: 20px;
     background: #fff;
     border-radius: 5px;
-    border-top: 5px solid blue;
-    border-left: 1px solid blue;
-    border-right: 1px solid blue;
-    border-bottom: 1px solid blue;
+    border-top: 5px solid rgb(57, 57, 190);;
+    border-left: 1px solid rgb(57, 57, 190);;
+    border-right: 1px solid rgb(57, 57, 190);;
+    border-bottom: 1px solid rgb(57, 57, 190);;
     margin: 0 auto;
   }
   
@@ -68,16 +67,16 @@ body {
   
   .login-block input:active,
   .login-block input:focus {
-    border: 1px solid blue;
+    border: 1px solid rgb(57, 57, 190);;
   }
   
-  .login-block button {
+  .submit-button {
     width: 100%;
     height: 40px;
-    background: blue;
+    background: rgb(57, 57, 190);
     box-sizing: border-box;
     border-radius: 5px;
-    border: 1px solid blue;
+    border: 1px solid rgb(57, 57, 190);
     color: #fff;
     font-weight: bold;
     text-transform: uppercase;
@@ -85,33 +84,48 @@ body {
     font-family: Montserrat;
     outline: none;
     cursor: pointer;
+    margin:4px;
   }
   
-  .login-block button:hover {
-    background: blue;
+  .submit-button:hover {
+    background: rgb(57, 57, 190);
   }
-  
-  .btn-outline-info {
-    /* Add your desired styles for the button here */
-    background-color: #4285f4; /* Google blue color */
-    color: #fff; /* White text color */
-    border: 1px solid #4285f4; /* Border color same as background color */
-    padding: 10px 20px; /* Adjust padding as needed */
-    text-decoration: none; /* Remove underlines */
-    display: inline-block;
-    font-size: 16px; /* Adjust font size as needed */
-    border-radius: 4px; /* Add rounded corners if desired */
-}
 
-.btn-outline-info a {
-    color: #fff; /* Set text color for the anchor tag */
-    text-decoration: none; /* Remove underlines for the anchor tag */
+  .google-button{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    outline: none;
+    cursor: pointer;
+    margin:4px;
+    
+  }
+  
+/* .btn-outline-info {
+    background-color: #4285f4; 
+    color: #fff; 
+    border: 1px solid #4285f4; 
+    padding: 10px 20px; 
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px; 
+    border-radius: 4px; 
+} */
+
+/* .btn-outline-info a {
+    color: #fff; 
+    text-decoration: none; 
 }
 
 .btn-outline-info:hover {
-    background-color: #3c78d8; /* Change background color on hover */
+    background-color: #3c78d8; 
 }
-  
+   */
   
   
   

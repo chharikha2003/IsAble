@@ -2,41 +2,23 @@ from django.shortcuts import render,redirect
 
 from employer.forms import Employerform
 from employer.models import Employer
+from django.contrib.auth.decorators import login_required,user_passes_test
+from django.core.exceptions import PermissionDenied
 
-# Create your views here.
-# def companyregistration_view(request):
-#     print("func called")
-#     if request.method == 'POST':
-#         employer_details_form =Employerform(request.POST,request.FILES)
-        
-#         print("yess")
-#         if employer_details_form.is_valid():
-#             # Save each form individually to the respective models
-#             print('valid')
-#             employer_details = employer_details_form.save(commit=False)
-#             employer_details.user = request.user
-            
-#             employer_details.save()
+def check_role_candidate(user):
+    if user.role==1:
+        return True
+    else:
+        raise PermissionDenied
+    
+def check_role_employer(user):
+    if user.role==2:
+        return True
+    else:
+        raise PermissionDenied
 
-
-#             print('savedd')
-#             # Redirect or do something else
-#             return redirect('employerDashboard')
-#         else:
-           
-#             print(employer_details_form.errors)
-           
-
-#     else:
-        
-#         employer_form = Employerform()
-       
-
-        
-
-#     return render(request, 'employer/compprofile.html', {'employer_form':employer_form})
-
-
+@login_required(login_url='login')
+@user_passes_test(check_role_employer)
 def companyprofile_view(request):
     logged_in_user = request.user
 

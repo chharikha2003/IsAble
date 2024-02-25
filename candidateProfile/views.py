@@ -1,18 +1,33 @@
 from django.forms import formset_factory
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 from .models import *
 from .forms import *
 from django.db.models import Q
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required,user_passes_test
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.template.loader import get_template
 import weasyprint
 import os
 os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")
 from weasyprint import HTML
-# Create your views here.
 
 
+def check_role_candidate(user):
+    if user.role==1:
+        return True
+    else:
+        raise PermissionDenied
+    
+def check_role_employer(user):
+    if user.role==2:
+        return True
+    else:
+        raise PermissionDenied
+
+@login_required(login_url='login')
+@user_passes_test(check_role_candidate)
 def personal_details_ins(request):
     if request.method=='POST':
         personal_details_form = PersonalDetailsForm(request.POST,request.FILES)
@@ -43,13 +58,8 @@ def personal_details_ins(request):
 
 
 
-
-
-
-
-
-
-
+@login_required(login_url='login')
+@user_passes_test(check_role_candidate)
 def education_details_ins(request):
     EducationFormSet = formset_factory(EducationForm, extra=1, can_delete=True)
 
@@ -80,10 +90,8 @@ def education_details_ins(request):
     return render(request, "candidate/education_details.html", data)
 
 
-
-
-
-
+@login_required(login_url='login')
+@user_passes_test(check_role_candidate)
 def experience_details_ins(request):
     ExperienceFormSet = formset_factory(ExperienceForm, extra=1, can_delete=True)
 
@@ -111,7 +119,8 @@ def experience_details_ins(request):
     }
     return render(request, "candidate/experience_details.html", data)
 
-
+@login_required(login_url='login')
+@user_passes_test(check_role_candidate)
 def skills_details_ins(request):
     if request.method=='POST':
         skills_details_form = SkillsForm(request.POST,request.FILES)
@@ -131,17 +140,15 @@ def skills_details_ins(request):
                     messages.error(request, error_message)
             return redirect("skills_details_ins")
     skills_details_form = SkillsForm()
-    
-    # skills_details_table_data = Skills.objects.filter(  
-    #     Q(created_by=1) | Q(created_by=request.user))
 
-    # print(skills_details_table_data)
 
     data = {
         "skills_details_form": skills_details_form,
     }
     return render(request, "candidate/skills_details.html", data)
 
+@login_required(login_url='login')
+@user_passes_test(check_role_candidate)
 def projects_details_ins(request):
     ProjectsFormSet = formset_factory(ProjectsForm, extra=1, can_delete=True)
 
@@ -169,6 +176,9 @@ def projects_details_ins(request):
     }
     return render(request, "candidate/projects_details.html", data)
 
+
+@login_required(login_url='login')
+@user_passes_test(check_role_candidate)
 def keyAchievements_details_ins(request):
     keyAchievementsFormSet = formset_factory(keyAchievementsForm, extra=1, can_delete=True)
 
@@ -195,7 +205,10 @@ def keyAchievements_details_ins(request):
         "keyAchievements_details_formset": keyAchievements_details_formset,
     }
     return render(request, "candidate/keyAchievements_details.html", data)
-    
+
+
+@login_required(login_url='login')
+@user_passes_test(check_role_candidate)   
 def languages_details_ins(request):
     LanguagesFormSet = formset_factory(LanguagesForm, extra=1, can_delete=True)
 
@@ -223,7 +236,8 @@ def languages_details_ins(request):
     }
     return render(request, "candidate/languages_details.html", data)
 
-
+@login_required(login_url='login')
+@user_passes_test(check_role_candidate)
 def resume(request):
     personal_details_data = personal_details.objects.filter(user=request.user)
     Education_data = Education.objects.filter(user=request.user)
@@ -250,9 +264,9 @@ def resume(request):
 
     return render(request,"candidate/resume.html",context)
 
+@login_required(login_url='login')
+@user_passes_test(check_role_candidate)
 def download_pdf(request):
-    # Get the HTML template
-
     template = get_template('candidate/resume.html')
 
     personal_details_data = personal_details.objects.filter(user=request.user)
@@ -279,7 +293,6 @@ def download_pdf(request):
     }
     html = template.render(context)
 
-    # Generate PDF
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="Resume.pdf"'
     weasyprint.HTML(string=html).write_pdf(response)

@@ -18,7 +18,6 @@
   margin: 8px;
 }
 
-
 .filter-box {
   border: 1px solid #ddd;
   padding: 20px;
@@ -32,7 +31,6 @@
   margin-top: 5px;
 }
 
-
 .circle {
   width: 100px;
   height: 100px;
@@ -44,4 +42,75 @@
 .circle img {
   width: 100%; /* Makes the image fill the circle */
   height: auto;
+}
+.register-button {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 18px;
+  width: 200px;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #0e71db;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.register-button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  cursor: pointer;
+}
+
+.resume-creation-section {
+  background-color: #f9f9f9;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.resume-creation-section h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.resume-creation-section p {
+  margin-bottom: 30px;
+}
+
+.resume-creation-button .btn-primary {
+  padding: 12px 30px;
+  font-size: 18px;
+  border-radius: 30px;
+  transition: background-color 0.3s;
+}
+
+.resume-creation-button .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.chatbot-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+}
+.chatbot-container {
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+}
+
+.chat-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.chat-button:hover {
+  background-color: #0056b3;
 }

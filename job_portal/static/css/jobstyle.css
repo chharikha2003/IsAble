@@ -100,3 +100,11 @@
 .searchJob {
   background-color: rgb(184, 76, 76);
 }
+.footer {
+  position: absolute; /* Set footer to absolute positioning */
+  bottom: 0; /* Position the footer at the bottom */
+  width: 100%; /* Full width */
+  background-color: #343a40; /* Dark background color */
+  color: #fff; /* White text color */
+  padding: 20px 0; /* Add some padding */
+}

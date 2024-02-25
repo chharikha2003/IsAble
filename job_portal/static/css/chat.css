@@ -1,0 +1,71 @@
+.equichat-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .equichat-heading {
+    text-align: center;
+    color: #333;
+  }
+
+  .equichat-form {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  .equichat-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+  }
+
+  .equichat-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .equichat-button:hover {
+    background-color: #0056b3;
+  }
+
+  .equichat-container .chat-container {
+    margin-top: 20px;
+    overflow-y: scroll;
+    max-height: 300px;
+    padding-right: 10px; /* Adjust for scrollbar width */
+  }
+
+  .equichat-container .chat-message {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    max-width: 70%;
+  }
+
+  .equichat-container .user-message {
+    background-color: #007bff;
+    color: #fff;
+    align-self: flex-end;
+  }
+
+  .equichat-container .bot-message {
+    background-color: #28a745;
+    color: #fff;
+  }
+
+  .equichat-container .bot-message p {
+    margin: 0;
+  }

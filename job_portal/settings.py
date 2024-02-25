@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'job',
     'employer',
     'candidateProfile',
+    'chat_app',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -92,7 +93,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "job_portal_new",
         "USER": "root",
-        "PASSWORD":"password@123",
+        "PASSWORD":"Abcde@12345",
         "HOST": "localhost",  # Or an IP Address that your DB is hosted on
         "PORT": "3306",
     }

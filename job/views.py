@@ -29,7 +29,7 @@ def job_detail(request, job_id):
     return render(request, 'job/job_detail.html', {'job': job})
 
 
-login_required(login_url='login')
+@login_required(login_url='login')
 @user_passes_test(check_role_employer)
 def post_job(request):
     if request.method == 'POST':

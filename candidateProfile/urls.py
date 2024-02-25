@@ -14,7 +14,6 @@ urlpatterns=[
    path('download_pdf/', views.download_pdf, name='download_pdf'),
 
    
-   # path('cexpprofile',views.cexpprofile,name='cexpprofile'),
    
    
 ]  

@@ -1,0 +1,78 @@
+{%extends 'base.html'%} {% load static %} {% block content%}
+<div class="equichat-container">
+  <h1 class="equichat-heading">
+    EquiChat - Bridging Conversations for Every Ability
+  </h1>
+  <p class="text-center">
+    Your inclusive companion, promoting accessible conversations and empowerment
+    for everyone!
+  </p>
+  <!-- Display chat history -->
+  <div id="response" class="chat-container">
+    {% if response_data %}
+    <div class="chat-message bot-message">
+      <p>{{ response_data.text | safe}}</p>
+    </div>
+    {% endif %}
+  </div>
+  <!-- Form for asking questions -->
+  <form
+    class="equichat-form"
+    id="question-form"
+    method="post"
+    action="{% url 'ask_question' %}"
+  >
+    {% csrf_token %}
+    <input
+      class="equichat-input"
+      type="text"
+      name="text"
+      placeholder="Type your message..."
+    />
+    <button class="equichat-button" type="submit">Ask</button>
+  </form>
+</div>
+
+<script>
+  // Function to scroll chat container to bottom
+  function scrollToBottom() {
+    var chatHistory = document.getElementById('chat-history');
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+  }
+  function clearInputBox() {
+    document.getElementById('question-form').reset();
+  }
+
+  // AJAX to submit form data and update page
+  document
+    .getElementById('question-form')
+    .addEventListener('submit', function (event) {
+      event.preventDefault();
+      var formData = new FormData(this);
+      var responseContainer = document.getElementById('response');
+      responseContainer.innerHTML = `<div class="chat-message bot-message"><p>Please wait while the response is being generated....</p></div>`;
+
+      fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-CSRFToken': '{{ csrf_token }}',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Update response_data with new response
+          var responseContainer = document.getElementById('response');
+          responseContainer.innerHTML = `<div class="chat-message bot-message"><p>${data.data.text}</p></div>`;
+          clearInputBox(); // Clear input box
+          scrollToBottom();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    });
+
+  // Scroll to bottom when page loads
+  scrollToBottom();
+</script>
+{% endblock %}

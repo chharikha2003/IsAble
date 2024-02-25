@@ -11,7 +11,10 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
@@ -24,25 +27,22 @@
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
     <link rel="stylesheet" href="{% static 'css/empDash.css' %}" />
     <link rel="stylesheet" href="{% static 'css/vision.css' %}" />
-    <link href="{% static 'registerUser.css' %}" rel="stylesheet">
-    <link href="{% static 'post_job.css' %}" rel="stylesheet">
-
-    <script src="{% static 'js/colorTheme.js' %}"></script> 
+    <link href="{% static 'registerUser.css' %}" rel="stylesheet" />
+    <link href="{% static 'post_job.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/chat.css' %}" rel="stylesheet" />
+    <script src="{% static 'js/colorTheme.js' %}"></script>
     <title>JustHired</title>
   </head>
   <body>
-   
-    
-     <!--LOAD NAVBAR HERE-->
-     {% include 'includes/navbar.html'%}
-     <!--LOAD CONTENT HERE-->
-     {% block content %}
-     <!--CONTENT GOES HERE-->
-     {%endblock%}
-     <!--LOAD FOOTER HERE-->
-     {% include 'includes/footer.html'%}
-     
-     <script src="{% static 'js/colorTheme.js' %}"></script> 
- 
-</body>
+    <!--LOAD NAVBAR HERE-->
+    {% include 'includes/navbar.html'%}
+    <!--LOAD CONTENT HERE-->
+    {% block content %}
+    <!--CONTENT GOES HERE-->
+    {%endblock%}
+    <!--LOAD FOOTER HERE-->
+    {% include 'includes/footer.html'%}
+
+    <script src="{% static 'js/colorTheme.js' %}"></script>
+  </body>
 </html>

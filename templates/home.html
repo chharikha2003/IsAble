@@ -16,12 +16,12 @@
         </p>
         {% if user.is_authenticated %}
           {% if user.role == 'CANDIDATE' %}
-              <a href="{% url "job_list" %}" class="nav-link"><button type="button" class="btn btn-primary">Find Jobs</button></a>
+              <a href="{% url "job_list" %}"><button type="button" class="register-button">Find Jobs</button></a>
           {% else %}
-              <a href="{% url "post_job" %}" class="nav-link"><button type="button" class="btn btn-primary">Post Job</button></a>
+              <a href="{% url "post_job" %}" ><button type="button" class="register-button">Post Job</button></a>
           {% endif %}
         {% else %}
-              <a href="{% url "registerUser" %}" class="nav-link"><button type="button" class="btn btn-warning">Find Job</button></a>
+              <a href="{% url "registerUser" %}"><button type="button" class="btn btn-primary register-button">Find Job</button></a>
         {% endif %}
         
       </div>
@@ -110,6 +110,14 @@
       
   </section>
 </div>
+<section class="chatbot-section">
+  <div class="chatbot-container">
+      <h2 class="chat-heading">Equixhat - Career Assistance Chatbot</h2>
+      <p class="chat-p">Equixhat is here to assist you in your career journey, providing personalized guidance and support tailored to your needs and abilities. Whether you're exploring career options, seeking job opportunities, or need advice on workplace accommodations, Equixhat is here to help!</p>
+      <button class="chat-button">Chat with Equixhat</button>
+  </div>
+</section>
+
 
 <section class="p-5">
   <div class="container">
@@ -139,6 +147,23 @@
     </div>
   </div>
 </section>
+{% if user.is_authenticated %}
+  {% if user.role == 'CANDIDATE' %}
+    <section class="resume-creation-section">
+      <div class="container">
+        <h2>Get your Job winning Resume!</h2>
+        <p>
+          Craft customized resumes effortlessly with our intuitive tool. Utilize your profile details to create standout resumes tailored to your unique skills and experiences. Simplify your job application process and make a lasting impression on potential employers. Elevate your job search journey with our user-friendly resume builder.      </p>
+        <div class="resume-creation-button">
+          <a href="{% url 'download_pdf' %}" class="btn btn-primary">Download your Resume</a>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{% endif %}
+
+
+
 
 <!-- Question Accordion -->
 <section id="questions" class="p-5">
@@ -343,6 +368,7 @@
     </div>
   </div>
 </section>
+
 
 {% endblock %} {% comment %} {% block extrastyles %}
 <!-- Include only the desired styles for this specific page -->
