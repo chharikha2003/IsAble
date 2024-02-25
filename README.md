@@ -18,9 +18,8 @@ IsAble introduces EquiChat, a cutting-edge chatbot powered by Gemini technology.
 - User-Friendly Resume Builder
 We understand the importance of a well-crafted resume in securing employment opportunities. IsAble offers a user-friendly resume builder that automatically generates resumes based on profile details, streamlining the application process for our users.
 
--Accessibility at the Core
+- Accessibility
 Accessibility lies at the heart of our platform. IsAble prioritizes inclusivity by offering accessibility features such as font size adjustment and customizable color schemes, ensuring that all users can navigate the website comfortably and efficiently.
-
 
 ## Technology Stack
 - Django: Backend web framework
