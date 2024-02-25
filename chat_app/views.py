@@ -1,11 +1,27 @@
 from django.shortcuts import render, reverse
 from django.contrib.auth.decorators import login_required
+
+from job_portal.settings import BASE_DIR
 from .models import ChatBot
 from django.http import HttpResponseRedirect, JsonResponse
 import google.generativeai as genai
+import os
+import environ
+
+# Initialize environ
+env = environ.Env()
+
+# Path to your .env file
+env_file = os.path.join(BASE_DIR, '.env')
+
+# Read from .env file
+environ.Env.read_env(env_file)
+
+# Now you can access your environment variables using env
+api_key = env('API_KEY')
 
 # Add your generated API key here
-genai.configure(api_key="AIzaSyBBwqV7ZUGYXFO3lU9IgudWzqGp8c4fKaY")
+genai.configure(api_key=api_key)
 
 @login_required(login_url='login')
 def ask_question(request):

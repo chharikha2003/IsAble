@@ -2,6 +2,10 @@
   background-color: rgba(218, 212, 212, 0.863);
   height: 200px;
 }
+.logo{
+  height:700px;
+  width:700px;
+}
 .button-like-div {
   display: inline-block;
   padding: 10px 40px;

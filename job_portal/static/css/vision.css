@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,300&display=swap');
-
-
-
-
-
-
-.container h2{
+.container-vision h2{
     text-align: center;
     text-transform: uppercase;
     font-size: 35px;
@@ -13,7 +7,7 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.container .services{
+.container-vision .services{
     
     justify-content: space-around;
     display: flex;
@@ -22,7 +16,7 @@
 
 }
 
-.container .services .card{
+.container-vision .services .card{
     width: 330px;
     text-align: center;
     
@@ -34,32 +28,32 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.container .services .card:hover{
+.container-vision .services .card:hover{
     background: blueviolet;
 }
 
-.container .services .card .content{
+.container-vision .services .card .content{
     transition: 0.3s;
 }
 
-.container .services .card:hover .content{
+.container-vision .services .card:hover .content{
     transform: scale(1.07);
 }
 
-.container .services .card .content .icon{
+.container-vision .services .card .content .icon{
     padding: 5px 0;
     color: white;
 }
 
-.container .services .card .content .icon i{
+.container-vision .services .card .content .icon i{
     font-size: 40px;
 }
 
-.container .services .card:hover .content .title{
+.container-vision .services .card:hover .content .title{
     color: white;
 }
 
-.container .services .card .content .title{
+.container-vision .services .card .content .title{
     padding: 5px 0;
     font-size: 24px;
     font-weight: 500;

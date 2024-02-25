@@ -10,18 +10,18 @@
           <span class="text-primary auto-type"></span>
         </h1>
         <p class="lead my-4">
-          At JustHired, we bridge talent and opportunity. Find your dream job or
+          At IsAble, we bridge talent and opportunity. Find your dream job or
           discover top-tier candidates effortlessly. Simplify your career
           journey – explore, connect, thrive.
         </p>
         {% if user.is_authenticated %}
-          {% if user.role == 'CANDIDATE' %}
+          {% if user.role == 1 %}
               <a href="{% url "job_list" %}"><button type="button" class="register-button">Find Jobs</button></a>
           {% else %}
               <a href="{% url "post_job" %}" ><button type="button" class="register-button">Post Job</button></a>
           {% endif %}
         {% else %}
-              <a href="{% url "registerUser" %}"><button type="button" class="btn btn-primary register-button">Find Job</button></a>
+              <a href="{% url "login" %}"><button type="button" class="btn btn-primary register-button">GET STARTED</button></a>
         {% endif %}
         
       </div>
@@ -83,38 +83,40 @@
 </section>
 <!-- our vision -->
 <div class="container">
-  <h2>Our Vision</h2>
-  <section class="services">
-      <div class="card">
-          <div class="content">
-              
-              <div class="title">Empower</div>
-              <p>Empowering individuals with disabilities to take control of their careers and futures.We empower job seekers to face challenges with confidence, fostering a sense of self-efficacy that transcends limitations.</p>
-          </div>
-      </div>
-      <div class="card">
-          <div class="content">
-              
-              <div class="title">Include</div>
-              <p>Creating an inclusive environment where everyone is welcomed.Inclusivity is at the heart of our platform.We ensure that every aspect, from design to job listings, embraces accessibility and diversity. We strive to create opportunities.</p>
-          </div>
-      </div>
-      <div class="card">
-          <div class="content">
-              
-              <div class="title">Succeed</div>
-              <p>Propelling careers to new heights.Our ultimate goal is success.Join us on this journey of empowerment, inclusion, and success. Together, let's redefine what's possible and build a future where diverse talents thrive.</p>
-          </div>
-      </div>
-     
-      
-  </section>
-</div>
+  <div class="container-vision">
+    <h2>Our Vision</h2>
+    <section class="services">
+        <div class="card">
+            <div class="content">
+                
+                <div class="title">Empower</div>
+                <p>Empowering individuals with disabilities to take control of their careers and futures.We empower job seekers to face challenges with confidence, fostering a sense of self-efficacy that transcends limitations.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                
+                <div class="title">Include</div>
+                <p>Creating an inclusive environment where everyone is welcomed.Inclusivity is at the heart of our platform.We ensure that every aspect, from design to job listings, embraces accessibility and diversity. We strive to create opportunities.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                
+                <div class="title">Succeed</div>
+                <p>Propelling careers to new heights.Our ultimate goal is success.Join us on this journey of empowerment, inclusion, and success. Together, let's redefine what's possible and build a future where diverse talents thrive.</p>
+            </div>
+        </div>
+       
+        
+    </section>
+  </div>
+  </div>
 <section class="chatbot-section">
   <div class="chatbot-container">
-      <h2 class="chat-heading">Equixhat - Career Assistance Chatbot</h2>
-      <p class="chat-p">Equixhat is here to assist you in your career journey, providing personalized guidance and support tailored to your needs and abilities. Whether you're exploring career options, seeking job opportunities, or need advice on workplace accommodations, Equixhat is here to help!</p>
-      <button class="chat-button">Chat with Equixhat</button>
+      <h2 class="chat-heading">EquiChat - Career Assistance Chatbot</h2>
+      <p class="chat-p">EquiChat is here to assist you in your career journey, providing personalized guidance and support tailored to your needs and abilities. Whether you're exploring career options, seeking job opportunities, or need advice on workplace accommodations, Equixhat is here to help!</p>
+      <a href="{% url 'chat' %}"><button class="chat-button">Chat with EquiChat</button></a>
   </div>
 </section>
 
@@ -148,7 +150,7 @@
   </div>
 </section>
 {% if user.is_authenticated %}
-  {% if user.role == 'CANDIDATE' %}
+  {% if user.role == 1 %}
     <section class="resume-creation-section">
       <div class="container">
         <h2>Get your Job winning Resume!</h2>
@@ -179,7 +181,7 @@
             data-bs-toggle="collapse"
             data-bs-target="#question-one"
           >
-            How do I create an account on the job portal?
+            How do I create an account on IsAble?
           </button>
         </h2>
         <div
@@ -188,13 +190,7 @@
           data-bs-parent="#questions"
         >
           <div class="accordion-body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-            beatae fuga animi distinctio perspiciatis adipisci velit maiores
-            totam tempora accusamus modi explicabo accusantium consequatur,
-            praesentium rem quisquam molestias at quos vero. Officiis ad velit
-            doloremque at. Dignissimos praesentium necessitatibus natus corrupti
-            cum consequatur aliquam! Minima molestias iure quam distinctio
-            velit.
+            To create an account on a job portal, visit the website, sign up by providing basic details, and optionally complete your profile before exploring job listings and applying.
           </div>
         </div>
       </div>
@@ -207,7 +203,7 @@
             data-bs-toggle="collapse"
             data-bs-target="#question-two"
           >
-          Are there any special features or accommodations for disabled job seekers
+          Are there any special features or accommodations for disabled job seekers?
           </button>
         </h2>
         <div
@@ -216,7 +212,7 @@
           data-bs-parent="#questions"
         >
           <div class="accordion-body">
-            Yes, JustHired offers various accessibility features to ensure an inclusive experience for all users. This includes compatibility with screen readers, keyboard navigation, and customizable display settings. Additionally, job seekers can specify their accommodation needs and preferences in their profiles to help employers understand their requirements.
+            Yes, IsAble offers various accessibility features to ensure an inclusive experience for all users. This includes compatibility with screen readers, keyboard navigation, and customizable display settings. Additionally, job seekers can specify their accommodation needs and preferences in their profiles to help employers understand their requirements.
           </div>
         </div>
       </div>
@@ -229,7 +225,7 @@
             data-bs-toggle="collapse"
             data-bs-target="#question-three"
           >
-          How does [JustHired] support employers?
+          How does IsAble support employers?
           </button>
         </h2>
         <div
@@ -238,7 +234,7 @@
           data-bs-parent="#questions"
         >
           <div class="accordion-body">
-            Employers can use [Your Job Portal's Name] to recruit talented individuals with disabilities and promote diversity in their workforce. Our platform offers tools for posting job listings, managing applications, and connecting with qualified candidates. We also provide resources and guidance on creating inclusive workplaces and accommodating employees with disabilities.
+            Employers can use IsAble to recruit talented individuals with disabilities and promote diversity in their workforce. Our platform offers tools for posting job listings, managing applications, and connecting with qualified candidates. We also provide resources and guidance on creating inclusive workplaces and accommodating employees with disabilities.
           </div>
         </div>
       </div>
@@ -251,7 +247,7 @@
             data-bs-toggle="collapse"
             data-bs-target="#question-four"
           >
-          Is [Your Job Portal's Name] free to use?
+          Is IsAble free to use?
           </button>
         </h2>
         <div
@@ -260,7 +256,7 @@
           data-bs-parent="#questions"
         >
           <div class="accordion-body">
-            Yes, [Your Job Portal's Name] is completely free for job seekers to create profiles, search for job listings, and apply for positions. Employers may have access to both free and premium features, depending on their needs and preferences.
+            Yes, IsAble is completely free for job seekers to create profiles, search for job listings, and apply for positions. Employers may have access to both free and premium features, depending on their needs and preferences.
           </div>
         </div>
       </div>
@@ -273,7 +269,7 @@
             data-bs-toggle="collapse"
             data-bs-target="#question-five"
           >
-          How can I get started with [Your Job Portal's Name]?
+          How can I get started with IsAble?
           </button>
         </h2>
         <div
@@ -282,7 +278,7 @@
           data-bs-parent="#questions"
         >
           <div class="accordion-body">
-            To begin using [Your Job Portal's Name], simply visit our website and sign up for an account. Job seekers can create their profiles and start exploring job opportunities, while employers can post job listings and begin recruiting qualified candidates. Our platform is user-friendly and designed to make the job search process as seamless as possible.
+            To begin using IsAble, simply visit our website and sign up for an account. Job seekers can create their profiles and start exploring job opportunities, while employers can post job listings and begin recruiting qualified candidates. Our platform is user-friendly and designed to make the job search process as seamless as possible.
           </div>
         </div>
       </div>

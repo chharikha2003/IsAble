@@ -18,6 +18,26 @@
     />
 
     <title>Register User</title>
+    <style>
+      .register-button {
+        display: inline-block;
+        padding: 12px 20px;
+        font-size: 18px;
+        width: 200px;
+        text-transform: uppercase;
+        color: #fff;
+        background-color: #0e71db;
+        border: 2px solid #007bff;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+      
+      .register-button:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <form action="{% url 'registerUser' %}" method="post">
@@ -121,9 +141,11 @@
                           type="submit"
                           value="Register"
                           id="btn-next-restaurant-information"
-                          class="bgcolor"
+                          class="register-button"
                         />
                       </div>
+                      <p class="text-center mt-2">Already a user? <a href="{% url 'login' %}">Login here</a></p>
+
                     </div>
                   </div>
                 </div>
@@ -132,6 +154,7 @@
           </div>
         </div>
       </section>
+      
     </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

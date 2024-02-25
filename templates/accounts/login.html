@@ -15,11 +15,13 @@
     <link href="{% static 'loginUser.css' %}" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
-    <title>Login</title>
+    <title>IsAble-Login</title>
   </head>
   <body>
     <div class="logo"></div>
-    <div class="login-block">
+    <div class="login-block mt-10">
+      <div class="logo"><img src="{% static 'img/logo.jpg' %}" style="height:70px; width:170px"></img></div>
+
         <h1>Login</h1>
         <form action="{% url 'login' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
